@@ -8,7 +8,7 @@ import redesignCSS from "../styles/redesign.css?raw";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "Iberostar Island Transfers | Traslados" },
+    { title: "B2C-W2M Redesign" },
     { name: "description", content: "Busca traslados entre aeropuertos, zonas y hoteles con Iberostar Island Transfers." },
     { property: "og:title", content: "Iberostar Island Transfers | Traslados" },
     { property: "og:description", content: "Busca tu traslado entre aeropuertos, zonas y hoteles." },
