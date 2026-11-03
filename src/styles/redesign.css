@@ -391,3 +391,5 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 .rd-cal, .rd-cal * { box-sizing: border-box; }
 .rd-cal__grid > * { min-width: 0; }
 .rd-cal--modal .rd-cal__grid { gap: 4px; }
+.rd-cal--modal { padding: 1.25rem 1rem 1rem; }
+.rd-cal--modal .rd-cal__day { aspect-ratio: auto; height: 44px; min-height: 0; }
