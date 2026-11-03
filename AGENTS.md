@@ -9,5 +9,6 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- The Transfers page (src/routes/index.tsx) keeps the imported site's CSS but its header, search form, carousel and footer are redesigned with `rd-*` classes styled in src/styles/redesign.css (loaded after the captured CSS) using brand tokens from src/styles.css — why: the imported global styles would otherwise override the new mobile-first design. Keep the original form field ids.
+- Pages keep the imported site's CSS (src/styles/site.css) and layer the redesign on top via `src/styles/page-styles.ts`, which concatenates `src/styles/redesign/*.css` (base, header, search, footer, brand) and is injected as <style> after the captured CSS — why: imported global styles would otherwise override the redesign. Brand tokens live in src/styles.css as `--brand-*`. Keep the original form field ids.
+- Shared page pieces live in `src/components/layout` (SiteHeader, SiteFooter, CookieNotice), `src/components/search` (SearchForm) and `src/components/brand` (BrandButton, BrandCard, SectionTitle, InfoRow); each page renders them itself, not __root — why: they sit inside page-specific imported wrappers. Reuse these before writing new markup; a formal design system comes once there are 2-3 pages.
 - Location selection lives in a shared LocationAutocomplete component; its mobile popup uses Radix Dialog for focus containment and background blocking, while desktop retains the anchored list — why: both search fields must share accessible selection behavior.
