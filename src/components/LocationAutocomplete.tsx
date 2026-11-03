@@ -4,49 +4,49 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { closePanel, openPanel } from "./openPanelRegistry";
 
-const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
-  {
-    title: "Aeropuertos",
-    icon: "fa-plane",
-    items: [
-      "Aeropuerto de Cancun",
-      "Aeropuerto de Cozumel",
-      "Aeropuerto de La Romana",
-      "Aeropuerto de Las Americas",
-      "Aeropuerto de Mallorca",
-      "Aeropuerto de Samana",
-    ],
-  },
-  {
-    title: "Zonas",
-    icon: "fa-map",
-    items: [
-      "Quintana Roo",
-      "Cancún",
-      "Puerto Morelos",
-      "Playa del Carmen",
-      "Riviera Maya",
-      "Cozumel",
-      "Tulum",
-    ],
-  },
-  {
-    title: "Hoteles",
-    icon: "fa-bed",
-    items: [
-      "Hotel Iberostar Heritage Las Mercedes (SDQ)",
-      "Hotel Iberostar Cancun (CUN)",
-      "Hotel Iberostar Selection Cancun (CUN)",
-      "Hotel Iberostar Cozumel (CZM)",
-      "Hotel Iberostar Tucan (CUN)",
-      "Hotel Iberostar Quetzal (CUN)",
-      "Hotel Iberostar Selection Paraiso del Mar (CUN)",
-      "Hotel Iberostar Selection Paraiso Beach (CUN)",
-      "Hotel Iberostar Selection Paraiso Lindo (CUN)",
-      "Hotel Iberostar Selection Paraiso Maya (CUN)",
-    ],
-  },
-];
+const AIRPORT_GROUP: { title: string; icon: string; items: string[] } = {
+  title: "Aeropuertos",
+  icon: "fa-plane",
+  items: [
+    "Aeropuerto de Cancun",
+    "Aeropuerto de Cozumel",
+    "Aeropuerto de La Romana",
+    "Aeropuerto de Las Americas",
+    "Aeropuerto de Mallorca",
+    "Aeropuerto de Samana",
+  ],
+};
+
+const ZONE_GROUP: { title: string; icon: string; items: string[] } = {
+  title: "Zonas",
+  icon: "fa-map",
+  items: [
+    "Quintana Roo",
+    "Cancún",
+    "Puerto Morelos",
+    "Playa del Carmen",
+    "Riviera Maya",
+    "Cozumel",
+    "Tulum",
+  ],
+};
+
+const HOTEL_GROUP: { title: string; icon: string; items: string[] } = {
+  title: "Hoteles",
+  icon: "fa-bed",
+  items: [
+    "Hotel Iberostar Heritage Las Mercedes (SDQ)",
+    "Hotel Iberostar Cancun (CUN)",
+    "Hotel Iberostar Selection Cancun (CUN)",
+    "Hotel Iberostar Cozumel (CZM)",
+    "Hotel Iberostar Tucan (CUN)",
+    "Hotel Iberostar Quetzal (CUN)",
+    "Hotel Iberostar Selection Paraiso del Mar (CUN)",
+    "Hotel Iberostar Selection Paraiso Beach (CUN)",
+    "Hotel Iberostar Selection Paraiso Lindo (CUN)",
+    "Hotel Iberostar Selection Paraiso Maya (CUN)",
+  ],
+};
 
 const subscribeMobile = (callback: () => void) => {
   const media = window.matchMedia("(max-width: 1023.98px)");
