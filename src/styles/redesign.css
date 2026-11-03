@@ -291,13 +291,13 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 .rd-pax { z-index: 5; }
 
 /* Autocompletar Origen */
-.rd-ac { position: relative; }
+.rd-ac { position: static; }
 .rd-ac__panel {
   position: absolute;
-  top: calc(100% + 14px);
-  left: 0;
+  top: calc(100% + 16px);
+  left: -0.5rem;
   z-index: 30;
-  min-width: 100%;
+  min-width: calc(100% + 1rem);
   width: max-content;
   max-width: min(94vw, 480px);
   max-height: min(58vh, 480px);
@@ -352,9 +352,7 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 }
 @media (min-width: 1024px) {
   .rd-ac__panel {
-    left: -0.5rem;
-    min-width: calc(100% + 2.5rem);
-    max-width: min(94vw, 560px);
+    max-width: min(94vw, 640px);
     max-height: min(58vh, 500px);
   }
 }
