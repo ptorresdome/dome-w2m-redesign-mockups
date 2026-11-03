@@ -1043,44 +1043,7 @@ function ImportedSectionBuscarTraslados() {
                 <span className="rd-field__icon"><svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></svg></span>
                 <span className="rd-field__body">
                   <span className="rd-field__label">Origen</span>
-                  <div
-                    className="rd-ac"
-                    ref={fromWrapRef}
-                    onMouseEnter={() => setFromOpen(true)}
-                  >
-                    <input className="rd-field__input" id="pickupLocation" tabIndex={1} type="text" placeholder="Aeropuerto, hotel o ciudad" data-hotel="Hoteles" value={from} onChange={(e) => setFrom(e.target.value)} autoComplete="off" onFocus={() => setFromOpen(true)} />
-                    {fromOpen && (
-                      <div className="rd-ac__panel" role="listbox" aria-label="Orígenes disponibles">
-                        {ORIGIN_GROUPS.map((group) => {
-                          const q = from.trim().toLowerCase();
-                          const items = q ? group.items.filter((it) => it.toLowerCase().includes(q)) : group.items;
-                          if (!items.length) return null;
-                          return (
-                            <div className="rd-ac__group" key={group.title}>
-                              <div className="rd-ac__group-title"><span className={`fa ${group.icon}`} aria-hidden="true" />{group.title}</div>
-                              {items.map((item) => (
-                                <button
-                                  key={item}
-                                  type="button"
-                                  className="rd-ac__item"
-                                  role="option"
-                                  aria-selected={from === item}
-                                  onMouseDown={(e) => e.preventDefault()}
-                                  onClick={() => {
-                                    setFrom(item);
-                                    setFromOpen(false);
-                                  }}
-                                >
-                                  <span className="fa fa-map-marker" aria-hidden="true" />
-                                  <span>{item}</span>
-                                </button>
-                              ))}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
+                  <LocationAutocomplete id="pickupLocation" tabIndex={1} value={from} onChange={setFrom} panelLabel="Orígenes disponibles" />
                 </span>
               </label>
               <button
@@ -1098,7 +1061,7 @@ function ImportedSectionBuscarTraslados() {
                 <span className="rd-field__icon"><svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 21V4" /><path d="M5 4h11l-2 4 2 4H5" /></svg></span>
                 <span className="rd-field__body">
                   <span className="rd-field__label">Destino</span>
-                  <input className="rd-field__input" id="returnLocation" tabIndex={3} type="text" placeholder="Aeropuerto, hotel o ciudad" data-hotel="Hoteles" value={to} onChange={(e) => setTo(e.target.value)} autoComplete="off" />
+                  <LocationAutocomplete id="returnLocation" tabIndex={3} value={to} onChange={setTo} panelLabel="Destinos disponibles" />
                 </span>
               </label>
             </div>

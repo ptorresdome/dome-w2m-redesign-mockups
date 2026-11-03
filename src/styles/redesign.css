@@ -323,6 +323,8 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 }
 .rd-ac__group-title .fa { font-size: 0.85rem; }
 .rd-ac__group-title .fa-plane::before { content: "\f072"; }
+.rd-ac__group-title .fa-map::before { content: "\f279"; }
+.rd-ac__group-title .fa-bed::before { content: "\f236"; }
 .rd-ac__item .fa-map-marker::before { content: "\f041"; }
 .rd-ac__item {
   display: flex;
