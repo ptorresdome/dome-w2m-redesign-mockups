@@ -67,6 +67,10 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
   const inputRef = useRef<HTMLInputElement>(null);
   const isMobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia("(max-width: 1023.98px)").matches, () => false);
 
+  const isOrigin = id === "pickupLocation";
+  const allGroups = isOrigin ? [AIRPORT_GROUP] : [ZONE_GROUP, HOTEL_GROUP];
+  const placeholder = isOrigin ? "Aeropuerto de origen" : "Zona u hotel de destino";
+
   useEffect(() => {
     if (!open) {
       closePanel(`ac-${id}`);
