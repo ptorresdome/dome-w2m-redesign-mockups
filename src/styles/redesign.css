@@ -225,3 +225,16 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   footer.rd-footer .footer-nav { flex-direction: row; justify-content: flex-end; flex-wrap: wrap; }
   footer.rd-footer .copyright { text-align: right; }
 }
+
+/* ---------- Dark search card ---------- */
+.rd-search-wrap { background: var(--brand-search-bg); }
+.rd-search { background: var(--brand-search-bg); box-shadow: none; padding-left: 0; padding-right: 0; }
+.rd-search__title, .rd-check { color: var(--brand-on-dark); }
+.rd-search__title .fa { color: var(--brand); }
+.rd-search-section { background: var(--brand-search-bg); }
+.rd-hero { margin-top: 1rem; }
+@media (min-width: 1024px) {
+  .rd-search-wrap { background: transparent; }
+  .rd-search { padding: 1.75rem; box-shadow: var(--brand-shadow-card); }
+  .rd-hero { margin-top: 0; }
+}
