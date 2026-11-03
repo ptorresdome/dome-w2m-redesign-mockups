@@ -2,6 +2,8 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { useEffect, useRef, useState } from "react";
 import { DatePicker } from "@/components/DatePicker";
 import { LocationAutocomplete } from "@/components/LocationAutocomplete";
+import { useNavigate } from "@tanstack/react-router";
+import { formatDate } from "@/lib/transfer-search";
 
 /** Transfer search form over the hero carousel. Keeps the original field ids. */
 const HERO_SLIDES = [
@@ -38,6 +40,8 @@ export function SearchForm() {
   const [draft, setDraft] = useState<Pax>({ adults: 1, children: 0, babies: 0 });
   const [paxOpen, setPaxOpen] = useState(false);
   const paxTriggerRef = useRef<HTMLButtonElement>(null);
+  const [privateOnly, setPrivateOnly] = useState(false);
+  const navigate = useNavigate();
 
   const goTo = (i: number) => {
     const track = trackRef.current;
@@ -193,10 +197,30 @@ export function SearchForm() {
 
             <div className="rd-submit-col">
               <label className="rd-check" htmlFor="servicetype">
-                <input type="checkbox" id="servicetype" name="servicetype" />
+                <input type="checkbox" id="servicetype" name="servicetype" checked={privateOnly} onChange={(e) => setPrivateOnly(e.target.checked)} />
                 <span>Solo privado</span>
               </label>
-              <button className="rd-btn rd-btn--primary rd-search__submit" id="searchBtn" type="button" tabIndex={13}>
+              <button
+                className="rd-btn rd-btn--primary rd-search__submit"
+                id="searchBtn"
+                type="button"
+                tabIndex={13}
+                onClick={() =>
+                  navigate({
+                    to: "/resultados",
+                    search: {
+                      from: from || undefined,
+                      to: to || undefined,
+                      date: formatDate(checkIn),
+                      ret: roundTrip ? formatDate(checkOut) : undefined,
+                      adults: pax.adults,
+                      children: pax.children || undefined,
+                      babies: pax.babies || undefined,
+                      privateOnly: privateOnly || undefined,
+                    },
+                  })
+                }
+              >
                 Buscar <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
               </button>
             </div>
