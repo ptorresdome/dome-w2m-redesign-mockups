@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { closePanel, openPanel } from "./openPanelRegistry";
 
 const MONTHS = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 const DAYS = ["Lu", "Ma", "Mi", "Ju", "Vi", "Sa", "Do"];
@@ -45,7 +46,11 @@ export function DatePicker({ id, tabIndex, value, onChange, minDate, title, plac
   }, [open]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open) {
+      closePanel(`dp-${id}`);
+      return;
+    }
+    if (!isMobile) openPanel(`dp-${id}`, () => setOpen(false));
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     const onDown = (e: MouseEvent) => {
       if (!isMobile && wrapRef.current && !wrapRef.current.contains(e.target as Node)) setOpen(false);
