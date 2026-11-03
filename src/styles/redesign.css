@@ -310,18 +310,20 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 }
 .rd-ac__group + .rd-ac__group { border-top: 1px solid var(--brand-line); }
 .rd-ac__group-title {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.8rem 1.2rem;
-  background: var(--brand-ink-strong);
-  color: #fff;
-  font-size: 0.875rem;
+  gap: 0.5rem;
+  margin: 0.7rem 1rem 0.4rem;
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--brand-ink-strong) 12%, var(--brand-surface));
+  color: var(--brand-ink);
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.rd-ac__group-title .fa { font-size: 0.95rem; }
+.rd-ac__group-title .fa { font-size: 0.85rem; color: var(--brand-ink); opacity: 0.75; }
 .rd-ac__group-title .fa-plane::before { content: "\f072"; }
 .rd-ac__group-title .fa-map::before { content: "\f279"; }
 .rd-ac__group-title .fa-bed::before { content: "\f236"; }
