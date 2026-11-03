@@ -1,10 +1,11 @@
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import capturedCSS from "../styles/site.css?raw";
+import redesignCSS from "../styles/redesign.css?raw";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [{ title: "World2Meet - Traslados" }] }),
-  staticData: { importedDocument: { html: { "className": "video", "lang": "es" }, body: { "className": "didomi-popup-open" } } },
+  staticData: { importedDocument: { html: { "className": "video", "lang": "es" } } },
   component: Index,
 });
 
@@ -14,6 +15,7 @@ function Index() {
   return (
     <>
       <style>{capturedCSS}</style>
+      <style>{redesignCSS}</style>
       {consentOpen && (
       <div className={"didomi-host items-stretch self-auto shadow-none break-inside-auto caption-top flex-initial [&]:flex-row flex-nowrap float-none gap-0 isolation-auto tracking-normal mix-blend-normal object-fill order-0 content-stretch justify-start pointer-events-auto resize-none table-auto no-underline indent-0 text-clip normal-case touch-auto delay-0 duration-0 transition-all ease-[ease] select-auto align-baseline [&]:visible will-change-auto break-normal [-webkit-box-reflect:initial] [-webkit-line-clamp:initial] [-webkit-locale:initial] [-webkit-rtl-ordering:initial] [-webkit-tap-highlight-color:rgba(0,0,0,0)] [-webkit-text-combine:initial] [-webkit-text-decorations-in-effect:initial] [-webkit-text-fill-color:initial] [-webkit-text-security:initial] [-webkit-text-stroke:0px_currentcolor] [-webkit-user-drag:initial] [accent-color:initial] [alignment-baseline:initial] [anchor-name:initial] [anchor-scope:initial] [animation-composition:initial] [animation-delay:0s] [animation-direction:normal] [animation-duration:0s] [animation-fill-mode:none] [animation-iteration-count:1] [animation-name:none] [animation-play-state:running] [animation-range:initial] [animation-timeline:initial] [animation-timing-function:ease] [animation-trigger:initial] [app-region:initial] [aspect-ratio:initial] [backdrop-filter:initial] [backface-visibility:visible] [baseline-shift:initial] [baseline-source:initial] [box-decoration-break:slice] [break-after:auto] [break-before:auto] [buffered-rendering:initial] [caret-animation:initial] [caret-color:auto] [caret-shape:initial] [clip:auto] [clip-path:none] [clip-rule:initial] [color:initial] [color-interpolation:initial] [color-interpolation-filters:initial] [color-rendering:initial] [color-scheme:initial] [column-fill:balance] [column-rule:medium] [column-span:none] [columns:auto] [contain:initial] [contain-intrinsic-block-size:initial] [contain-intrinsic-inline-size:initial] [contain-intrinsic-size:initial] [container:initial] [corner-block-end-shape:initial] [corner-block-start-shape:initial] [corner-shape:initial] [counter-increment:none] [counter-reset:none] [counter-set:initial] [cx:initial] [cy:initial] [d:initial] [dominant-baseline:initial] [dynamic-range-limit:initial] [empty-cells:show] [field-sizing:initial] [fill:initial] [fill-opacity:initial] [fill-rule:initial] [filter:none] [flex-line-count:initial] [flood-color:initial] [flood-opacity:initial] [forced-color-adjust:initial] [frame-sizing:initial] [grid:none] [grid-area:auto] [hyphenate-character:initial] [hyphenate-limit-chars:initial] [hyphens:manual] [image-orientation:initial] [image-rendering:auto] [initial-letter:initial] [interactivity:initial] [interest-delay:initial] [interpolate-size:initial] [justify-items:initial] [justify-self:initial] [lighting-color:initial] [line-break:auto] [list-style:outside_none_disc] [marker:initial] [math-depth:initial] [math-shift:initial] [math-style:initial] [object-position:50%_50%] [object-view-box:initial] [offset:initial] [orphans:2] [overlay:initial] [overscroll-behavior:initial] [overscroll-behavior-block:initial] [overscroll-behavior-inline:initial] [page:initial] [page-margin-safety:initial] [page-orientation:initial] [paint-order:initial] [perspective:none] [perspective-origin:50%_50%] [print-color-adjust:initial] [quotes:initial] [r:initial] [reading-flow:initial] [reading-order:initial] [rotate:initial] [row-rule:initial] [ruby-align:space-around] [ruby-overhang:initial] [ruby-position:over] [rule-break:initial] [rule-inset:initial] [rule-overlap:initial] [rule-visibility-items:initial] [rx:initial] [ry:initial] [scale:initial] [scroll-axis-lock:initial] [scroll-initial-target:initial] [scroll-margin:initial] [scroll-margin-block:initial] [scroll-margin-inline:initial] [scroll-marker-group:initial] [scroll-padding:initial] [scroll-padding-block:initial] [scroll-padding-inline:initial] [scroll-snap-align:initial] [scroll-snap-stop:initial] [scroll-snap-type:none] [scroll-target-group:initial] [scroll-timeline:initial] [scrollbar-color:initial] [scrollbar-gutter:initial] [scrollbar-width:initial] [shape-image-threshold:0] [shape-margin:0px] [shape-outside:none] [shape-rendering:initial] [speak:initial] [stop-color:initial] [stop-opacity:initial] [stroke:initial] [stroke-dasharray:initial] [stroke-dashoffset:initial] [stroke-linecap:initial] [stroke-linejoin:initial] [stroke-miterlimit:initial] [stroke-opacity:initial] [stroke-width:initial] [tab-size:8] [text-anchor:initial] [text-autospace:initial] [text-box:initial] [text-combine-upright:none] [text-decoration-skip-ink:initial] [text-emphasis:none_currentcolor] [text-emphasis-position:over_right] [text-fit:initial] [text-justify:auto] [text-orientation:mixed] [text-rendering:optimizelegibility] [text-shadow:none] [text-size-adjust:initial] [text-spacing-trim:initial] [text-underline-offset:initial] [text-underline-position:auto] [timeline-scope:initial] [timeline-trigger:initial] [transition-behavior:initial] [translate:initial] [trigger-scope:initial] [vector-effect:initial] [view-timeline:initial] [view-transition-class:initial] [view-transition-group:initial] [view-transition-name:initial] [view-transition-scope:initial] [widows:2] [window-drag:initial] [word-spacing:normal] [writing-mode:horizontal-tb] [x:initial] [y:initial] [zoom:initial]"} id="didomi-host" lang="en">
         <div className={isMobile ? "notranslate didomi-screen-xsmall didomi-mobile didomi-consent-popup__a2711963-219d-44fc-82d8-17e974c3dab8" : "notranslate didomi-screen-large didomi-consent-popup__a2711963-219d-44fc-82d8-17e974c3dab8"}>
@@ -408,7 +410,7 @@ function Index() {
               </div>
             </div>
           </div>
-          <footer className={"type2 [&]:text-white"}>
+          <footer className={"type2 rd-footer [&]:text-white"}>
             <div className={"\x63ontainer"}>
               <div className="footer-top w-full">
                 <div className={"row [&]:flex-wrap"}>
@@ -831,116 +833,7 @@ function Index() {
   );
 }
 
-function ImportedHeaderNavegaciNDeLa() {
-  return (
-    <header className="header">
-      <section className="header-wrapper" id="headerContent">
-        <div className={"\x63ontainer"}>
-          <nav className="navbar navbar-expand items-center">
-            <a className="navbar-brand logo d-none d-md-block" href="/">
-              <div className="logoHeader" style={{ background: "url(\"/site-assets/1fbaddbcc7e6cf85.png\") 0% 0% / contain no-repeat" }} />
-            </a>
-            <div className={"\x63ollapse navbar-collapse items-center grow justify-end! [@media(max-width:767px)]:float-none"} id="navbarCollapse">
-              <ul className="navbar-nav">
-                <li className={"nav-item [&]:float-left"}>
-                  <a className={"nav-link normal-case [&:focus-visible]:[box-shadow:rgba(13,110,253,0.25)_0px_0px_0px_0.25rem]"} href="/user-register">
-                    <span className="fa fa-user-plus [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" />
-                    <span className="navbar-top-txt">Regístrese</span>
-                  </a>
-                </li>
-                <li className={"nav-item [&]:float-left"}>
-                  <a className={"nav-link normal-case [&:focus-visible]:[box-shadow:rgba(13,110,253,0.25)_0px_0px_0px_0.25rem]"} href="#" id="login-link">
-                    <span className="fa fa-users [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" />
-                    <span className="navbar-top-txt">Mi cuenta</span>
-                  </a>
-                </li>
-                <li className={"nav-item [&]:float-left"}>
-                  <a className={"nav-link normal-case [&:focus-visible]:[box-shadow:rgba(13,110,253,0.25)_0px_0px_0px_0.25rem]"} aria-expanded="false" data-bs-target="#modalLanguage" href="#">
-                    <span className="fa fa-globe [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" />
-                    <span className="navbar-top-txt">Cambiar idioma</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </section>
-      <section className={"\x66ill-fixed-navbar"} style={{ height: "0px" }} />
-      <section className="navigation-collapse duration-300 ease-linear">
-        <h2 className="visually-hidden">Navegación de la web</h2>
-        <div className={"\x63ontainer"}>
-          <nav className={"navbar navbar-default navbar-expand-md \x6austify-content-center \x6austify-content-sm-between items-center"}>
-            <a className="navbar-brand d-md-none" href="/">
-              <div className="logoHeader" style={{ background: "url(\"/site-assets/1fbaddbcc7e6cf85.png\") 0% 0% / contain no-repeat", width: "170px", height: "45px" }} />
-            </a>
-            <div className={"nav \x66lex-row \x66lex-sm-column [&]:flex-wrap"}>
-              <button className={"navbar-toggler collapsed d-md-none [&:focus]:[box-shadow:0_0_0_var(--bs-navbar-toggler-focus-width)] [&:focus]:no-underline [&:hover]:no-underline"} type="button" data-bs-target="#bs-example-navbar-collapse-1" aria-expanded="false" {...({ "arial-label": "Toggle navigation" } as any)}>
-                <span className="navbar-toggler-icon align-middle" />
-              </button>
-            </div>
-            <div className="offcanvas offcanvas-start bottom-0 text-(--bs-offcanvas-color) flex-col max-w-full top-0" id="bs-example-navbar-collapse-1" aria-expanded="false" tabIndex={-1}>
-              <div className="offcanvas-header items-center justify-end!">
-                <button className={"btn-close btn-close-white w-[1em] [&:focus]:[box-shadow:var(--bs-btn-close-focus-shadow)] [&:hover]:no-underline"} type="button" aria-label="Close" />
-              </div>
-              <div className="offcanvas-body p-0">
-                <ul className={"nav navbar-nav navmain [&]:flex-wrap"}>
-                  <li className="nav-item">
-                    <a className={"nav-link normal-case [&:focus-visible]:[box-shadow:rgba(13,110,253,0.25)_0px_0px_0px_0.25rem]"} href="/excursion">{"\n                        "}<i className="fa fa-ticket [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" /> Excursiones
-                        </a>
-                  </li>
-                  <li className="nav-item dropdown active">
-                    <a className={"nav-link active normal-case [&:focus-visible]:[box-shadow:rgba(13,110,253,0.25)_0px_0px_0px_0.25rem]"} href="#">{"\n                                "}<i className="fa fa-bus [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" /> Traslados
-                                </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </section>
-    </header>
-  );
-}
-
-function ImportedSectionBuscarTraslados() {
-  return (
-    <section className="section-slider section-bg-traslados">
-      <div className="carousel" id="myCarousel"><ol className="carousel-indicators bottom-0 justify-center right-0"><li data-bs-target="#myCarousel" className="" /><li className="active" data-bs-target="#myCarousel" aria-current="true" /><li data-bs-target="#myCarousel" className="" /><li data-bs-target="#myCarousel" className="" /></ol><div className="carousel-inner w-full"><div className={"carousel-item active carousel-item-start [&]:float-left w-full [backface-visibility:hidden]"}><div className="carousel-bg d-block top-0 w-full! [filter:brightness(75%)]" style={{ background: "url(\"/site-assets/c51f2863e87e79e3.webp\")" }} /></div><div className={"carousel-item carousel-item-next carousel-item-start [&]:float-left w-full [backface-visibility:hidden]"}><div className="carousel-bg d-block top-0 w-full! [filter:brightness(75%)]" style={{ background: "url(\"/site-assets/ce888aa8731e4ed3.webp\")" }} /></div><div className={"carousel-item [&]:float-left w-full [backface-visibility:hidden]"}><div className="carousel-bg d-block top-0 w-full! [filter:brightness(75%)]" style={{ background: "url(\"/site-assets/c1a3a76f809953b5.webp\")" }} /></div><div className={"carousel-item [&]:float-left w-full [backface-visibility:hidden]"}><div className="carousel-bg d-block top-0 w-full! [filter:brightness(75%)]" style={{ background: "url(\"/site-assets/6e96a3cf8c10387f.webp\")" }} /></div></div><button className={"carousel-control-prev items-center bottom-0 justify-center top-0 w-[15%] [&:focus]:no-underline [&:hover]:no-underline"} type="button" data-bs-target="#myCarousel">{"\n\t\t\t    "}<span className="carousel-control-prev-icon" aria-hidden="true" />{"\n\t\t\t    "}<span className="visually-hidden">Previous</span>{"\n\t\t\t"}</button><button className={"carousel-control-next items-center bottom-0 justify-center right-0 top-0 w-[15%] [&:focus]:no-underline [&:hover]:no-underline"} type="button" data-bs-target="#myCarousel">{"\n\t\t\t    "}<span className="carousel-control-next-icon" aria-hidden="true" />{"\n\t\t\t    "}<span className="visually-hidden">Next</span>{"\n\t\t\t"}</button></div>
-      <div className="container-searcher transfer-home">
-        <form className="form-inline searcher searcher-transfer [@media(max-width:767px)]:w-full [@media(min-width:992px)]:items-end" id="searcher-transfer">
-          <div className="searcher-top">
-            <h2><span className="fa fa-search [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" />
-                Buscar Traslados
-            </h2>
-            <div className={"row [&]:flex-wrap"}>
-              <div className={"form-group \x63ol-lg-3 \x63ol-sm-6 \x63ol-12 location-transfer-from align-middle"}><span className="ui-helper-hidden-accessible [clip:rect(0px,0px,0px,0px)]" role="status" aria-live="polite" /><label style={{ display: "none" }}>Origen</label><input className="form-control text-ellipsis" id="pickupLocation" tabIndex={1} type="text" placeholder="Origen" data-hotel="Hoteles" defaultValue="" autoComplete="off" /><i className="fa fa-chevron-down location-dropdown-toggle bottom-[10px] right-[7px] transition-transform duration-200 [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" /></div>
-              <div className={"form-group \x63ol-lg-3 \x63ol-sm-6 \x63ol-12 location-transfer-to align-middle"}><span className="ui-helper-hidden-accessible [clip:rect(0px,0px,0px,0px)]" role="status" aria-live="polite" /><label style={{ display: "none" }}>Destino</label><input className="form-control text-ellipsis" id="returnLocation" tabIndex={3} type="text" placeholder="Destino" data-hotel="Hoteles" defaultValue="" autoComplete="off" /><i className="fa fa-chevron-down location-dropdown-toggle bottom-[10px] right-[7px] transition-transform duration-200 [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" /></div>
-              <div className={"form-group \x63ol-lg-2 \x63ol-6 arrival-date align-middle"}>
-                <div className={"input-group date form_date items-stretch [&]:flex-wrap w-full"} id="checkIn-datetimepicker"><label style={{ display: "none" }}>Llegada</label><input className="form-control" id="checkIn-datetimepicker-input" tabIndex={2} type="text" placeholder="Llegada" readOnly defaultValue="" {...({ size: "10" } as any)} /><span className="input-group-addon bottom-[10px] right-[7px]" id="checkIn-datetimepicker-span">{"\n      "}<i className="fa fa-calendar [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" />{"\n   "}</span></div>
-                <input type="hidden" id="checkInDate" defaultValue="" />
-              </div>
-              <div className={"form-group \x63ol-lg-2 \x63ol-6 departure-date hide desactivado pointer-events-none align-middle"} id="returnData" data-super="true"><div className={"input-group date form_date items-stretch [&]:flex-wrap w-full"} id="checkOut-datetimepicker"><label style={{ display: "none" }}>Regreso</label><input className="form-control" id="checkOut-datetimepicker-input" tabIndex={4} type="text" placeholder="Regreso" readOnly defaultValue="" disabled {...({ size: "10" } as any)} /><span className="input-group-addon disabled bottom-[10px] right-[7px]" id="checkOut-datetimepicker-span">{"\n        "}<i className="fa fa-calendar [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" />{"\n    "}</span></div><span className="input-group-addon bottom-[10px] right-[9px]! top-[-6px]!" id="checkOut-datetimepicker-oneway-span" data-super="true" title="Cambiar a Solo Ida">{"\n        "}<i className="fa fa-close [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" />{"\n    "}</span><input type="hidden" defaultValue="" id="checkOutDate" /></div>
-              <div className={"form-group \x63ol-lg-2 \x63ol-6 no-underline align-middle"} id="roundTrip-button">
-                <div className="form-control disabled">
-                  <div><i className="fa fa-plus-circle [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" /><span>Añadir regreso</span></div>
-                </div>
-              </div>
-              <div className={"form-group \x63ol-lg-2 \x63ol-12 passengers align-middle"}><label className="inputValue" style={{ display: "block" }}>Personas</label><input className="form-control" type="text" id="accommodation" tabIndex={12} readOnly placeholder="" /><a className="link-open-modal bottom-[10px] right-[7px]" data-bs-target="#modalAccommodation" href="#"><i className="fa fa-user [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" /></a></div>
-            </div>
-          </div>
-          <div className="searcher-bottom">
-            <div className={"row [&]:flex-wrap justify-center [@media(min-width:992px)]:flex-col"}>
-              <div className={"form-group \x63ol-lg-12 \x63ol-12 transferPrivate align-middle"}><input type="checkbox" id="servicetype" name="servicetype" /><label><span>Solo privado</span></label></div>
-              <div className={"form-group \x63ol-lg-12 \x63ol-12 align-middle"}>
-                <button className="btn btn-default pull-right select-none align-middle [@media(max-width:767px)]:w-full" id="searchBtn" type="button" tabIndex={13}>Buscar <span className="fa fa-search [-moz-osx-font-smoothing:grayscale] [text-rendering:auto]" /></button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
-  );
-}
+__NEW__
 
 function subscribeMobile(onChange: () => void) {
   const query = matchMedia("(max-width: 767px)");
