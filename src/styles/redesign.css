@@ -312,18 +312,19 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 }
 .rd-ac__group + .rd-ac__group { border-top: 1px solid var(--brand-line); }
 .rd-ac__group-title {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 0.5rem;
-  margin: 0.7rem 1rem 0.4rem;
+  margin: 0.7rem auto 0.4rem;
   padding: 0.25rem 0.8rem;
   border-radius: 999px;
   background: color-mix(in oklab, var(--brand-ink-strong) 12%, var(--brand-surface));
   color: var(--brand-ink);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
 .rd-ac__group-title .fa { font-size: 0.85rem; color: var(--brand-ink); opacity: 0.75; }
 .rd-ac__group-title .fa-plane::before { content: "\f072"; }
