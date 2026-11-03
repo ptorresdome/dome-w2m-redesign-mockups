@@ -97,7 +97,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
     setOpen(true);
   };
   const q = (isMobile ? query : value).trim().toLowerCase();
-  const groups = ORIGIN_GROUPS
+  const groups = allGroups
     .map((g) => ({ ...g, items: q ? g.items.filter((it) => it.toLowerCase().includes(q)) : g.items }))
     .filter((g) => g.items.length > 0);
   const options = (
