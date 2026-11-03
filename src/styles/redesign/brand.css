@@ -1,0 +1,29 @@
+/* ---------- Shared brand pieces (src/components/brand) ---------- */
+.rd-bbtn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 44px; padding: 0 1.25rem; border: 0; border-radius: var(--brand-radius);
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.875rem;
+  text-transform: uppercase; letter-spacing: 0.02em; cursor: pointer;
+  transition: background-color .2s ease, transform .1s ease;
+}
+.rd-bbtn:active { transform: translateY(1px); }
+.rd-bbtn:focus-visible { outline: 3px solid color-mix(in oklab, var(--brand) 55%, transparent); outline-offset: 2px; }
+.rd-bbtn--primary { background: var(--brand); color: var(--brand-ink-strong); }
+.rd-bbtn--primary:hover { background: var(--brand-strong); }
+.rd-bbtn--secondary { background: var(--brand-ink); color: var(--brand-on-dark); }
+.rd-bbtn--secondary:hover { background: var(--brand-ink-strong); }
+
+.rd-card {
+  background: var(--brand-surface); border-radius: calc(var(--brand-radius) + 2px);
+  box-shadow: var(--brand-shadow-soft); font-family: 'Montserrat', sans-serif;
+}
+
+.rd-stitle {
+  display: flex; align-items: center; gap: 0.6rem; margin: 0;
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.25rem; color: var(--brand-ink-strong);
+}
+.rd-stitle .fa { color: var(--brand); }
+
+.rd-info { margin: 0 0 0.9rem; font-family: 'Montserrat', sans-serif; }
+.rd-info__label { font-size: 0.8125rem; font-weight: 500; color: var(--brand-ink); }
+.rd-info__value { margin: 0.15rem 0 0; font-size: 0.875rem; font-weight: 700; color: var(--brand-ink-strong); text-transform: uppercase; overflow-wrap: anywhere; }

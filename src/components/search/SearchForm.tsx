@@ -1,5 +1,5 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DatePicker } from "@/components/DatePicker";
 import { LocationAutocomplete } from "@/components/LocationAutocomplete";
 
