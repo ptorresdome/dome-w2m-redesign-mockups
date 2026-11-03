@@ -1,16 +1,16 @@
-# Escritorio: buscador centrado sobre la foto de fondo
+# Buscador centrado sobre la foto de fondo (tablet y escritorio)
 
-## Idea
-- La foto del autobús y el carrusel pasan a ser el **fondo** de toda la zona, a lo ancho de la pantalla. Llevan un oscurecido para que no compitan con el buscador, y las flechas y los puntos quedan discretos en la parte de abajo.
-- El buscador es una **tarjeta centrada** de unos 760 px de ancho, con varias filas en lugar de una sola línea.
+## Común
+- La foto del autobús y el carrusel pasan a ser el **fondo** de la zona, a lo ancho de la pantalla, con un oscurecido. Las flechas y los puntos quedan discretos en la parte de abajo.
+- El buscador es una tarjeta oscura, centrada en horizontal y en vertical. Se mantiene el mismo orden de campos y no se añade ni se quita ninguno.
 
-## Filas (mismo orden que ahora)
+## Tablet (768–1023 px): tarjeta de unos 760 px, tres filas
 1. Origen | intercambiar | Destino
 2. Llegada | Regreso | Personas
-3. Solo privado, justo encima de un botón Buscar que ocupa todo el ancho
+3. Solo privado y, debajo, Buscar a todo el ancho
 
-## Detalles
-- La tarjeta mantiene el fondo oscuro y los campos grises de ahora, y queda centrada en vertical sobre la foto.
-- El desplegable de Personas se abre hacia abajo sin que se corte.
-- En pantallas medianas y en el móvil se queda como ahora.
-- No se añade ni se quita ningún campo.
+## Escritorio (desde 1024 px): tarjeta ancha de hasta unos 1180 px, dos filas
+1. **Origen | intercambiar | Destino**: la fila entera es para ellos, así que cada uno tiene unos 550 px y los nombres largos de hoteles y aeropuertos se leen completos.
+2. **Llegada | Regreso | Personas | Solo privado + Buscar**: los campos cortos comparten fila, y el botón Buscar queda al final con Solo privado justo encima.
+
+La tarjeta queda más baja y ancha, y la foto se sigue viendo por arriba y por abajo.
