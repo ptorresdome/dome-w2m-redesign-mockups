@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BrandButton, BrandCard, InfoRow, SectionTitle } from "@/components/brand";
+import { BrandButton, BrandCard, InfoRow } from "@/components/brand";
 import { CookieNotice } from "@/components/layout/CookieNotice";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -60,7 +60,7 @@ function Results() {
           <div className="rd-results__layout">
             <aside>
               <BrandCard className="rd-summary">
-                <SectionTitle icon="fa-list" as="h2">Resumen</SectionTitle>
+                <h2 className="rd-stitle"><span className="rd-stitle__ico"><svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span>Resumen</h2>
                 <p className="rd-summary__leg">Trayecto de ida</p>
                 <dl>
                   <InfoRow label="Fecha de salida" value={s.date ?? "—"} />
@@ -88,14 +88,14 @@ function Results() {
                       <div className="rd-vcard__body">
                         <div className="rd-vcard__head">
                           <h3 className="rd-vcard__title">
-                            {r.type} <span className="rd-vcard__cap"><span className="fa fa-male" aria-hidden="true" /> {r.capacity}<span className="sr-only"> plazas</span></span>
+                            {r.type} <span className="rd-vcard__cap"><svg className="rd-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="4.5" r="2.5"/><path d="M9 8h6a2 2 0 0 1 2 2v5h-2v7h-2.2v-6h-1.6v6H9v-7H7v-5a2 2 0 0 1 2-2Z"/></svg> {r.capacity}<span className="sr-only"> plazas</span></span>
                           </h3>
                           <span className="rd-vcard__pax">{pax}</span>
                         </div>
                         <p className="rd-vcard__name">{r.name}</p>
                         <div className="rd-vcard__foot">
                           <p className="rd-vcard__desc">{r.desc}</p>
-                          <BrandButton>Añadir <span className="fa fa-shopping-cart" aria-hidden="true" /></BrandButton>
+                          <BrandButton>Añadir <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6"/></svg></BrandButton>
                         </div>
                       </div>
                     </BrandCard>
