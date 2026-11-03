@@ -90,7 +90,7 @@
   font: 600 1rem/1.35 'Montserrat', sans-serif; color: var(--brand-ink-strong); box-shadow: none;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.rd-field__input::placeholder { color: color-mix(in oklab, var(--brand-ink) 65%, transparent); font-weight: 500; }
+.rd-field__input::placeholder { color: color-mix(in oklab, var(--brand-ink) 65%, transparent); font-weight: 500; font-size: 0.8125rem; }
 
 .rd-route { position: relative; display: grid; gap: 0.625rem; }
 .rd-route .rd-field { padding-right: 3.5rem; }
