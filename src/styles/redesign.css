@@ -109,7 +109,8 @@
   display: flex; align-items: center; gap: 0.625rem; background: none; border: 0; padding: 0; margin: 0;
   cursor: pointer; color: inherit; min-height: 24px; text-align: left;
 }
-.rd-return.is-on .rd-field__input { padding-left: calc(36px + 0.625rem); }
+.rd-field__input[type="date"] { font-size: 0.9375rem; }
+.rd-field__input::-webkit-calendar-picker-indicator { margin-left: 0; }
 .rd-switch { flex: none; position: relative; width: 36px; height: 20px; border-radius: 999px; background: var(--brand-line); transition: background-color .2s ease; }
 .rd-switch > span { position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 999px; background: var(--brand-surface); box-shadow: var(--brand-shadow-soft); transition: transform .2s ease; }
 .rd-return.is-on .rd-switch { background: var(--brand); }
@@ -196,9 +197,10 @@
   .rd-search-wrap { align-self: center; width: 100%; padding: 3rem 1.5rem; pointer-events: none; }
   .rd-search { pointer-events: auto; padding: 1.75rem; }
   .rd-search__title { font-size: 1.5rem; }
-  .rd-search__grid { grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.7fr) minmax(0, 1fr) auto; align-items: stretch; }
+  .rd-search__grid { grid-template-columns: minmax(0, 2.2fr) minmax(0, 2fr) minmax(0, 1fr) auto; align-items: stretch; }
   .rd-route { grid-column: auto; }
   .rd-hero__dots { bottom: 1.5rem; }
+  .rd-hero__nav { top: auto; bottom: 1rem; transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
