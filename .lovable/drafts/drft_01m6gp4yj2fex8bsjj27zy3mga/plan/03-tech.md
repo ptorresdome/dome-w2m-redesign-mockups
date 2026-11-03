@@ -1,5 +1,5 @@
 ## Detalles técnicos
-- El cambio se hace solo en `@media (min-width:1024px)` de redesign.css. Se mantiene la pila en grid de `.rd-search-section`. `.rd-hero` va a sangre completa con un overlay más fuerte, y `.rd-search` lleva `max-width:760px; margin:auto`.
-- `.rd-search__grid` pasa a 6 columnas: `.rd-route` ocupa toda la fila con 2 columnas y el botón de intercambio centrado; `.rd-dates` ocupa 4 columnas y Personas 2; `.rd-submit-col` ocupa toda la fila.
-- No hay cambios en el marcado ni en los id de los campos.
-- La comprobación se hará con capturas a 1280 y a 1440 px de ancho, y también abriendo el desplegable de Personas.
+- Todo se hace en redesign.css, sin cambios en el marcado ni en los id. A partir de 768 px, `.rd-search-section` usa una pila en grid con `.rd-hero` a sangre completa y un overlay más fuerte, y `.rd-search` queda centrado con `margin:auto`.
+- Tablet: `max-width:760px`; la cuadrícula hace que la ruta ocupe toda la fila, las fechas y Personas compartan la fila 2 y `.rd-submit-col` ocupe toda la fila 3.
+- Escritorio: `max-width:1180px`; la fila 1 es `.rd-route` con 2 columnas y el botón de intercambio centrado; la fila 2 es `minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(220px,1.3fr)`, con `.rd-submit-col` (casilla encima del botón) en la última columna.
+- La comprobación se hará con capturas a 900, 1280 y 1440 px de ancho, abriendo el desplegable de Personas y con un origen largo.
