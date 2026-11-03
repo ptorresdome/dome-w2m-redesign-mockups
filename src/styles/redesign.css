@@ -291,7 +291,7 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   .rd-dates { grid-column: span 2; gap: 0.875rem; }
   .rd-submit-col { display: contents; }
   .rd-submit-col .rd-check { grid-column: 1 / span 2; grid-row: 3; justify-self: start; align-self: center; margin: 0; }
-  .rd-search__submit { grid-column: 4; grid-row: 2; width: 100%; min-width: 0; min-height: 0; font-size: 1.125rem; margin-top: 0; }
+  .rd-search__submit { grid-column: 4; grid-row: 2; width: 100%; min-width: 0; height: 56px; min-height: 56px; max-height: 56px; align-self: center; font-size: 1.125rem; margin-top: 0; }
 }
 .rd-pax { z-index: 5; }
 
