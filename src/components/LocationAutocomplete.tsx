@@ -67,7 +67,12 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
   const isMobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia("(max-width: 1023.98px)").matches, () => false);
 
   useEffect(() => {
-    if (!open || isMobile) return;
+    if (!open) {
+      closePanel(`ac-${id}`);
+      return;
+    }
+    if (isMobile) return;
+    openPanel(`ac-${id}`, () => setOpen(false));
     const onDown = (e: MouseEvent) => {
       if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
     };
