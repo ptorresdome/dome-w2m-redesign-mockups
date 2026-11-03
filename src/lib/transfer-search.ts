@@ -18,14 +18,14 @@ const num = (v: unknown, min: number) => {
 
 export function validateTransferSearch(s: Record<string, unknown>): TransferSearch {
   return {
-    from: str(s.from),
-    to: str(s.to),
-    date: str(s.date),
-    ret: str(s.ret),
-    adults: num(s.adults, 1),
-    children: num(s.children, 0),
-    babies: num(s.babies, 0),
-    privateOnly: s.privateOnly === true || s.privateOnly === "true" ? true : undefined,
+    from: str(s["from"]),
+    to: str(s["to"]),
+    date: str(s["date"]),
+    ret: str(s["ret"]),
+    adults: num(s["adults"], 1),
+    children: num(s["children"], 0),
+    babies: num(s["babies"], 0),
+    privateOnly: s["privateOnly"] === true || s["privateOnly"] === "true" ? true : undefined,
   };
 }
 
