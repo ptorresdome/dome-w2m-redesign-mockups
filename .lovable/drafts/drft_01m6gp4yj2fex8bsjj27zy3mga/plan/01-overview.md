@@ -1,17 +1,16 @@
-# Escritorio: buscador en columna junto a la foto
+# Escritorio: buscador centrado sobre la foto de fondo
 
 ## Idea
-En el ordenador, la página se divide en dos columnas en lugar de una franja horizontal:
-- **Izquierda (unos 440 px):** el buscador como una tarjeta vertical, igual que en el móvil, que ya está aprobado. El orden de los campos no cambia: Origen, Destino, Llegada y Regreso, Personas, Solo privado y Buscar.
-- **Derecha:** la foto del autobús y el carrusel ocupan todo el alto del buscador, con las esquinas redondeadas, las flechas y los puntos.
+- La foto del autobús y el carrusel pasan a ser el **fondo** de toda la zona, a lo ancho de la pantalla. Llevan un oscurecido para que no compitan con el buscador, y las flechas y los puntos quedan discretos en la parte de abajo.
+- El buscador es una **tarjeta centrada** de unos 760 px de ancho, con varias filas en lugar de una sola línea.
 
-Así se aprovecha el alto de la pantalla, los campos son más anchos y fáciles de leer, y la foto se ve más grande.
+## Filas (mismo orden que ahora)
+1. Origen | intercambiar | Destino
+2. Llegada | Regreso | Personas
+3. Solo privado, justo encima de un botón Buscar que ocupa todo el ancho
 
 ## Detalles
-- Origen y Destino van uno debajo del otro, con el botón para intercambiarlos entre los dos, igual que en el móvil.
-- Llegada y Regreso van en la misma fila, en dos mitades.
-- Personas ocupa toda la fila y su desplegable se abre hacia abajo.
-- Solo privado va justo encima de un botón Buscar que ocupa todo el ancho.
-- El fondo oscuro del buscador se mantiene, y la tarjeta y la foto tienen la misma altura.
-- En pantallas medianas (de 768 a 1023 px) se queda como ahora: el buscador arriba y la foto debajo.
+- La tarjeta mantiene el fondo oscuro y los campos grises de ahora, y queda centrada en vertical sobre la foto.
+- El desplegable de Personas se abre hacia abajo sin que se corte.
+- En pantallas medianas y en el móvil se queda como ahora.
 - No se añade ni se quita ningún campo.
