@@ -891,7 +891,83 @@ const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
       "Aeropuerto de Samana",
     ],
   },
+  {
+    title: "Zonas",
+    icon: "fa-map",
+    items: [],
+  },
+  {
+    title: "Hoteles",
+    icon: "fa-bed",
+    items: [
+      "Hotel Iberostar Heritage Las Mercedes (SDQ)",
+    ],
+  },
 ];
+
+function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel }: {
+  id: string;
+  tabIndex: number;
+  value: string;
+  onChange: (v: string) => void;
+  panelLabel: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const q = value.trim().toLowerCase();
+  const groups = ORIGIN_GROUPS
+    .map((g) => ({ ...g, items: q ? g.items.filter((it) => it.toLowerCase().includes(q)) : g.items }))
+    .filter((g) => g.items.length > 0);
+
+  return (
+    <div className="rd-ac" ref={wrapRef} onMouseEnter={() => setOpen(true)}>
+      <input className="rd-field__input" id={id} tabIndex={tabIndex} type="text" placeholder="Aeropuerto, zona u hotel" data-hotel="Hoteles" value={value} onChange={(e) => onChange(e.target.value)} autoComplete="off" onFocus={() => setOpen(true)} />
+      {open && (
+        <div className="rd-ac__panel" role="listbox" aria-label={panelLabel}>
+          {groups.map((group) => (
+            <div className="rd-ac__group" key={group.title}>
+              <div className="rd-ac__group-title"><span className={`fa ${group.icon}`} aria-hidden="true" />{group.title}</div>
+              {group.items.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  className="rd-ac__item"
+                  role="option"
+                  aria-selected={value === item}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => {
+                    onChange(item);
+                    setOpen(false);
+                  }}
+                >
+                  <span className="fa fa-map-marker" aria-hidden="true" />
+                  <span>{item}</span>
+                </button>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 function paxSummary(p: Pax) {
   const parts = [`${p.adults} ${p.adults === 1 ? "adulto" : "adultos"}`];
