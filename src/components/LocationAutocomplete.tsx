@@ -120,7 +120,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
 
   return (
     <div className="rd-ac" ref={wrapRef} onMouseEnter={() => { if (!isMobile) setOpen(true); }}>
-      <input ref={inputRef} className="rd-field__input" id={id} tabIndex={tabIndex} type="text" placeholder="Aeropuerto, zona u hotel"
+      <input ref={inputRef} className="rd-field__input" id={id} tabIndex={tabIndex} type="text" placeholder={placeholder}
         data-hotel="Hoteles" value={value} readOnly={isMobile} onChange={(e) => onChange(e.target.value)} autoComplete="off"
         aria-haspopup={isMobile ? "dialog" : "listbox"} aria-expanded={open}
         onFocus={() => { if (!isMobile) setOpen(true); }} onClick={show}
@@ -138,7 +138,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
                   <Button type="button" variant="ghost" size="icon" className="rd-ac__close" aria-label="Cerrar lista"><X aria-hidden="true" /></Button>
                 </DialogPrimitive.Close>
               </div>
-              <input className="rd-ac__filter" type="search" placeholder="Aeropuerto, zona u hotel" aria-label="Buscar aeropuerto, zona u hotel"
+              <input className="rd-ac__filter" type="search" placeholder={placeholder} aria-label="Buscar aeropuerto, zona u hotel"
                 value={query} onChange={(e) => setQuery(e.target.value)} autoComplete="off" />
               {open && options}
             </DialogPrimitive.Content>
