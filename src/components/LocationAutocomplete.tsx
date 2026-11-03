@@ -4,49 +4,49 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { closePanel, openPanel } from "./openPanelRegistry";
 
-const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
-  {
-    title: "Aeropuertos",
-    icon: "fa-plane",
-    items: [
-      "Aeropuerto de Cancun",
-      "Aeropuerto de Cozumel",
-      "Aeropuerto de La Romana",
-      "Aeropuerto de Las Americas",
-      "Aeropuerto de Mallorca",
-      "Aeropuerto de Samana",
-    ],
-  },
-  {
-    title: "Zonas",
-    icon: "fa-map",
-    items: [
-      "Quintana Roo",
-      "Cancún",
-      "Puerto Morelos",
-      "Playa del Carmen",
-      "Riviera Maya",
-      "Cozumel",
-      "Tulum",
-    ],
-  },
-  {
-    title: "Hoteles",
-    icon: "fa-bed",
-    items: [
-      "Hotel Iberostar Heritage Las Mercedes (SDQ)",
-      "Hotel Iberostar Cancun (CUN)",
-      "Hotel Iberostar Selection Cancun (CUN)",
-      "Hotel Iberostar Cozumel (CZM)",
-      "Hotel Iberostar Tucan (CUN)",
-      "Hotel Iberostar Quetzal (CUN)",
-      "Hotel Iberostar Selection Paraiso del Mar (CUN)",
-      "Hotel Iberostar Selection Paraiso Beach (CUN)",
-      "Hotel Iberostar Selection Paraiso Lindo (CUN)",
-      "Hotel Iberostar Selection Paraiso Maya (CUN)",
-    ],
-  },
-];
+const AIRPORT_GROUP: { title: string; icon: string; items: string[] } = {
+  title: "Aeropuertos",
+  icon: "fa-plane",
+  items: [
+    "Aeropuerto de Cancun",
+    "Aeropuerto de Cozumel",
+    "Aeropuerto de La Romana",
+    "Aeropuerto de Las Americas",
+    "Aeropuerto de Mallorca",
+    "Aeropuerto de Samana",
+  ],
+};
+
+const ZONE_GROUP: { title: string; icon: string; items: string[] } = {
+  title: "Zonas",
+  icon: "fa-map",
+  items: [
+    "Quintana Roo",
+    "Cancún",
+    "Puerto Morelos",
+    "Playa del Carmen",
+    "Riviera Maya",
+    "Cozumel",
+    "Tulum",
+  ],
+};
+
+const HOTEL_GROUP: { title: string; icon: string; items: string[] } = {
+  title: "Hoteles",
+  icon: "fa-bed",
+  items: [
+    "Hotel Iberostar Heritage Las Mercedes (SDQ)",
+    "Hotel Iberostar Cancun (CUN)",
+    "Hotel Iberostar Selection Cancun (CUN)",
+    "Hotel Iberostar Cozumel (CZM)",
+    "Hotel Iberostar Tucan (CUN)",
+    "Hotel Iberostar Quetzal (CUN)",
+    "Hotel Iberostar Selection Paraiso del Mar (CUN)",
+    "Hotel Iberostar Selection Paraiso Beach (CUN)",
+    "Hotel Iberostar Selection Paraiso Lindo (CUN)",
+    "Hotel Iberostar Selection Paraiso Maya (CUN)",
+  ],
+};
 
 const subscribeMobile = (callback: () => void) => {
   const media = window.matchMedia("(max-width: 1023.98px)");
@@ -66,6 +66,10 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
   const wrapRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isMobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia("(max-width: 1023.98px)").matches, () => false);
+
+  const isOrigin = id === "pickupLocation";
+  const allGroups = isOrigin ? [AIRPORT_GROUP] : [ZONE_GROUP, HOTEL_GROUP];
+  const placeholder = isOrigin ? "Aeropuerto de origen" : "Zona u hotel de destino";
 
   useEffect(() => {
     if (!open) {
@@ -93,7 +97,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
     setOpen(true);
   };
   const q = (isMobile ? query : value).trim().toLowerCase();
-  const groups = ORIGIN_GROUPS
+  const groups = allGroups
     .map((g) => ({ ...g, items: q ? g.items.filter((it) => it.toLowerCase().includes(q)) : g.items }))
     .filter((g) => g.items.length > 0);
   const options = (
@@ -116,7 +120,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
 
   return (
     <div className="rd-ac" ref={wrapRef} onMouseEnter={() => { if (!isMobile) setOpen(true); }}>
-      <input ref={inputRef} className="rd-field__input" id={id} tabIndex={tabIndex} type="text" placeholder="Aeropuerto, zona u hotel"
+      <input ref={inputRef} className="rd-field__input" id={id} tabIndex={tabIndex} type="text" placeholder={placeholder}
         data-hotel="Hoteles" value={value} readOnly={isMobile} onChange={(e) => onChange(e.target.value)} autoComplete="off"
         aria-haspopup={isMobile ? "dialog" : "listbox"} aria-expanded={open}
         onFocus={() => { if (!isMobile) setOpen(true); }} onClick={show}
@@ -134,7 +138,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
                   <Button type="button" variant="ghost" size="icon" className="rd-ac__close" aria-label="Cerrar lista"><X aria-hidden="true" /></Button>
                 </DialogPrimitive.Close>
               </div>
-              <input className="rd-ac__filter" type="search" placeholder="Aeropuerto, zona u hotel" aria-label="Buscar aeropuerto, zona u hotel"
+              <input className="rd-ac__filter" type="search" placeholder={placeholder} aria-label="Buscar aeropuerto, zona u hotel"
                 value={query} onChange={(e) => setQuery(e.target.value)} autoComplete="off" />
               {open && options}
             </DialogPrimitive.Content>
