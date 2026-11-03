@@ -950,7 +950,7 @@ function ImportedSectionBuscarTraslados() {
           <div className="rd-search__grid">
             <div className="rd-route">
               <label className="rd-field" htmlFor="pickupLocation">
-                <span className="rd-field__icon fa fa-map-marker" aria-hidden="true" />
+                <span className="rd-field__icon"><svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></svg></span>
                 <span className="rd-field__body">
                   <span className="rd-field__label">Origen</span>
                   <input className="rd-field__input" id="pickupLocation" tabIndex={1} type="text" placeholder="Aeropuerto, hotel o ciudad" data-hotel="Hoteles" value={from} onChange={(e) => setFrom(e.target.value)} autoComplete="off" />
@@ -965,10 +965,10 @@ function ImportedSectionBuscarTraslados() {
                   setTo(from);
                 }}
               >
-                <span className="fa fa-exchange" aria-hidden="true" />
+                <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M7 4 3 8l4 4" /><path d="M3 8h14" /><path d="m17 20 4-4-4-4" /><path d="M21 16H7" /></svg>
               </button>
               <label className="rd-field" htmlFor="returnLocation">
-                <span className="rd-field__icon fa fa-flag" aria-hidden="true" />
+                <span className="rd-field__icon"><svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 21V4" /><path d="M5 4h11l-2 4 2 4H5" /></svg></span>
                 <span className="rd-field__body">
                   <span className="rd-field__label">Destino</span>
                   <input className="rd-field__input" id="returnLocation" tabIndex={3} type="text" placeholder="Aeropuerto, hotel o ciudad" data-hotel="Hoteles" value={to} onChange={(e) => setTo(e.target.value)} autoComplete="off" />
@@ -1051,7 +1051,7 @@ function ImportedSectionBuscarTraslados() {
             </div>
 
             <button className="rd-btn rd-btn--primary rd-search__submit" id="searchBtn" type="button" tabIndex={13}>
-              Buscar <span className="fa fa-search" aria-hidden="true" />
+              Buscar <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
             </button>
           </div>
 
