@@ -178,6 +178,7 @@
 @media (min-width: 768px) {
   .rd-search-wrap { padding: 1.5rem; }
   .rd-search { padding: 1.5rem; }
+  .rd-field__input[type="date"] { font-size: 0.9375rem; }
   .rd-route { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
   .rd-route .rd-field { padding-right: 0.875rem; }
   .rd-route .rd-field:last-child { padding-left: 1.75rem; }
