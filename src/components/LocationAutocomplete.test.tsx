@@ -70,7 +70,23 @@ describe("Desktop list overflow", () => {
   });
 });
 
+describe("Desktop list opens only on click", () => {
+  afterEach(() => vi.restoreAllMocks());
+
+  it("ignores hover and focus, opens only on click", () => {
+    vi.stubGlobal("matchMedia", (query: string) => ({ matches: false, media: query, addEventListener: () => {}, removeEventListener: () => {} }));
+    render(<LocationAutocomplete id="pickupLocation" tabIndex={1} value="" onChange={() => {}} panelLabel="Orígenes disponibles" />);
+    const input = screen.getByPlaceholderText("Aeropuerto de origen");
+    fireEvent.mouseEnter(input.parentElement ?? input);
+    fireEvent.focus(input);
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    fireEvent.click(input);
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+  });
+});
+
 describe("Completed input does not limit the list", () => {
+  afterEach(() => vi.restoreAllMocks());
 
   it("shows every option after a selection, and filters again while typing", () => {
     vi.stubGlobal("matchMedia", (query: string) => ({ matches: false, media: query, addEventListener: () => {}, removeEventListener: () => {} }));
