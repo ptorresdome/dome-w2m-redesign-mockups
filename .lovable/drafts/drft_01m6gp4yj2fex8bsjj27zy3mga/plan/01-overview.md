@@ -9,8 +9,9 @@
 2. Llegada | Regreso | Personas
 3. Solo privado y, debajo, Buscar a todo el ancho
 
-## Escritorio (desde 1024 px): tarjeta ancha de hasta unos 1180 px, dos filas
+## Escritorio (desde 1024 px): tarjeta ancha de hasta unos 1180 px, tres filas
 1. **Origen | intercambiar | Destino**: la fila entera es para ellos, así que cada uno tiene unos 550 px y los nombres largos de hoteles y aeropuertos se leen completos.
-2. **Llegada | Regreso | Personas | Solo privado + Buscar**: los campos cortos comparten fila, y el botón Buscar queda al final con Solo privado justo encima.
+2. **Llegada | Regreso | Personas | Solo privado**: la casilla ocupa el último hueco, alineada en vertical con los campos.
+3. **Buscar**: un botón grande (unos 60 px de alto, con el texto más grande) que ocupa todo el ancho de la tarjeta.
 
-La tarjeta queda más baja y ancha, y la foto se sigue viendo por arriba y por abajo.
+La tarjeta queda ancha y compacta, y la foto se sigue viendo por arriba y por abajo.
