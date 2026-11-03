@@ -11,7 +11,7 @@ const fmt = (d: Date) => `${String(d.getDate()).padStart(2, "0")}/${String(d.get
 function useIsMobile() {
   const [m, setM] = useState(false);
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
+    const mq = window.matchMedia("(max-width: 1023.98px)");
     const f = () => setM(mq.matches);
     f();
     mq.addEventListener("change", f);

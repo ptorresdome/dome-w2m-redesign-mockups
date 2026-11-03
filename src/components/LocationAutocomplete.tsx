@@ -48,7 +48,7 @@ const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
 ];
 
 const subscribeMobile = (callback: () => void) => {
-  const media = window.matchMedia("(max-width: 767px)");
+  const media = window.matchMedia("(max-width: 1023.98px)");
   media.addEventListener("change", callback);
   return () => media.removeEventListener("change", callback);
 };
@@ -64,7 +64,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
   const [query, setQuery] = useState("");
   const wrapRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const isMobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia("(max-width: 767px)").matches, () => false);
+  const isMobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia("(max-width: 1023.98px)").matches, () => false);
 
   useEffect(() => {
     if (!open || isMobile) return;
