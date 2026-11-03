@@ -359,6 +359,11 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   }
 }
 
+/* Tablet: panel tracks the field width */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .rd-ac__panel { min-width: 0; width: calc(100% + 1rem); max-width: none; }
+}
+
 /* ===== Date picker ===== */
 .rd-cal-wrap { position: relative; display: block; }
 .rd-cal-wrap .rd-field__input { cursor: pointer; }
