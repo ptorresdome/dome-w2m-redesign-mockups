@@ -238,3 +238,17 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   .rd-search { padding: 1.75rem; box-shadow: var(--brand-shadow-card); }
   .rd-hero { margin-top: 0; }
 }
+
+/* ---------- Greyscale fields inside dark search ---------- */
+.rd-search .rd-field { background: var(--brand-search-field); border-color: var(--brand-search-line); color: var(--brand-search-text); }
+.rd-search .rd-field__label { color: var(--brand-search-muted); }
+.rd-search .rd-field__input, .rd-search .rd-field__value { color: var(--brand-search-text); }
+.rd-search .rd-field__input::placeholder { color: var(--brand-search-muted); }
+.rd-search .rd-field__input[type="date"] { color-scheme: dark; }
+.rd-search .rd-field__input::-webkit-calendar-picker-indicator { filter: invert(1) brightness(.9); }
+.rd-search .rd-pax__chev { color: var(--brand-search-muted); }
+.rd-search .rd-swap { background: var(--brand-search-field); border-color: var(--brand-search-line); color: var(--brand-search-text); }
+.rd-search .rd-swap:hover { background: var(--brand); border-color: var(--brand); color: var(--brand-ink-strong); }
+.rd-search .rd-switch { background: var(--brand-search-line); }
+.rd-search .rd-return.is-on .rd-switch { background: var(--brand); }
+.rd-search .rd-pax__panel, .rd-search .rd-pax__panel * { color: var(--brand-ink-strong); }
