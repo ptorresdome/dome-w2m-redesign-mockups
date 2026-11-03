@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { closePanel, openPanel } from "./openPanelRegistry";
 
 const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
   {
