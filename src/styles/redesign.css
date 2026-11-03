@@ -188,7 +188,6 @@
   .rd-route { grid-column: 1 / -1; }
   .rd-search__submit { margin-top: 0; }
   .rd-hero__nav { display: none; }
-  .rd-ac__panel { min-width: 0; width: calc(100% + 1rem); max-width: none; }
 }
 
 /* Desktop: search card floats over a full-width hero */
