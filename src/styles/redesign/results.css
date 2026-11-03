@@ -39,3 +39,4 @@
 .rd-stitle__ico .rd-svg { width: 1.3rem; height: 1.3rem; display: block; }
 .rd-vcard__cap .rd-svg { width: 1.1rem; height: 1.1rem; vertical-align: -0.15em; }
 .rd-vcard__foot .rd-bbtn .rd-svg { width: 1.1rem; height: 1.1rem; }
+.rd-results .rd-svg { display: inline-block; flex-shrink: 0; }
