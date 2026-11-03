@@ -1,0 +1,17 @@
+/* ---------- Footer ---------- */
+footer.rd-footer { background: var(--brand-footer-gradient); padding: 2.5rem 0 1.5rem; }
+footer.rd-footer .logoFooter { width: 120px !important; height: 50px; margin: 0 auto 1.5rem; background: url("/site-assets/18eca8e9dc0be5db.png") center / contain no-repeat; }
+footer.rd-footer .footer-nav { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; padding: 0; margin: 0 auto; list-style: none; width: 100% !important; }
+footer.rd-footer .footer-nav li { margin: 0; padding: 0; border: 0; }
+footer.rd-footer .footer-nav a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 0.75rem;
+  color: var(--brand-surface); font-weight: 600; font-size: 0.8125rem; letter-spacing: .04em; text-decoration: none;
+}
+footer.rd-footer .footer-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid color-mix(in oklab, var(--brand-surface) 25%, transparent); font-size: 0.75rem; text-align: center; opacity: .9; }
+@media (min-width: 992px) {
+  footer.rd-footer .logoFooter { margin: 0; }
+  footer.rd-footer .footer-nav { flex-direction: row; justify-content: flex-end; flex-wrap: wrap; }
+  footer.rd-footer .copyright { text-align: right; }
+}
+
