@@ -833,7 +833,266 @@ function Index() {
   );
 }
 
-__NEW__
+function ImportedHeaderNavegaciNDeLa() {
+  return (
+    <header className="rd-header">
+      <div className="rd-header__inner">
+        <a className="rd-logo" href="/" aria-label="W2M DMC – Inicio">
+          <img src="/site-assets/1fbaddbcc7e6cf85.png" alt="W2M DMC Destination Travel Partner" />
+        </a>
+        <nav className="rd-tabs" aria-label="Navegación de la web">
+          <a className="rd-tab" href="/excursion">
+            <i className="fa fa-ticket" aria-hidden="true" />
+            <span>Excursiones</span>
+          </a>
+          <a className="rd-tab is-active" href="#" aria-current="page">
+            <i className="fa fa-bus" aria-hidden="true" />
+            <span>Traslados</span>
+          </a>
+        </nav>
+        <nav className="rd-account" aria-label="Cuenta">
+          <a className="rd-account__link" href="/user-register" aria-label="Regístrese">
+            <span className="fa fa-user-plus" aria-hidden="true" />
+            <span className="rd-account__txt">Regístrese</span>
+          </a>
+          <a className="rd-account__link" href="#" id="login-link" aria-label="Mi cuenta">
+            <span className="fa fa-users" aria-hidden="true" />
+            <span className="rd-account__txt">Mi cuenta</span>
+          </a>
+          <a className="rd-account__link" href="#" data-bs-target="#modalLanguage" aria-expanded="false" aria-label="Cambiar idioma">
+            <span className="fa fa-globe" aria-hidden="true" />
+            <span className="rd-account__txt">Cambiar idioma</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+const HERO_SLIDES = [
+  "/site-assets/c51f2863e87e79e3.webp",
+  "/site-assets/ce888aa8731e4ed3.webp",
+  "/site-assets/c1a3a76f809953b5.webp",
+  "/site-assets/6e96a3cf8c10387f.webp",
+];
+
+type Pax = { adults: number; children: number; babies: number };
+
+function paxSummary(p: Pax) {
+  const parts = [`${p.adults} ${p.adults === 1 ? "adulto" : "adultos"}`];
+  if (p.children) parts.push(`${p.children} ${p.children === 1 ? "niño" : "niños"}`);
+  if (p.babies) parts.push(`${p.babies} ${p.babies === 1 ? "bebé" : "bebés"}`);
+  return parts.join(", ");
+}
+
+function ImportedSectionBuscarTraslados() {
+  const [slide, setSlide] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [from, setFrom] = useState("");
+  const [to, setTo] = useState("");
+  const [roundTrip, setRoundTrip] = useState(false);
+  const [pax, setPax] = useState<Pax>({ adults: 2, children: 0, babies: 0 });
+  const [paxOpen, setPaxOpen] = useState(false);
+  const paxTriggerRef = useRef<HTMLButtonElement>(null);
+
+  const goTo = (i: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const n = (i + HERO_SLIDES.length) % HERO_SLIDES.length;
+    track.scrollTo({ left: n * track.clientWidth, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => {
+      const track = trackRef.current;
+      if (!track) return;
+      const current = Math.round(track.scrollLeft / track.clientWidth);
+      const n = (current + 1) % HERO_SLIDES.length;
+      track.scrollTo({ left: n * track.clientWidth, behavior: "smooth" });
+    }, 6000);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    if (!paxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setPaxOpen(false);
+        paxTriggerRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [paxOpen]);
+
+  const step = (key: keyof Pax, delta: number) =>
+    setPax((p) => {
+      const min = key === "adults" ? 1 : 0;
+      return { ...p, [key]: Math.max(min, Math.min(20, p[key] + delta)) };
+    });
+
+  const counters: { key: keyof Pax; label: string; hint: string }[] = [
+    { key: "adults", label: "Adultos", hint: "" },
+    { key: "children", label: "Niños", hint: "" },
+    { key: "babies", label: "Bebés", hint: "" },
+  ];
+
+  return (
+    <section className="rd-search-section" aria-label="Buscar traslados">
+      <div className="rd-search-wrap">
+        <form className="rd-search" id="searcher-transfer" onSubmit={(e) => e.preventDefault()}>
+          <h1 className="rd-search__title">
+            <span className="fa fa-search" aria-hidden="true" />
+            Buscar Traslados
+          </h1>
+
+          <div className="rd-search__grid">
+            <div className="rd-route">
+              <label className="rd-field" htmlFor="pickupLocation">
+                <span className="rd-field__icon fa fa-map-marker" aria-hidden="true" />
+                <span className="rd-field__body">
+                  <span className="rd-field__label">Origen</span>
+                  <input className="rd-field__input" id="pickupLocation" tabIndex={1} type="text" placeholder="Aeropuerto, hotel o ciudad" data-hotel="Hoteles" value={from} onChange={(e) => setFrom(e.target.value)} autoComplete="off" />
+                </span>
+              </label>
+              <button
+                type="button"
+                className="rd-swap"
+                aria-label="Intercambiar origen y destino"
+                onClick={() => {
+                  setFrom(to);
+                  setTo(from);
+                }}
+              >
+                <span className="fa fa-exchange" aria-hidden="true" />
+              </button>
+              <label className="rd-field" htmlFor="returnLocation">
+                <span className="rd-field__icon fa fa-flag" aria-hidden="true" />
+                <span className="rd-field__body">
+                  <span className="rd-field__label">Destino</span>
+                  <input className="rd-field__input" id="returnLocation" tabIndex={3} type="text" placeholder="Aeropuerto, hotel o ciudad" data-hotel="Hoteles" value={to} onChange={(e) => setTo(e.target.value)} autoComplete="off" />
+                </span>
+              </label>
+            </div>
+
+            <div className="rd-dates">
+              <label className="rd-field" htmlFor="checkIn-datetimepicker-input">
+                <span className="rd-field__icon fa fa-calendar" aria-hidden="true" />
+                <span className="rd-field__body">
+                  <span className="rd-field__label">Llegada</span>
+                  <input className="rd-field__input" id="checkIn-datetimepicker-input" tabIndex={2} type="date" />
+                </span>
+                <input type="hidden" id="checkInDate" defaultValue="" />
+              </label>
+
+              <div className={roundTrip ? "rd-field rd-return is-on" : "rd-field rd-return"} id="returnData">
+                <button
+                  type="button"
+                  id="roundTrip-button"
+                  className="rd-return__toggle"
+                  role="switch"
+                  aria-checked={roundTrip}
+                  onClick={() => setRoundTrip((v) => !v)}
+                >
+                  <span className="rd-switch" aria-hidden="true"><span /></span>
+                  <span className="rd-field__label">{roundTrip ? "Regreso" : "Añadir regreso"}</span>
+                </button>
+                {roundTrip && (
+                  <input className="rd-field__input" id="checkOut-datetimepicker-input" tabIndex={4} type="date" aria-label="Regreso" />
+                )}
+                <input type="hidden" defaultValue="" id="checkOutDate" />
+              </div>
+            </div>
+
+            <div className="rd-pax">
+              <button
+                ref={paxTriggerRef}
+                type="button"
+                className="rd-field rd-pax__trigger"
+                aria-expanded={paxOpen}
+                aria-controls="rd-pax-panel"
+                onClick={() => setPaxOpen((v) => !v)}
+              >
+                <span className="rd-field__icon fa fa-user" aria-hidden="true" />
+                <span className="rd-field__body">
+                  <span className="rd-field__label">Personas</span>
+                  <span className="rd-field__value">{paxSummary(pax)}</span>
+                </span>
+                <span className="rd-pax__chev fa fa-chevron-down" aria-hidden="true" />
+              </button>
+              <input type="hidden" id="accommodation" value={paxSummary(pax)} readOnly />
+              {paxOpen && (
+                <div className="rd-pax__panel" id="rd-pax-panel" role="dialog" aria-label="Personas">
+                  <p className="rd-pax__hint">Especifique la cantidad de adultos, niños, y bebés.</p>
+                  {counters.map((c) => (
+                    <div className="rd-counter" key={c.key}>
+                      <span className="rd-counter__label">{c.label}</span>
+                      <div className="rd-counter__ctrl">
+                        <button type="button" aria-label={`Quitar ${c.label.toLowerCase()}`} onClick={() => step(c.key, -1)} disabled={pax[c.key] <= (c.key === "adults" ? 1 : 0)}>−</button>
+                        <output aria-live="polite" id={c.key}>{pax[c.key]}</output>
+                        <button type="button" aria-label={`Añadir ${c.label.toLowerCase()}`} onClick={() => step(c.key, 1)}>+</button>
+                      </div>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    className="rd-btn rd-btn--ink"
+                    id="accommodationBtn"
+                    onClick={() => {
+                      setPaxOpen(false);
+                      paxTriggerRef.current?.focus();
+                    }}
+                  >
+                    Aceptar
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <button className="rd-btn rd-btn--primary rd-search__submit" id="searchBtn" type="button" tabIndex={13}>
+              Buscar <span className="fa fa-search" aria-hidden="true" />
+            </button>
+          </div>
+
+          <label className="rd-check" htmlFor="servicetype">
+            <input type="checkbox" id="servicetype" name="servicetype" />
+            <span>Solo privado</span>
+          </label>
+        </form>
+      </div>
+
+      <div className="rd-hero" id="myCarousel">
+        <div
+          className="rd-hero__track"
+          ref={trackRef}
+          onScroll={(e) => {
+            const t = e.currentTarget;
+            setSlide(Math.round(t.scrollLeft / t.clientWidth));
+          }}
+        >
+          {HERO_SLIDES.map((src, i) => (
+            <div className="rd-hero__slide" key={src} aria-hidden={i !== slide}>
+              <img src={src} alt="Autobús World2Meet" loading={i === 0 ? "eager" : "lazy"} />
+            </div>
+          ))}
+        </div>
+        <button type="button" className="rd-hero__nav rd-hero__nav--prev" aria-label="Anterior" onClick={() => goTo(slide - 1)}>
+          <span className="fa fa-chevron-left" aria-hidden="true" />
+        </button>
+        <button type="button" className="rd-hero__nav rd-hero__nav--next" aria-label="Siguiente" onClick={() => goTo(slide + 1)}>
+          <span className="fa fa-chevron-right" aria-hidden="true" />
+        </button>
+        <div className="rd-hero__dots">
+          {HERO_SLIDES.map((src, i) => (
+            <button key={src} type="button" className={i === slide ? "is-active" : ""} aria-label={`Foto ${i + 1}`} aria-current={i === slide} onClick={() => goTo(i)} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 function subscribeMobile(onChange: () => void) {
   const query = matchMedia("(max-width: 767px)");
