@@ -287,3 +287,4 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   .rd-submit-col .rd-check { grid-column: 4; align-self: center; margin: 0; padding-left: 0.5rem; }
   .rd-search__submit { grid-column: 1 / -1; min-height: 60px; font-size: 1.125rem; margin-top: 0.25rem; }
 }
+.rd-pax { z-index: 5; }
