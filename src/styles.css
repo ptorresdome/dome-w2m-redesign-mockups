@@ -142,3 +142,162 @@
     color: var(--color-foreground);
   }
 }
+
+/* site-import tokens: begin (generated; re-import replaces this block) */
+/* Imported clone roles use prefixed Tailwind utilities
+   (bg-site-import-primary, text-site-import-foreground, …); edit the
+   --site-import-* variables to restyle the clone. Unprefixed roles theme new UI. */
+:root {
+  --background: oklch(1 0 0);
+  --site-import-background: oklch(1 0 0);
+  --foreground: oklch(0.34846 0 0);
+  --site-import-foreground: oklch(0.34846 0 0);
+  --primary: oklch(0.83363 0.19009 115.74);
+  --site-import-primary: oklch(0.83363 0.19009 115.74);
+  --primary-foreground: oklch(0.145 0 0);
+  --site-import-primary-foreground: oklch(0.145 0 0);
+  --accent: oklch(0.68077 0.15524 115.75);
+  --site-import-accent: oklch(0.68077 0.15524 115.75);
+  --border: oklch(0 0 0 / 0.176);
+  --site-import-border: oklch(0 0 0 / 0.176);
+  --muted-foreground: oklch(0.68295 0 0);
+  --site-import-muted-foreground: oklch(0.68295 0 0);
+  --card: oklch(0.96115 0 0);
+  --site-import-card: oklch(0.96115 0 0);
+  --muted: oklch(0.88531 0 0);
+  --site-import-muted: oklch(0.88531 0 0);
+}
+/* Design tokens captured from the imported site, registered as Tailwind
+   utilities (bg-<name>, text-<name>, font-<name>). var() values live in
+   the imported stylesheet's :root. */
+@theme inline {
+  --font-sans: Montserrat, sans-serif;
+  --color-site-import-background: var(--site-import-background);
+  --color-site-import-foreground: var(--site-import-foreground);
+  --color-site-import-primary: var(--site-import-primary);
+  --color-site-import-primary-foreground: var(--site-import-primary-foreground);
+  --color-site-import-accent: var(--site-import-accent);
+  --color-site-import-border: var(--site-import-border);
+  --color-site-import-muted-foreground: var(--site-import-muted-foreground);
+  --color-site-import-card: var(--site-import-card);
+  --color-site-import-muted: var(--site-import-muted);
+  --color-body-background: var(--body-background);
+  --color-bs-black: var(--bs-black);
+  --color-bs-blue: var(--bs-blue);
+  --color-bs-body-bg: var(--bs-body-bg);
+  --color-bs-body-color: var(--bs-body-color);
+  --font-bs-body-font-family: var(--bs-body-font-family);
+  --color-bs-border-color: var(--bs-border-color);
+  --color-bs-border-color-translucent: var(--bs-border-color-translucent);
+  --color-bs-code-color: var(--bs-code-color);
+  --color-bs-cyan: var(--bs-cyan);
+  --color-bs-danger: var(--bs-danger);
+  --color-bs-danger-bg-subtle: var(--bs-danger-bg-subtle);
+  --color-bs-danger-border-subtle: var(--bs-danger-border-subtle);
+  --color-bs-danger-text-emphasis: var(--bs-danger-text-emphasis);
+  --color-bs-dark: var(--bs-dark);
+  --color-bs-dark-bg-subtle: var(--bs-dark-bg-subtle);
+  --color-bs-dark-border-subtle: var(--bs-dark-border-subtle);
+  --color-bs-dark-text-emphasis: var(--bs-dark-text-emphasis);
+  --color-bs-emphasis-color: var(--bs-emphasis-color);
+  --color-bs-focus-ring-color: var(--bs-focus-ring-color);
+  --font-bs-font-monospace: var(--bs-font-monospace);
+  --font-bs-font-sans-serif: var(--bs-font-sans-serif);
+  --color-bs-form-invalid-border-color: var(--bs-form-invalid-border-color);
+  --color-bs-form-invalid-color: var(--bs-form-invalid-color);
+  --color-bs-form-valid-border-color: var(--bs-form-valid-border-color);
+  --color-bs-form-valid-color: var(--bs-form-valid-color);
+  --color-bs-gray: var(--bs-gray);
+  --color-bs-gray-100: var(--bs-gray-100);
+  --color-bs-gray-200: var(--bs-gray-200);
+  --color-bs-gray-300: var(--bs-gray-300);
+  --color-bs-gray-400: var(--bs-gray-400);
+  --color-bs-gray-500: var(--bs-gray-500);
+  --color-bs-gray-600: var(--bs-gray-600);
+  --color-bs-gray-700: var(--bs-gray-700);
+  --color-bs-gray-800: var(--bs-gray-800);
+  --color-bs-gray-900: var(--bs-gray-900);
+  --color-bs-gray-dark: var(--bs-gray-dark);
+  --color-bs-green: var(--bs-green);
+  --color-bs-highlight-bg: var(--bs-highlight-bg);
+  --color-bs-highlight-color: var(--bs-highlight-color);
+  --color-bs-indigo: var(--bs-indigo);
+  --color-bs-info: var(--bs-info);
+  --color-bs-info-bg-subtle: var(--bs-info-bg-subtle);
+  --color-bs-info-border-subtle: var(--bs-info-border-subtle);
+  --color-bs-info-text-emphasis: var(--bs-info-text-emphasis);
+  --color-bs-light: var(--bs-light);
+  --color-bs-light-bg-subtle: var(--bs-light-bg-subtle);
+  --color-bs-light-border-subtle: var(--bs-light-border-subtle);
+  --color-bs-light-text-emphasis: var(--bs-light-text-emphasis);
+  --color-bs-link-color: var(--bs-link-color);
+  --color-bs-link-hover-color: var(--bs-link-hover-color);
+  --color-bs-orange: var(--bs-orange);
+  --color-bs-pink: var(--bs-pink);
+  --color-bs-primary: var(--bs-primary);
+  --color-bs-primary-bg-subtle: var(--bs-primary-bg-subtle);
+  --color-bs-primary-border-subtle: var(--bs-primary-border-subtle);
+  --color-bs-primary-text-emphasis: var(--bs-primary-text-emphasis);
+  --color-bs-purple: var(--bs-purple);
+  --color-bs-red: var(--bs-red);
+  --color-bs-secondary: var(--bs-secondary);
+  --color-bs-secondary-bg: var(--bs-secondary-bg);
+  --color-bs-secondary-bg-subtle: var(--bs-secondary-bg-subtle);
+  --color-bs-secondary-border-subtle: var(--bs-secondary-border-subtle);
+  --color-bs-secondary-color: var(--bs-secondary-color);
+  --color-bs-secondary-text-emphasis: var(--bs-secondary-text-emphasis);
+  --color-bs-success: var(--bs-success);
+  --color-bs-success-bg-subtle: var(--bs-success-bg-subtle);
+  --color-bs-success-border-subtle: var(--bs-success-border-subtle);
+  --color-bs-success-text-emphasis: var(--bs-success-text-emphasis);
+  --color-bs-teal: var(--bs-teal);
+  --color-bs-tertiary-bg: var(--bs-tertiary-bg);
+  --color-bs-tertiary-color: var(--bs-tertiary-color);
+  --color-bs-warning: var(--bs-warning);
+  --color-bs-warning-bg-subtle: var(--bs-warning-bg-subtle);
+  --color-bs-warning-border-subtle: var(--bs-warning-border-subtle);
+  --color-bs-warning-text-emphasis: var(--bs-warning-text-emphasis);
+  --color-bs-white: var(--bs-white);
+  --color-bs-yellow: var(--bs-yellow);
+  --color-cookie-black: var(--cookie-black);
+  --color-cookie-button-backgound: var(--cookie-button-backgound);
+  --color-cookie-button-hover: var(--cookie-button-hover);
+  --color-cookie-dark-green: var(--cookie-dark-green);
+  --color-cookie-dark-rede: var(--cookie-dark-rede);
+  --font-cookie-font-button: var(--cookie-font-button);
+  --font-cookie-font-family: var(--cookie-font-family);
+  --font-cookie-font-subtitle: var(--cookie-font-subtitle);
+  --font-cookie-font-title: var(--cookie-font-title);
+  --color-cookie-primary-color: var(--cookie-primary-color);
+  --color-cookie-secondary-color: var(--cookie-secondary-color);
+  --color-cookie-soft-green: var(--cookie-soft-green);
+  --color-cookie-soft-red: var(--cookie-soft-red);
+  --color-cookie-white: var(--cookie-white);
+  --color-footer-link-color: var(--footer-link-color);
+  --color-header-background-color: var(--header-background-color);
+  --color-header-link-color: var(--header-link-color);
+  --color-icon-primary-color: var(--icon-primary-color);
+  --color-icon-searcher-color: var(--icon-searcher-color);
+  --color-icon-secondary-color: var(--icon-secondary-color);
+  --color-mobile-header-background: var(--mobile-header-background);
+  --color-mobile-icon-menu-color: var(--mobile-icon-menu-color);
+  --color-mobile-menu-background: var(--mobile-menu-background);
+  --color-mobile-menu-link-active-color: var(--mobile-menu-link-active-color);
+  --color-mobile-menu-link-cart-background: var(--mobile-menu-link-cart-background);
+  --color-mobile-menu-link-cart-color: var(--mobile-menu-link-cart-color);
+  --color-mobile-menu-link-color: var(--mobile-menu-link-color);
+  --color-modal-background: var(--modal-background);
+  --color-placeholder-searcher-color: var(--placeholder-searcher-color);
+  --color-primary-color: var(--primary-color);
+  --color-primary-font-color: var(--primary-font-color);
+  --font-primary-font-style: var(--primary-font-style);
+  --color-product-menu-background: var(--product-menu-background);
+  --color-product-menu-link-cart-background: var(--product-menu-link-cart-background);
+  --color-product-menu-link-color: var(--product-menu-link-color);
+  --color-product-menu-link-hover-color: var(--product-menu-link-hover-color);
+  --color-product-sub-menu-background: var(--product-sub-menu-background);
+  --color-secondary-color: var(--secondary-color);
+  --color-secondary-font-color: var(--secondary-font-color);
+  --color-swiper-theme-color: var(--swiper-theme-color);
+}
+/* site-import tokens: end */
