@@ -306,7 +306,7 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   scrollbar-width: thin;
   background: var(--brand-surface);
   color: var(--brand-ink-strong);
-  border-radius: calc(var(--brand-radius) + 4px);
+  border-radius: 0;
   box-shadow: 0 30px 60px -20px color-mix(in oklab, var(--brand-ink-strong) 60%, transparent), 0 0 0 1px var(--brand-line);
   text-align: left;
 }
