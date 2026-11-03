@@ -1,13 +1,13 @@
 /** Search parameters passed from the search form to the results page via the URL. */
 export type TransferSearch = {
-  from?: string;
-  to?: string;
-  date?: string; // dd/mm/yyyy
-  ret?: string; // dd/mm/yyyy (round trip only)
-  adults?: number;
-  children?: number;
-  babies?: number;
-  privateOnly?: boolean;
+  from?: string | undefined;
+  to?: string | undefined;
+  date?: string | undefined; // dd/mm/yyyy
+  ret?: string | undefined; // dd/mm/yyyy (round trip only)
+  adults?: number | undefined;
+  children?: number | undefined;
+  babies?: number | undefined;
+  privateOnly?: boolean | undefined;
 };
 
 const str = (v: unknown) => (typeof v === "string" && v.trim() ? v.trim().slice(0, 120) : undefined);
