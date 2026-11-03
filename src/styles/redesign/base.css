@@ -1,0 +1,10 @@
+/* Mobile-first redesign. Uses brand tokens from src/styles.css. Scoped to rd-* classes. */
+
+.rd-header, .rd-search-section, .rd-footer { font-family: 'Montserrat', sans-serif; }
+.rd-header *, .rd-header *::before, .rd-header *::after,
+.rd-search-section *, .rd-search-section *::before, .rd-search-section *::after { box-sizing: border-box; }
+.rd-search-section { overflow-x: clip; }
+.rd-search__grid > *, .rd-route > *, .rd-dates > * { min-width: 0; }
+.rd-svg { width: 1.15rem; height: 1.15rem; display: block; margin: 0 auto; }
+.rd-btn .rd-svg { margin: 0; }
+

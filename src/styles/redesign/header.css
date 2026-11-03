@@ -1,0 +1,51 @@
+/* ---------- Header ---------- */
+.rd-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--brand-surface);
+  box-shadow: var(--brand-shadow-soft);
+}
+.rd-header__inner {
+  max-width: 1200px; margin: 0 auto; padding: 0.625rem 1rem 0;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "logo account" "tabs tabs";
+  align-items: center; column-gap: 1rem;
+}
+.rd-logo { grid-area: logo; display: inline-flex; min-width: 0; }
+.rd-logo img { height: 34px; width: auto; display: block; }
+.rd-account { grid-area: account; display: flex; gap: 0.25rem; }
+.rd-account__link {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  min-width: 44px; height: 44px; padding: 0 0.5rem; border-radius: var(--brand-radius);
+  color: var(--brand-ink); text-decoration: none; font-weight: 600; font-size: 0.875rem;
+  transition: background-color .2s ease, color .2s ease;
+}
+.rd-account__link .fa { color: var(--brand-strong); font-size: 1.125rem; }
+.rd-account__link:hover { background: var(--brand-muted); color: var(--brand-ink-strong); }
+.rd-account__txt { display: none; }
+
+.rd-tabs {
+  grid-area: tabs; display: flex; gap: 0.25rem; overflow-x: auto; scrollbar-width: none;
+  margin: 0.375rem -1rem 0; padding: 0 1rem;
+}
+.rd-tabs::-webkit-scrollbar { display: none; }
+.rd-tab {
+  display: inline-flex; align-items: center; gap: 0.5rem; white-space: nowrap;
+  padding: 0.75rem 0.875rem; color: var(--brand-ink); text-decoration: none;
+  font-weight: 600; font-size: 0.9375rem; border-bottom: 3px solid transparent;
+  transition: color .2s ease, border-color .2s ease;
+}
+.rd-tab .fa { color: var(--brand-ink); opacity: .7; }
+.rd-tab:hover { color: var(--brand-ink-strong); }
+.rd-tab.is-active { color: var(--brand-ink-strong); border-bottom-color: var(--brand); }
+.rd-tab.is-active .fa { color: var(--brand-strong); opacity: 1; }
+
+@media (min-width: 768px) {
+  .rd-header__inner { grid-template-columns: auto 1fr auto; grid-template-areas: "logo tabs account"; padding: 0 1.5rem; height: 76px; }
+  .rd-logo img { height: 44px; }
+  .rd-tabs { margin: 0; padding: 0; align-self: stretch; justify-content: flex-start; padding-left: 1.5rem; }
+  .rd-tab { padding: 0 1rem; height: 100%; }
+  .rd-account__txt { display: inline; }
+  .rd-account__link { padding: 0 0.875rem; }
+}
+@media (min-width: 768px) and (max-width: 1023px) { .rd-account__txt { display: none; } }
+
