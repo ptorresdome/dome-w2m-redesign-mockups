@@ -871,7 +871,7 @@ function ImportedHeaderNavegaciNDeLa() {
         <div className={"\x63ontainer"}>
           <nav className={"navbar navbar-default navbar-expand-md \x6austify-content-center \x6austify-content-sm-between items-center"}>
             <a className="navbar-brand d-md-none" href="/">
-              <div className="logoHeader" />
+              <div className="logoHeader" style={{ background: "url(\"/site-assets/1fbaddbcc7e6cf85.png\") 0% 0% / contain no-repeat", width: "170px", height: "45px" }} />
             </a>
             <div className={"nav \x66lex-row \x66lex-sm-column [&]:flex-wrap"}>
               <button className={"navbar-toggler collapsed d-md-none [&:focus]:[box-shadow:0_0_0_var(--bs-navbar-toggler-focus-width)] [&:focus]:no-underline [&:hover]:no-underline"} type="button" data-bs-target="#bs-example-navbar-collapse-1" aria-expanded="false" {...({ "arial-label": "Toggle navigation" } as any)}>
