@@ -228,7 +228,7 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 
 /* ---------- Dark search card ---------- */
 .rd-search-wrap { background: var(--brand-search-bg); }
-.rd-search { background: var(--brand-search-bg); box-shadow: none; padding-left: 0; padding-right: 0; }
+.rd-search { background: color-mix(in oklab, var(--brand-search-bg) 82%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: none; padding-left: 0; padding-right: 0; }
 .rd-search__title, .rd-check { color: var(--brand-on-dark); }
 .rd-search__title .fa { color: var(--brand); }
 .rd-search-section { background: var(--brand-search-bg); }
