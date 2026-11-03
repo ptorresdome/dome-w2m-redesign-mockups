@@ -302,6 +302,8 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   max-width: min(94vw, 480px);
   max-height: min(58vh, 480px);
   overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
   background: var(--brand-surface);
   color: var(--brand-ink-strong);
   border-radius: calc(var(--brand-radius) + 4px);
