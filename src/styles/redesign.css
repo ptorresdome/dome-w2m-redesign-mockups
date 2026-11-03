@@ -287,13 +287,6 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   .rd-submit-col { display: contents; }
   .rd-submit-col .rd-check { grid-column: 1 / span 2; grid-row: 3; justify-self: start; align-self: center; margin: 0; }
   .rd-search__submit { grid-column: 4; grid-row: 2; width: 100%; min-width: 0; min-height: 0; font-size: 1.125rem; margin-top: 0; }
-  .rd-ac__panel {
-    left: 50%;
-    transform: translateX(-50%);
-    min-width: calc(100% + 4rem);
-    max-width: min(94vw, 560px);
-    max-height: min(58vh, 500px);
-  }
 }
 .rd-pax { z-index: 5; }
 
