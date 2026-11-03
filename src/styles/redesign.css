@@ -348,6 +348,15 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   background: var(--brand-soft);
   color: var(--brand-ink-strong);
 }
+@media (min-width: 1024px) {
+  .rd-ac__panel {
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: calc(100% + 4rem);
+    max-width: min(94vw, 560px);
+    max-height: min(58vh, 500px);
+  }
+}
 
 /* ===== Date picker ===== */
 .rd-cal-wrap { position: relative; display: block; }
