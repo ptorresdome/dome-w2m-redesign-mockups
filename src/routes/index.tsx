@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { DatePicker } from "@/components/DatePicker";
 import capturedCSS from "../styles/site.css?raw";
 import redesignCSS from "../styles/redesign.css?raw";
 
@@ -999,6 +1000,8 @@ function ImportedSectionBuscarTraslados() {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [roundTrip, setRoundTrip] = useState(false);
+  const [checkIn, setCheckIn] = useState<Date | null>(null);
+  const [checkOut, setCheckOut] = useState<Date | null>(null);
   const [pax, setPax] = useState<Pax>({ adults: 2, children: 0, babies: 0 });
   const [paxOpen, setPaxOpen] = useState(false);
   const paxTriggerRef = useRef<HTMLButtonElement>(null);
@@ -1088,7 +1091,7 @@ function ImportedSectionBuscarTraslados() {
                 <span className="rd-field__icon fa fa-calendar" aria-hidden="true" />
                 <span className="rd-field__body">
                   <span className="rd-field__label">Llegada</span>
-                  <input className="rd-field__input" id="checkIn-datetimepicker-input" tabIndex={2} type="date" />
+                  <DatePicker id="checkIn-datetimepicker-input" tabIndex={2} title="Fecha de llegada" value={checkIn} onChange={(d) => { setCheckIn(d); if (d && checkOut && checkOut < d) setCheckOut(null); }} />
                 </span>
                 <input type="hidden" id="checkInDate" defaultValue="" />
               </label>
@@ -1106,7 +1109,7 @@ function ImportedSectionBuscarTraslados() {
                   <span className="rd-field__label">{roundTrip ? "Regreso" : "Añadir regreso"}</span>
                 </button>
                 {roundTrip && (
-                  <input className="rd-field__input" id="checkOut-datetimepicker-input" tabIndex={4} type="date" aria-label="Regreso" />
+                  <DatePicker id="checkOut-datetimepicker-input" tabIndex={4} title="Fecha de regreso" ariaLabel="Regreso" value={checkOut} onChange={setCheckOut} minDate={checkIn ?? undefined} />
                 )}
                 <input type="hidden" defaultValue="" id="checkOutDate" />
               </div>
