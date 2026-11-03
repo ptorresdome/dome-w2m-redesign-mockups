@@ -985,8 +985,6 @@ function ImportedSectionBuscarTraslados() {
   const [pax, setPax] = useState<Pax>({ adults: 2, children: 0, babies: 0 });
   const [paxOpen, setPaxOpen] = useState(false);
   const paxTriggerRef = useRef<HTMLButtonElement>(null);
-  const [fromOpen, setFromOpen] = useState(false);
-  const fromWrapRef = useRef<HTMLDivElement>(null);
 
   const goTo = (i: number) => {
     const track = trackRef.current;
@@ -1018,22 +1016,6 @@ function ImportedSectionBuscarTraslados() {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [paxOpen]);
-
-  useEffect(() => {
-    if (!fromOpen) return;
-    const onDown = (e: MouseEvent) => {
-      if (!fromWrapRef.current?.contains(e.target as Node)) setFromOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setFromOpen(false);
-    };
-    document.addEventListener("mousedown", onDown);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDown);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [fromOpen]);
 
   const step = (key: keyof Pax, delta: number) =>
     setPax((p) => {
