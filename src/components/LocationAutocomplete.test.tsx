@@ -57,7 +57,7 @@ describe("Desktop list overflow", () => {
     vi.stubGlobal("innerHeight", 735);
     const scroll = vi.fn();
     vi.stubGlobal("scrollBy", scroll);
-    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(function () {
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockImplementation(function (this: HTMLElement) {
       return { top: 350, bottom: this.getAttribute("role") === "listbox" ? bottom : 400, height: 50, left: 0, right: 400, width: 400, x: 0, y: 350, toJSON: () => ({}) };
     });
     render(<LocationAutocomplete id="returnLocation" tabIndex={1} value="" onChange={() => {}} panelLabel="Destinos disponibles" />);
