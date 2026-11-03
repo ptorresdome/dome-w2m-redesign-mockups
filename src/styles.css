@@ -312,7 +312,11 @@
   --brand-surface: oklch(1 0 0);
   --brand-muted: oklch(0.97 0.003 220);
   --brand-line: oklch(0.91 0.005 220);
-  --brand-search-bg: oklch(0.16 0.005 220);
+  --brand-search-bg: oklch(0.22 0.008 220);
+  --brand-search-field: oklch(0.30 0.008 220);
+  --brand-search-line: oklch(0.40 0.008 220);
+  --brand-search-text: oklch(0.96 0.003 220);
+  --brand-search-muted: oklch(0.78 0.006 220);
   --brand-on-dark: oklch(1 0 0);
   --brand-radius: 0.375rem;
   --brand-shadow-card: 0 18px 50px -18px color-mix(in oklab, var(--brand-ink-strong) 45%, transparent);
