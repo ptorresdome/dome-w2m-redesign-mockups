@@ -407,7 +407,7 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 .rd-cal-wrap { position: relative; display: block; }
 .rd-cal-wrap .rd-field__input { cursor: pointer; }
 .rd-cal {
-  position: absolute; top: calc(100% + 14px); left: -3rem; z-index: 60;
+  position: absolute; bottom: calc(100% + 14px); left: -3rem; z-index: 60;
   width: 380px; padding: 1.5rem; background: var(--brand-surface); color: var(--brand-ink-strong);
   border-radius: calc(var(--brand-radius) * 2); box-shadow: var(--brand-shadow-card);
   font-family: Montserrat, sans-serif; text-align: center;
