@@ -943,7 +943,6 @@ function ImportedSectionBuscarTraslados() {
       <div className="rd-search-wrap">
         <form className="rd-search" id="searcher-transfer" onSubmit={(e) => e.preventDefault()}>
           <h1 className="rd-search__title">
-            <span className="fa fa-search" aria-hidden="true" />
             Buscar Traslados
           </h1>
 
