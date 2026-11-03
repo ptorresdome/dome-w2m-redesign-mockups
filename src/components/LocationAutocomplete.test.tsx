@@ -1,5 +1,6 @@
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { useState } from "react";
 import { LocationAutocomplete } from "./LocationAutocomplete";
 
 beforeEach(() => {
@@ -66,5 +67,32 @@ describe("Desktop list overflow", () => {
     await new Promise((resolve) => requestAnimationFrame(resolve));
     if (shouldScroll) expect(scroll).toHaveBeenCalledWith({ top: 181, behavior: "smooth" });
     else expect(scroll).not.toHaveBeenCalled();
+  });
+});
+
+describe("Completed input does not limit the list", () => {
+  afterEach(() => vi.restoreAllMocks());
+
+  it("shows every option after a selection, and filters again while typing", () => {
+    vi.stubGlobal("matchMedia", (query: string) => ({ matches: false, media: query, addEventListener: () => {}, removeEventListener: () => {} }));
+    const Wrapper = () => {
+      const [value, setValue] = useState("");
+      return <LocationAutocomplete id="returnLocation" tabIndex={1} value={value} onChange={setValue} panelLabel="Destinos disponibles" />;
+    };
+    render(<Wrapper />);
+    const input = screen.getByPlaceholderText("Zona u hotel de destino");
+
+    fireEvent.click(input);
+    expect(screen.getAllByRole("option").length).toBe(17);
+
+    fireEvent.click(screen.getByRole("option", { name: "Tulum" }));
+    expect(input).toHaveValue("Tulum");
+
+    fireEvent.click(input);
+    expect(screen.getAllByRole("option").length).toBe(17);
+    expect(screen.getByRole("option", { name: "Quintana Roo" })).toBeInTheDocument();
+
+    fireEvent.change(input, { target: { value: "tulum" } });
+    expect(screen.getAllByRole("option").map((o) => o.textContent)).toEqual(["Tulum"]);
   });
 });

@@ -63,6 +63,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
 }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [lastSelected, setLastSelected] = useState<string | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -97,7 +98,9 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
     setQuery("");
     setOpen(true);
   };
-  const q = (isMobile ? query : value).trim().toLowerCase();
+  // A completed (selected) value must not filter the list: it is a label, not a query.
+  // Only text the user typed filters the options, so autocomplete still works.
+  const q = (isMobile ? query : value === lastSelected ? "" : value).trim().toLowerCase();
   const groups = allGroups
     .map((g) => ({ ...g, items: q ? g.items.filter((it) => it.toLowerCase().includes(q)) : g.items }))
     .filter((g) => g.items.length > 0);
@@ -130,7 +133,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
           {group.items.map((item) => (
             <Button key={item} type="button" variant="ghost" className="rd-ac__item" role="option" aria-selected={value === item}
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => { onChange(item); setOpen(false); }}>
+              onClick={() => { onChange(item); setLastSelected(item); setOpen(false); }}>
               <span className="fa fa-map-marker" aria-hidden="true" /><span>{item}</span>
             </Button>
           ))}
