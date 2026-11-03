@@ -71,7 +71,6 @@ describe("Desktop list overflow", () => {
 });
 
 describe("Completed input does not limit the list", () => {
-  afterEach(() => vi.restoreAllMocks());
 
   it("shows every option after a selection, and filters again while typing", () => {
     vi.stubGlobal("matchMedia", (query: string) => ({ matches: false, media: query, addEventListener: () => {}, removeEventListener: () => {} }));
