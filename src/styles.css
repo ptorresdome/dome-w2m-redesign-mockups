@@ -301,3 +301,20 @@
   --color-swiper-theme-color: var(--swiper-theme-color);
 }
 /* site-import tokens: end */
+
+/* Brand tokens for the mobile-first redesign (W2M corporate palette) */
+:root {
+  --brand: oklch(0.82 0.2 116);            /* lime #c4d600 */
+  --brand-strong: oklch(0.72 0.18 116);
+  --brand-soft: oklch(0.96 0.06 116);
+  --brand-ink: oklch(0.44 0.01 220);       /* grey #505759 */
+  --brand-ink-strong: oklch(0.28 0.01 220);
+  --brand-surface: oklch(1 0 0);
+  --brand-muted: oklch(0.97 0.003 220);
+  --brand-line: oklch(0.91 0.005 220);
+  --brand-radius: 1rem;
+  --brand-shadow-card: 0 18px 50px -18px color-mix(in oklab, var(--brand-ink-strong) 45%, transparent);
+  --brand-shadow-soft: 0 2px 10px -4px color-mix(in oklab, var(--brand-ink-strong) 25%, transparent);
+  --brand-footer-gradient: linear-gradient(to right, var(--brand), var(--brand-ink), var(--brand));
+  --brand-hero-overlay: linear-gradient(180deg, color-mix(in oklab, var(--brand-ink-strong) 10%, transparent), color-mix(in oklab, var(--brand-ink-strong) 45%, transparent));
+}
