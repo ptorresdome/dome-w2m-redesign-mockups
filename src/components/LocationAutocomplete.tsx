@@ -144,11 +144,11 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
   );
 
   return (
-    <div className="rd-ac" ref={wrapRef} onMouseEnter={() => { if (!isMobile) setOpen(true); }}>
+    <div className="rd-ac" ref={wrapRef}>
       <input ref={inputRef} className="rd-field__input" id={id} tabIndex={tabIndex} type="text" placeholder={placeholder}
         data-hotel="Hoteles" value={value} readOnly={isMobile} onChange={(e) => onChange(e.target.value)} autoComplete="off"
         aria-haspopup={isMobile ? "dialog" : "listbox"} aria-expanded={open}
-        onFocus={() => { if (!isMobile) setOpen(true); }} onClick={show}
+        onClick={show}
         onKeyDown={(e) => { if (isMobile && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); show(); } }} />
       {isMobile ? (
         <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
