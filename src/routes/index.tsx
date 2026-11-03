@@ -878,6 +878,21 @@ const HERO_SLIDES = [
 
 type Pax = { adults: number; children: number; babies: number };
 
+const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
+  {
+    title: "Aeropuertos",
+    icon: "fa-plane",
+    items: [
+      "Aeropuerto de Cancun",
+      "Aeropuerto de Cozumel",
+      "Aeropuerto de La Romana",
+      "Aeropuerto de Las Americas",
+      "Aeropuerto de Mallorca",
+      "Aeropuerto de Samana",
+    ],
+  },
+];
+
 function paxSummary(p: Pax) {
   const parts = [`${p.adults} ${p.adults === 1 ? "adulto" : "adultos"}`];
   if (p.children) parts.push(`${p.children} ${p.children === 1 ? "niño" : "niños"}`);
@@ -894,6 +909,8 @@ function ImportedSectionBuscarTraslados() {
   const [pax, setPax] = useState<Pax>({ adults: 2, children: 0, babies: 0 });
   const [paxOpen, setPaxOpen] = useState(false);
   const paxTriggerRef = useRef<HTMLButtonElement>(null);
+  const [fromOpen, setFromOpen] = useState(false);
+  const fromWrapRef = useRef<HTMLDivElement>(null);
 
   const goTo = (i: number) => {
     const track = trackRef.current;
