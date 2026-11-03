@@ -1,3 +1,4 @@
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { DatePicker } from "@/components/DatePicker";
@@ -894,6 +895,12 @@ function paxSummary(p: Pax) {
   return parts.join(", ");
 }
 
+const PAX_MAX = 5;
+const paxMin = (key: keyof Pax) => (key === "adults" ? 1 : 0);
+function clampPax(key: keyof Pax, n: number) {
+  return Math.max(paxMin(key), Math.min(PAX_MAX, n));
+}
+
 function ImportedSectionBuscarTraslados() {
   const [slide, setSlide] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -902,7 +909,8 @@ function ImportedSectionBuscarTraslados() {
   const [roundTrip, setRoundTrip] = useState(false);
   const [checkIn, setCheckIn] = useState<Date | null>(null);
   const [checkOut, setCheckOut] = useState<Date | null>(null);
-  const [pax, setPax] = useState<Pax>({ adults: 2, children: 0, babies: 0 });
+  const [pax, setPax] = useState<Pax>({ adults: 1, children: 0, babies: 0 });
+  const [draft, setDraft] = useState<Pax>({ adults: 1, children: 0, babies: 0 });
   const [paxOpen, setPaxOpen] = useState(false);
   const paxTriggerRef = useRef<HTMLButtonElement>(null);
 
@@ -925,28 +933,13 @@ function ImportedSectionBuscarTraslados() {
     return () => clearInterval(id);
   }, []);
 
-  useEffect(() => {
-    if (!paxOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setPaxOpen(false);
-        paxTriggerRef.current?.focus();
-      }
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [paxOpen]);
-
   const step = (key: keyof Pax, delta: number) =>
-    setPax((p) => {
-      const min = key === "adults" ? 1 : 0;
-      return { ...p, [key]: Math.max(min, Math.min(20, p[key] + delta)) };
-    });
+    setDraft((p) => ({ ...p, [key]: clampPax(key, p[key] + delta) }));
 
   const counters: { key: keyof Pax; label: string; hint: string }[] = [
-    { key: "adults", label: "Adultos", hint: "" },
-    { key: "children", label: "Niños", hint: "" },
-    { key: "babies", label: "Bebés", hint: "" },
+    { key: "adults", label: "Adultos", hint: "12 años o más" },
+    { key: "children", label: "Niños", hint: "De 2 a 11 años" },
+    { key: "babies", label: "Bebés", hint: "Menores de 2 años" },
   ];
 
   return (
@@ -1022,7 +1015,7 @@ function ImportedSectionBuscarTraslados() {
                 className="rd-field rd-pax__trigger"
                 aria-expanded={paxOpen}
                 aria-controls="rd-pax-panel"
-                onClick={() => setPaxOpen((v) => !v)}
+                onClick={() => { setDraft(pax); setPaxOpen(true); }}
               >
                 <span className="rd-field__icon fa fa-user" aria-hidden="true" />
                 <span className="rd-field__body">
@@ -1032,32 +1025,45 @@ function ImportedSectionBuscarTraslados() {
                 <span className="rd-pax__chev fa fa-chevron-down" aria-hidden="true" />
               </button>
               <input type="hidden" id="accommodation" value={paxSummary(pax)} readOnly />
-              {paxOpen && (
-                <div className="rd-pax__panel" id="rd-pax-panel" role="dialog" aria-label="Personas">
-                  <p className="rd-pax__hint">Especifique la cantidad de adultos, niños, y bebés.</p>
-                  {counters.map((c) => (
-                    <div className="rd-counter" key={c.key}>
-                      <span className="rd-counter__label">{c.label}</span>
-                      <div className="rd-counter__ctrl">
-                        <button type="button" aria-label={`Quitar ${c.label.toLowerCase()}`} onClick={() => step(c.key, -1)} disabled={pax[c.key] <= (c.key === "adults" ? 1 : 0)}>−</button>
-                        <output aria-live="polite" id={c.key}>{pax[c.key]}</output>
-                        <button type="button" aria-label={`Añadir ${c.label.toLowerCase()}`} onClick={() => step(c.key, 1)}>+</button>
-                      </div>
+              <DialogPrimitive.Root open={paxOpen} onOpenChange={setPaxOpen}>
+                <DialogPrimitive.Portal>
+                  <DialogPrimitive.Overlay className="rd-ac__backdrop" />
+                  <DialogPrimitive.Content className="rd-ac__modal rd-pax__modal" id="rd-pax-panel">
+                    <div className="rd-ac__modal-head">
+                      <DialogPrimitive.Title className="rd-pax__title">Personas</DialogPrimitive.Title>
+                      <DialogPrimitive.Close className="rd-pax__x" aria-label="Cerrar">
+                        <span className="fa fa-times" aria-hidden="true" />
+                      </DialogPrimitive.Close>
                     </div>
-                  ))}
-                  <button
-                    type="button"
-                    className="rd-btn rd-btn--ink"
-                    id="accommodationBtn"
-                    onClick={() => {
-                      setPaxOpen(false);
-                      paxTriggerRef.current?.focus();
-                    }}
-                  >
-                    Aceptar
-                  </button>
-                </div>
-              )}
+                    <DialogPrimitive.Description className="rd-pax__hint">
+                      Especifique la cantidad de adultos, niños y bebés (máximo {PAX_MAX} de cada tipo).
+                    </DialogPrimitive.Description>
+                    <div className="rd-pax__list">
+                      {counters.map((c) => (
+                        <div className="rd-counter" key={c.key}>
+                          <span className="rd-counter__text">
+                            <span className="rd-counter__label">{c.label}</span>
+                            <span className="rd-counter__hint">{c.hint}</span>
+                          </span>
+                          <div className="rd-counter__ctrl">
+                            <button type="button" aria-label={`Quitar ${c.label.toLowerCase()}`} onClick={() => step(c.key, -1)} disabled={draft[c.key] <= paxMin(c.key)}>−</button>
+                            <output aria-live="polite" id={c.key}>{draft[c.key]}</output>
+                            <button type="button" aria-label={`Añadir ${c.label.toLowerCase()}`} onClick={() => step(c.key, 1)} disabled={draft[c.key] >= PAX_MAX}>+</button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      type="button"
+                      className="rd-pax__accept"
+                      id="accommodationBtn"
+                      onClick={() => { setPax(draft); setPaxOpen(false); }}
+                    >
+                      Aceptar
+                    </button>
+                  </DialogPrimitive.Content>
+                </DialogPrimitive.Portal>
+              </DialogPrimitive.Root>
             </div>
 
             <div className="rd-submit-col">

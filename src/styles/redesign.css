@@ -442,3 +442,23 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 .rd-cal--modal .rd-cal__grid { gap: 4px; }
 .rd-cal--modal { padding: 1.25rem 1rem 1rem; }
 .rd-cal--modal .rd-cal__day { aspect-ratio: auto; height: 44px; min-height: 0; }
+
+/* ===== Personas popup ===== */
+.rd-pax__modal { width: min(440px, calc(100vw - 2rem)); padding: 1.5rem; gap: 0; overflow-y: auto; }
+.rd-pax__title { margin: 0; font-size: 1.25rem; font-weight: 700; color: var(--brand-ink-strong); }
+.rd-pax__x { width: 40px; height: 40px; border-radius: 999px; border: 0; background: var(--brand-muted); color: var(--brand-ink-strong); cursor: pointer; display: grid; place-items: center; }
+.rd-pax__x:hover { background: var(--brand-soft); }
+.rd-pax__modal .rd-pax__hint { margin: 0 0 1rem; font-size: 0.875rem; color: var(--brand-ink); }
+.rd-pax__list { display: grid; }
+.rd-pax__list .rd-counter { padding: 1rem 0; border-top: 1px solid var(--brand-line); }
+.rd-pax__list .rd-counter:last-child { border-bottom: 1px solid var(--brand-line); }
+.rd-counter__text { display: grid; gap: 0.15rem; }
+.rd-counter__hint { font-size: 0.75rem; color: var(--brand-ink); }
+.rd-pax__modal .rd-counter__ctrl output { font-size: 1.125rem; }
+.rd-pax__accept {
+  margin-top: 1.5rem; align-self: flex-end; min-height: 48px; padding: 0 2rem; border: 0; border-radius: 999px;
+  background: var(--brand); color: var(--brand-ink-strong); font: inherit; font-weight: 700; text-transform: uppercase; cursor: pointer;
+}
+.rd-pax__accept:hover { filter: brightness(0.95); }
+.rd-pax__x:focus-visible, .rd-pax__accept:focus-visible, .rd-counter__ctrl button:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+@media (max-width: 767.98px) { .rd-pax__accept { align-self: stretch; } }
