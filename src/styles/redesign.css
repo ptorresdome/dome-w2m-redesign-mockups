@@ -25,7 +25,7 @@
 .rd-account { grid-area: account; display: flex; gap: 0.25rem; }
 .rd-account__link {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
-  min-width: 44px; height: 44px; padding: 0 0.5rem; border-radius: 999px;
+  min-width: 44px; height: 44px; padding: 0 0.5rem; border-radius: var(--brand-radius);
   color: var(--brand-ink); text-decoration: none; font-weight: 600; font-size: 0.875rem;
   transition: background-color .2s ease, color .2s ease;
 }
@@ -140,7 +140,7 @@
 
 .rd-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.625rem;
-  min-height: 52px; padding: 0 1.75rem; border-radius: 999px; border: 0; cursor: pointer;
+  min-height: 52px; padding: 0 1.75rem; border-radius: var(--brand-radius); border: 0; cursor: pointer;
   font: 700 1rem 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: .04em;
   transition: background-color .2s ease, transform .15s ease, box-shadow .2s ease;
 }
