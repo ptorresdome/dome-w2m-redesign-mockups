@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { closePanel, openPanel } from "./openPanelRegistry";
 
 const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
   {
@@ -67,7 +68,12 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
   const isMobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia("(max-width: 1023.98px)").matches, () => false);
 
   useEffect(() => {
-    if (!open || isMobile) return;
+    if (!open) {
+      closePanel(`ac-${id}`);
+      return;
+    }
+    if (isMobile) return;
+    openPanel(`ac-${id}`, () => setOpen(false));
     const onDown = (e: MouseEvent) => {
       if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
     };
