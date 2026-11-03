@@ -261,3 +261,30 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
   .rd-submit-col { grid-column: auto; justify-content: flex-end; }
   .rd-submit-col .rd-check { margin: 0; min-height: 24px; white-space: nowrap; }
 }
+
+/* ---------- Centered search over background photo (tablet + desktop) ---------- */
+@media (min-width: 768px) {
+  .rd-search-section { display: grid; grid-template-areas: "stack"; min-height: 560px; background: var(--brand-ink-strong); }
+  .rd-search-section > * { grid-area: stack; }
+  .rd-hero { margin: 0; border-radius: 0; aspect-ratio: auto; height: 100%; box-shadow: none; z-index: 1; }
+  .rd-hero__slide::after { background: linear-gradient(180deg, color-mix(in oklab, var(--brand-ink-strong) 45%, transparent), color-mix(in oklab, var(--brand-ink-strong) 70%, transparent)); }
+  .rd-hero__nav { top: auto; bottom: 1rem; transform: none; width: 34px; height: 34px; opacity: .75; }
+  .rd-hero__dots { bottom: 1.6rem; }
+  .rd-search-wrap { align-self: center; width: 100%; padding: 3rem 1.5rem 4.5rem; background: transparent; pointer-events: none; }
+  .rd-search { pointer-events: auto; max-width: 760px; margin: 0 auto; padding: 1.75rem; box-shadow: var(--brand-shadow-card); }
+  .rd-search__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+  .rd-route { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+  .rd-dates { grid-column: span 2; }
+  .rd-submit-col { grid-column: 1 / -1; justify-content: flex-start; }
+  .rd-submit-col .rd-check { margin: 0.25rem 0 0; }
+}
+@media (min-width: 1024px) {
+  .rd-search-section { min-height: 600px; }
+  .rd-search { max-width: 1180px; padding: 2rem; }
+  .rd-search__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.875rem; }
+  .rd-dates { grid-column: span 2; gap: 0.875rem; }
+  .rd-submit-col { display: contents; }
+  .rd-submit-col .rd-check { grid-column: 4; align-self: center; margin: 0; padding-left: 0.5rem; }
+  .rd-search__submit { grid-column: 1 / -1; min-height: 60px; font-size: 1.125rem; margin-top: 0.25rem; }
+}
+.rd-pax { z-index: 5; }
