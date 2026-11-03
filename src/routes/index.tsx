@@ -1,11 +1,19 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { DatePicker } from "@/components/DatePicker";
+import { LocationAutocomplete } from "@/components/LocationAutocomplete";
 import capturedCSS from "../styles/site.css?raw";
 import redesignCSS from "../styles/redesign.css?raw";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [{ title: "World2Meet - Traslados" }] }),
+  head: () => ({ meta: [
+    { title: "Iberostar Island Transfers | Traslados" },
+    { name: "description", content: "Busca traslados entre aeropuertos, zonas y hoteles con Iberostar Island Transfers." },
+    { property: "og:title", content: "Iberostar Island Transfers | Traslados" },
+    { property: "og:description", content: "Busca tu traslado entre aeropuertos, zonas y hoteles." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
   staticData: { importedDocument: { html: { "className": "video", "lang": "es" } } },
   component: Index,
 });
@@ -878,114 +886,6 @@ const HERO_SLIDES = [
 ];
 
 type Pax = { adults: number; children: number; babies: number };
-
-const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
-  {
-    title: "Aeropuertos",
-    icon: "fa-plane",
-    items: [
-      "Aeropuerto de Cancun",
-      "Aeropuerto de Cozumel",
-      "Aeropuerto de La Romana",
-      "Aeropuerto de Las Americas",
-      "Aeropuerto de Mallorca",
-      "Aeropuerto de Samana",
-    ],
-  },
-  {
-    title: "Zonas",
-    icon: "fa-map",
-    items: [
-      "Quintana Roo",
-      "Cancún",
-      "Puerto Morelos",
-      "Playa del Carmen",
-      "Riviera Maya",
-      "Cozumel",
-      "Tulum",
-    ],
-  },
-  {
-    title: "Hoteles",
-    icon: "fa-bed",
-    items: [
-      "Hotel Iberostar Heritage Las Mercedes (SDQ)",
-      "Hotel Iberostar Cancun (CUN)",
-      "Hotel Iberostar Selection Cancun (CUN)",
-      "Hotel Iberostar Cozumel (CZM)",
-      "Hotel Iberostar Tucan (CUN)",
-      "Hotel Iberostar Quetzal (CUN)",
-      "Hotel Iberostar Selection Paraiso del Mar (CUN)",
-      "Hotel Iberostar Selection Paraiso Beach (CUN)",
-      "Hotel Iberostar Selection Paraiso Lindo (CUN)",
-      "Hotel Iberostar Selection Paraiso Maya (CUN)",
-    ],
-  },
-];
-
-function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel }: {
-  id: string;
-  tabIndex: number;
-  value: string;
-  onChange: (v: string) => void;
-  panelLabel: string;
-}) {
-  const [open, setOpen] = useState(false);
-  const wrapRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const onDown = (e: MouseEvent) => {
-      if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    document.addEventListener("mousedown", onDown);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDown);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
-  const q = value.trim().toLowerCase();
-  const groups = ORIGIN_GROUPS
-    .map((g) => ({ ...g, items: q ? g.items.filter((it) => it.toLowerCase().includes(q)) : g.items }))
-    .filter((g) => g.items.length > 0);
-
-  return (
-    <div className="rd-ac" ref={wrapRef} onMouseEnter={() => setOpen(true)}>
-      <input className="rd-field__input" id={id} tabIndex={tabIndex} type="text" placeholder="Aeropuerto, zona u hotel" data-hotel="Hoteles" value={value} onChange={(e) => onChange(e.target.value)} autoComplete="off" onFocus={() => setOpen(true)} />
-      {open && (
-        <div className="rd-ac__panel" role="listbox" aria-label={panelLabel}>
-          {groups.map((group) => (
-            <div className="rd-ac__group" key={group.title}>
-              <div className="rd-ac__group-title"><span className={`fa ${group.icon}`} aria-hidden="true" />{group.title}</div>
-              {group.items.map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  className="rd-ac__item"
-                  role="option"
-                  aria-selected={value === item}
-                  onMouseDown={(e) => e.preventDefault()}
-                  onClick={() => {
-                    onChange(item);
-                    setOpen(false);
-                  }}
-                >
-                  <span className="fa fa-map-marker" aria-hidden="true" />
-                  <span>{item}</span>
-                </button>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
 
 function paxSummary(p: Pax) {
   const parts = [`${p.adults} ${p.adults === 1 ? "adulto" : "adultos"}`];
