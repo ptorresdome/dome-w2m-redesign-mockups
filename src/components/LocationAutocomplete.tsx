@@ -65,6 +65,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
   const [query, setQuery] = useState("");
   const wrapRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const isMobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia("(max-width: 1023.98px)").matches, () => false);
 
   const isOrigin = id === "pickupLocation";
@@ -100,8 +101,29 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
   const groups = allGroups
     .map((g) => ({ ...g, items: q ? g.items.filter((it) => it.toLowerCase().includes(q)) : g.items }))
     .filter((g) => g.items.length > 0);
+
+  useEffect(() => {
+    if (!open || isMobile) return;
+    const frame = requestAnimationFrame(() => {
+      const input = inputRef.current;
+      const panel = panelRef.current;
+      if (!input || !panel) return;
+      const viewportHeight = window.innerHeight;
+      const panelBottom = panel.getBoundingClientRect().bottom;
+      if (panelBottom <= viewportHeight) return;
+      const inputRect = input.getBoundingClientRect();
+      // Bring the field towards the centre, leaving enough room for its list below.
+      const distance = Math.max(
+        inputRect.top + inputRect.height / 2 - viewportHeight / 2,
+        panelBottom - viewportHeight + 16,
+      );
+      window.scrollBy({ top: distance, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [open, isMobile, q]);
+
   const options = (
-    <div className={isMobile ? "rd-ac__panel rd-ac__panel--modal" : "rd-ac__panel"} role="listbox" aria-label={panelLabel}>
+    <div ref={panelRef} className={isMobile ? "rd-ac__panel rd-ac__panel--modal" : "rd-ac__panel"} role="listbox" aria-label={panelLabel}>
       {groups.map((group) => (
         <div className="rd-ac__group" key={group.title}>
           <div className="rd-ac__group-title"><span className={`fa ${group.icon}`} aria-hidden="true" />{group.title}</div>
