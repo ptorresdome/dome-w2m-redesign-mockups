@@ -252,3 +252,12 @@ footer.rd-footer .copyright { margin-top: 1.5rem; padding-top: 1.25rem; border-t
 .rd-search .rd-switch { background: var(--brand-search-line); }
 .rd-search .rd-return.is-on .rd-switch { background: var(--brand); }
 .rd-search .rd-pax__panel, .rd-search .rd-pax__panel * { color: var(--brand-ink-strong); }
+
+/* ---------- Solo privado above Buscar ---------- */
+.rd-submit-col { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.rd-submit-col .rd-check { margin: 0.25rem 0 0; }
+@media (min-width: 768px) { .rd-submit-col { grid-column: 1 / -1; } }
+@media (min-width: 1024px) {
+  .rd-submit-col { grid-column: auto; justify-content: flex-end; }
+  .rd-submit-col .rd-check { margin: 0; min-height: 24px; white-space: nowrap; }
+}

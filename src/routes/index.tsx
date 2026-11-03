@@ -1049,15 +1049,16 @@ function ImportedSectionBuscarTraslados() {
               )}
             </div>
 
-            <button className="rd-btn rd-btn--primary rd-search__submit" id="searchBtn" type="button" tabIndex={13}>
-              Buscar <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
-            </button>
+            <div className="rd-submit-col">
+              <label className="rd-check" htmlFor="servicetype">
+                <input type="checkbox" id="servicetype" name="servicetype" />
+                <span>Solo privado</span>
+              </label>
+              <button className="rd-btn rd-btn--primary rd-search__submit" id="searchBtn" type="button" tabIndex={13}>
+                Buscar <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+              </button>
+            </div>
           </div>
-
-          <label className="rd-check" htmlFor="servicetype">
-            <input type="checkbox" id="servicetype" name="servicetype" />
-            <span>Solo privado</span>
-          </label>
         </form>
       </div>
 
