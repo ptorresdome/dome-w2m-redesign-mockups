@@ -22,13 +22,13 @@ function useIsMobile() {
 
 type Props = {
   id: string;
-  tabIndex?: number;
+  tabIndex?: number | undefined;
   value: Date | null;
   onChange: (d: Date | null) => void;
-  minDate?: Date;
+  minDate?: Date | undefined;
   title: string;
   placeholder?: string;
-  ariaLabel?: string;
+  ariaLabel?: string | undefined;
 };
 
 export function DatePicker({ id, tabIndex, value, onChange, minDate, title, placeholder = "Elige fecha", ariaLabel }: Props) {
