@@ -197,7 +197,7 @@
   .rd-hero { margin: 0; border-radius: 0; aspect-ratio: auto; height: 100%; box-shadow: none; z-index: 1; }
   .rd-search-wrap { align-self: center; width: 100%; padding: 3rem 1.5rem; pointer-events: none; }
   .rd-search { pointer-events: auto; padding: 1.75rem; }
-  .rd-search__title { font-size: 1.5rem; }
+  .rd-search__title { font-size: 1.25rem; }
   .rd-search__grid { grid-template-columns: minmax(0, 2.2fr) minmax(0, 2fr) minmax(0, 1fr) auto; align-items: stretch; }
   .rd-route { grid-column: auto; }
   .rd-hero__dots { bottom: 1.5rem; }
