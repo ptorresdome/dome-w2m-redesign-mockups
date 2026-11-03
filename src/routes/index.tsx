@@ -878,6 +878,21 @@ const HERO_SLIDES = [
 
 type Pax = { adults: number; children: number; babies: number };
 
+const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
+  {
+    title: "Aeropuertos",
+    icon: "fa-plane",
+    items: [
+      "Aeropuerto de Cancun",
+      "Aeropuerto de Cozumel",
+      "Aeropuerto de La Romana",
+      "Aeropuerto de Las Americas",
+      "Aeropuerto de Mallorca",
+      "Aeropuerto de Samana",
+    ],
+  },
+];
+
 function paxSummary(p: Pax) {
   const parts = [`${p.adults} ${p.adults === 1 ? "adulto" : "adultos"}`];
   if (p.children) parts.push(`${p.children} ${p.children === 1 ? "niño" : "niños"}`);
@@ -894,6 +909,8 @@ function ImportedSectionBuscarTraslados() {
   const [pax, setPax] = useState<Pax>({ adults: 2, children: 0, babies: 0 });
   const [paxOpen, setPaxOpen] = useState(false);
   const paxTriggerRef = useRef<HTMLButtonElement>(null);
+  const [fromOpen, setFromOpen] = useState(false);
+  const fromWrapRef = useRef<HTMLDivElement>(null);
 
   const goTo = (i: number) => {
     const track = trackRef.current;
@@ -926,6 +943,22 @@ function ImportedSectionBuscarTraslados() {
     return () => document.removeEventListener("keydown", onKey);
   }, [paxOpen]);
 
+  useEffect(() => {
+    if (!fromOpen) return;
+    const onDown = (e: MouseEvent) => {
+      if (!fromWrapRef.current?.contains(e.target as Node)) setFromOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setFromOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [fromOpen]);
+
   const step = (key: keyof Pax, delta: number) =>
     setPax((p) => {
       const min = key === "adults" ? 1 : 0;
@@ -952,7 +985,44 @@ function ImportedSectionBuscarTraslados() {
                 <span className="rd-field__icon"><svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></svg></span>
                 <span className="rd-field__body">
                   <span className="rd-field__label">Origen</span>
-                  <input className="rd-field__input" id="pickupLocation" tabIndex={1} type="text" placeholder="Aeropuerto, hotel o ciudad" data-hotel="Hoteles" value={from} onChange={(e) => setFrom(e.target.value)} autoComplete="off" />
+                  <div
+                    className="rd-ac"
+                    ref={fromWrapRef}
+                    onMouseEnter={() => setFromOpen(true)}
+                  >
+                    <input className="rd-field__input" id="pickupLocation" tabIndex={1} type="text" placeholder="Aeropuerto, hotel o ciudad" data-hotel="Hoteles" value={from} onChange={(e) => setFrom(e.target.value)} autoComplete="off" onFocus={() => setFromOpen(true)} />
+                    {fromOpen && (
+                      <div className="rd-ac__panel" role="listbox" aria-label="Orígenes disponibles">
+                        {ORIGIN_GROUPS.map((group) => {
+                          const q = from.trim().toLowerCase();
+                          const items = q ? group.items.filter((it) => it.toLowerCase().includes(q)) : group.items;
+                          if (!items.length) return null;
+                          return (
+                            <div className="rd-ac__group" key={group.title}>
+                              <div className="rd-ac__group-title"><span className={`fa ${group.icon}`} aria-hidden="true" />{group.title}</div>
+                              {items.map((item) => (
+                                <button
+                                  key={item}
+                                  type="button"
+                                  className="rd-ac__item"
+                                  role="option"
+                                  aria-selected={from === item}
+                                  onMouseDown={(e) => e.preventDefault()}
+                                  onClick={() => {
+                                    setFrom(item);
+                                    setFromOpen(false);
+                                  }}
+                                >
+                                  <span className="fa fa-map-marker" aria-hidden="true" />
+                                  <span>{item}</span>
+                                </button>
+                              ))}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
                 </span>
               </label>
               <button
