@@ -894,13 +894,30 @@ const ORIGIN_GROUPS: { title: string; icon: string; items: string[] }[] = [
   {
     title: "Zonas",
     icon: "fa-map",
-    items: [],
+    items: [
+      "Quintana Roo",
+      "Cancún",
+      "Puerto Morelos",
+      "Playa del Carmen",
+      "Riviera Maya",
+      "Cozumel",
+      "Tulum",
+    ],
   },
   {
     title: "Hoteles",
     icon: "fa-bed",
     items: [
       "Hotel Iberostar Heritage Las Mercedes (SDQ)",
+      "Hotel Iberostar Cancun (CUN)",
+      "Hotel Iberostar Selection Cancun (CUN)",
+      "Hotel Iberostar Cozumel (CZM)",
+      "Hotel Iberostar Tucan (CUN)",
+      "Hotel Iberostar Quetzal (CUN)",
+      "Hotel Iberostar Selection Paraiso del Mar (CUN)",
+      "Hotel Iberostar Selection Paraiso Beach (CUN)",
+      "Hotel Iberostar Selection Paraiso Lindo (CUN)",
+      "Hotel Iberostar Selection Paraiso Maya (CUN)",
     ],
   },
 ];
