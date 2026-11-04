@@ -3,7 +3,7 @@ import { BrandButton, BrandCard } from "@/components/brand";
 import { SearchForm } from "@/components/search/SearchForm";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { paxText, validateTransferSearch } from "@/lib/transfer-search";
+import { paxText, validateTransferSearch, type TransferSearch } from "@/lib/transfer-search";
 import { capturedCSS, redesignCSS } from "@/styles/page-styles";
 import bus from "@/assets/vehicle-bus.jpg";
 import van from "@/assets/vehicle-van.jpg";
@@ -37,11 +37,25 @@ const RESULTS: Vehicle[] = [
   { type: "Privado", private: true, capacity: 6, name: "Minivan Plus", desc: "Minivan privada con asiento infantil disponible bajo petición.", img: van },
 ];
 
+// Demo data shown when the URL has no search values (real logic comes later).
+const DEMO: Required<Pick<TransferSearch, "from" | "to" | "date">> & { adults: number } = {
+  from: "Aeropuerto de Cancun",
+  to: "Hotel Iberostar Selection Paraiso del Mar (CUN)",
+  date: "01/12/2026",
+  adults: 2,
+};
+
 function Results() {
   const s = Route.useSearch();
-  const people = (s.adults ?? 2) + (s.children ?? 0) + (s.babies ?? 0);
+  const form: TransferSearch = {
+    from: DEMO.from,
+    to: DEMO.to,
+    date: DEMO.date,
+    adults: DEMO.adults,
+  };
+  const people = (form.adults ?? 0) + (form.children ?? 0) + (form.babies ?? 0);
   const list = RESULTS.filter((r) => r.capacity >= people && (!s.privateOnly || r.private));
-  const pax = paxText(s.adults ?? 2, s.children ?? 0, s.babies ?? 0);
+  const pax = paxText(form.adults ?? 0, form.children ?? 0, form.babies ?? 0);
 
   return (
     <>
@@ -52,7 +66,7 @@ function Results() {
         <div className="rd-results">
           <div className="rd-results__layout">
             <aside aria-label="Buscador de traslados">
-              <SearchForm key={JSON.stringify(s)} variant="sidebar" initialValues={s} />
+              <SearchForm key={JSON.stringify(form)} variant="sidebar" initialValues={form} />
             </aside>
             <section aria-labelledby="rd-results-count">
               <h1 className="rd-results__count" id="rd-results-count">{list.length} {list.length === 1 ? "resultado" : "resultados"}</h1>
