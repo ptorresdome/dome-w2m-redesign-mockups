@@ -49,7 +49,6 @@ function Results() {
     <>
       <style>{capturedCSS}</style>
       <style>{redesignCSS}</style>
-      <CookieNotice />
       <div role="main">
         <SiteHeader active="transfers" />
         <div className="rd-results">
