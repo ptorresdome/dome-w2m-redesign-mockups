@@ -67,13 +67,8 @@
 .rd-confirm__empty .rd-bbtn { margin-top: 1rem; }
 .rd-confirm__review { color: var(--brand-ink-strong); font-family: 'Montserrat', sans-serif; }
 .rd-confirm__review p { font-size: .875rem; line-height: 1.7; }
+/* Below desktop the two-column form misaligns, so the mobile layout takes over (project-wide rule). */
 @media (max-width: 1023.98px) {
-  .rd-confirm__layout { grid-template-columns: 280px minmax(0, 1fr); gap: 1.25rem; }
-  .rd-confirm__form { padding: 0 1.25rem; }
-  .rd-confirm__mast-inner { align-items: flex-start; }
-  .rd-confirm__steps { gap: 1rem; }
-}
-@media (max-width: 767.98px) {
   .rd-confirm__mast-inner { padding: 1.25rem 1rem; flex-direction: column; gap: 1.25rem; }
   .rd-confirm__mast h1 { font-size: 1.375rem; }
   .rd-confirm__steps { width: 100%; font-size: .6875rem; gap: 1rem; }
