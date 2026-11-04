@@ -43,13 +43,17 @@
 .rd-swap:active { transform: translateY(-50%) rotate(270deg); }
 
 .rd-dates { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
-.rd-return { flex-direction: column; align-items: stretch; justify-content: center; gap: 0.125rem; cursor: default; }
-.rd-return__head { display: flex; align-items: center; gap: 0.625rem; width: 100%; }
+.rd-return { cursor: default; }
 .rd-return__toggle {
   flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 0.625rem;
   background: none; border: 0; padding: 0; margin: 0;
   cursor: pointer; color: inherit; min-height: 28px; text-align: left;
 }
+.rd-return.is-on .rd-return__toggle {
+  flex: none; display: grid; place-items: center;
+  padding: 0.5rem; margin: -0.5rem; border-radius: 999px;
+}
+.rd-return.is-on .rd-return__toggle:hover { background: color-mix(in oklab, var(--brand) 14%, transparent); }
 .rd-field__input[type="date"] { font-size: 0.8125rem; }
 .rd-field__input::-webkit-calendar-picker-indicator { margin-left: 0; }
 .rd-switch { flex: none; position: relative; width: 36px; height: 20px; border-radius: 999px; background: var(--brand-line); transition: background-color .2s ease; }
