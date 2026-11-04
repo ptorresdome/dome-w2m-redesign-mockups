@@ -14,19 +14,6 @@
 .rd-summary__modify { width: 100%; margin-top: 1.25rem; text-decoration: none; white-space: normal; text-align: center; }
 .rd-results__count { margin: 0 0 1rem; font-size: 1.25rem; font-weight: 700; color: var(--brand-ink-strong); }
 .rd-results__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; container-type: inline-size; }
-.rd-vcard { display: grid; overflow: hidden; }
-.rd-vcard--empty { padding: 1.5rem; color: var(--brand-ink); }
-.rd-vcard__img { width: 100%; height: 180px; object-fit: contain; background: var(--brand-surface); padding: 0.75rem; }
-.rd-vcard__body { padding: 1rem 1.25rem 1.25rem; display: flex; flex-direction: column; }
-.rd-vcard__head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
-.rd-vcard__title { margin: 0; font-size: 1.125rem; font-weight: 700; text-transform: uppercase; color: var(--brand-ink-strong); }
-.rd-vcard__cap { margin-left: 0.35rem; padding-left: 0.6rem; border-left: 2px solid var(--brand-line); }
-.rd-vcard__cap .fa { color: var(--brand); }
-.rd-vcard__pax { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--brand-ink); }
-.rd-vcard__name { margin: 0.25rem 0 0; padding-bottom: 0.85rem; border-bottom: 1px solid var(--brand-line); font-size: 0.875rem; text-transform: uppercase; color: var(--brand-ink); }
-.rd-vcard__foot { display: flex; flex-direction: column; gap: 1rem; padding-top: 0.85rem; }
-.rd-vcard__desc { margin: 0; font-size: 0.875rem; line-height: 1.5; color: var(--brand-ink); }
-.rd-vcard__foot .rd-bbtn { width: 100%; }
 
 @media (min-width: 768px) {
   .rd-results { padding: 2rem 1.5rem 4rem; }
@@ -38,20 +25,10 @@
 }
 /* Side-by-side only while the card is wide enough for the Añadir button to fit whole;
    below that the card falls back to the stacked (mobile) layout. */
-@container (min-width: 540px) {
-  .rd-vcard { grid-template-columns: 220px minmax(0, 1fr); }
-  .rd-vcard__img { height: 100%; min-height: 200px; }
-  .rd-vcard__foot { flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap; }
-  .rd-vcard__desc { flex: 1 1 12rem; min-width: 0; }
-  .rd-vcard__foot .rd-bbtn { width: auto; flex-shrink: 0; white-space: nowrap; }
-}
-@container (min-width: 860px) {
-  .rd-vcard { grid-template-columns: 280px minmax(0, 1fr); }
-}
-.rd-stitle__ico, .rd-vcard__cap svg { color: var(--brand); }
+
+
+.rd-stitle__ico { color: var(--brand); }
 .rd-stitle__ico .rd-svg { width: 1.3rem; height: 1.3rem; display: block; }
-.rd-vcard__cap .rd-svg { width: 1.1rem; height: 1.1rem; vertical-align: -0.15em; }
-.rd-vcard__foot .rd-bbtn .rd-svg { width: 1.1rem; height: 1.1rem; }
 .rd-results .rd-svg { display: inline-block; flex-shrink: 0; }
 
 /* Compact presentation of the shared search form; no carousel or floating layout. */
@@ -83,3 +60,38 @@
 .rd-sidebar-search .rd-check { color: var(--brand-ink); font-size: 0.8125rem; }
 .rd-sidebar-search .rd-search__submit { width: 100%; min-width: 0; height: 52px; min-height: 52px; max-height: 52px; font-size: 0.9375rem; margin: 0; }
 .rd-sidebar-search .rd-search__submit .rd-svg { width: 1.125rem; height: 1.125rem; }
+
+/* Vehicle card */
+.rd-vcard { display: grid; overflow: hidden; transition: transform .2s ease, box-shadow .2s ease; }
+.rd-vcard:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -14px color-mix(in oklab, var(--brand-ink-strong) 35%, transparent); }
+@media (prefers-reduced-motion: reduce) { .rd-vcard, .rd-vcard:hover { transition: none; transform: none; } }
+.rd-vcard--empty { padding: 1.5rem; color: var(--brand-ink); }
+.rd-vcard__media { background: var(--brand-surface); display: grid; place-items: center; }
+.rd-vcard__img { width: 100%; height: 170px; object-fit: contain; padding: 0.75rem; }
+.rd-vcard__body { padding: 1rem 1.25rem 0.5rem; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.rd-vcard__badge { align-self: flex-start; padding: 0.15rem 0.65rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--brand-surface); color: var(--brand-ink); border: 1px solid var(--brand-line); }
+.rd-vcard__badge--private { background: color-mix(in oklab, var(--brand) 22%, transparent); border-color: color-mix(in oklab, var(--brand) 55%, transparent); color: var(--brand-ink-strong); }
+.rd-vcard__title { margin: 0; font-size: 1.125rem; font-weight: 700; text-transform: uppercase; color: var(--brand-ink-strong); }
+.rd-vcard__name { font-weight: 500; color: var(--brand-ink); }
+.rd-vcard__facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-size: 0.8125rem; color: var(--brand-ink); }
+.rd-vcard__facts li { display: inline-flex; align-items: center; gap: 0.35rem; }
+.rd-vcard__facts .rd-svg, .rd-vcard__note .rd-svg { width: 1rem; height: 1rem; color: var(--brand-ink-strong); }
+.rd-vcard__desc { margin: 0; font-size: 0.8125rem; line-height: 1.5; color: var(--brand-ink); }
+.rd-vcard__note { margin: 0; display: flex; justify-content: flex-start; text-align: left; align-items: flex-start; gap: 0.4rem; font-size: 0.8125rem; font-weight: 600; color: var(--brand-ink-strong); }
+.rd-vcard__price { padding: 1rem 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.15rem; border-top: 1px solid var(--brand-line); }
+.rd-vcard__amount { margin: 0; font-size: 1.5rem; font-weight: 800; color: var(--brand-ink-strong); }
+.rd-vcard__amount small { font-size: 0.75rem; font-weight: 600; color: var(--brand-ink); }
+.rd-vcard__pax { margin: 0 0 0.75rem; font-size: 0.75rem; color: var(--brand-ink); }
+.rd-vcard__price .rd-bbtn { width: 100%; white-space: nowrap; }
+.rd-vcard__price .rd-bbtn .rd-svg { width: 1.1rem; height: 1.1rem; }
+/* Side-by-side only while the card is wide enough for photo, info and price column. */
+@container (min-width: 600px) {
+  .rd-vcard { grid-template-columns: 190px minmax(0, 1fr) 170px; }
+  .rd-vcard__img { height: 100%; min-height: 180px; }
+  .rd-vcard__body { padding: 1.1rem 1.25rem; }
+  .rd-vcard__price { border-top: 0; border-left: 1px solid var(--brand-line); justify-content: center; text-align: center; background: color-mix(in oklab, var(--brand) 8%, transparent); }
+}
+@container (min-width: 860px) {
+  .rd-vcard { grid-template-columns: 240px minmax(0, 1fr) 190px; }
+}
+.rd-results .rd-vcard .rd-svg, .rd-results .rd-vcard__note > svg { margin: 0 !important; }
