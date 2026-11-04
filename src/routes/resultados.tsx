@@ -25,20 +25,20 @@ export const Route = createFileRoute("/resultados")({
   component: Results,
 });
 
-type Vehicle = { type: string; private: boolean; capacity: number; name: string; note?: string; desc: string; img: string; price: number; luggage: number; duration: number };
+type Vehicle = { type: string; private: boolean; capacity: number; name: string; note?: string; desc: string; img: string; price: number };
 
 // Sample results (placeholder until the real availability service is connected).
-// Prices, luggage and durations are demo values.
+// Prices are demo values.
 const RESULTS: Vehicle[] = [
-  { type: "Bus", private: false, capacity: 55, name: "General", note: "Gratis con reserva en hotel Iberostar", desc: "", img: bus, price: 0, luggage: 1, duration: 35 },
-  { type: "Minivan", private: true, capacity: 6, name: "Minivan 6 pax", desc: "Ideal para familias o pequeños grupos: espacio, comodidad y seguridad.", img: van, price: 65, luggage: 6, duration: 25 },
-  { type: "SUV", private: true, capacity: 4, name: "SUV 4 pax", desc: "Traslado directo con aire acondicionado, ideal para parejas.", img: suv, price: 55, luggage: 4, duration: 25 },
-  { type: "Van", private: true, capacity: 10, name: "Van 10 pax", desc: "Traslado para grupos con amplio espacio para equipaje.", img: van, price: 89, luggage: 10, duration: 25 },
-  { type: "Shuttle", private: false, capacity: 12, name: "Shuttle", desc: "Compartido con otros pasajeros; puede parar en otros hoteles.", img: van, price: 18, luggage: 1, duration: 50 },
-  { type: "SUV", private: true, capacity: 4, name: "SUV Premium", desc: "Traslado de lujo con bebidas de cortesía a bordo.", img: suv, price: 95, luggage: 4, duration: 25 },
-  { type: "Sprinter", private: true, capacity: 14, name: "Sprinter 14 pax", desc: "Vehículo amplio para grupos grandes con conductor bilingüe.", img: van, price: 120, luggage: 14, duration: 25 },
-  { type: "Bus", private: false, capacity: 40, name: "Express", desc: "Servicio regular con salidas programadas desde el aeropuerto.", img: bus, price: 12, luggage: 1, duration: 45 },
-  { type: "Minivan", private: true, capacity: 6, name: "Minivan Plus", desc: "Asiento infantil disponible bajo petición.", img: van, price: 75, luggage: 6, duration: 25 },
+  { type: "Bus", private: false, capacity: 55, name: "General", note: "Gratis con reserva en hotel Iberostar", desc: "", img: bus, price: 0 },
+  { type: "Minivan", private: true, capacity: 6, name: "Minivan 6 pax", desc: "Ideal para familias o pequeños grupos: espacio, comodidad y seguridad.", img: van, price: 65 },
+  { type: "SUV", private: true, capacity: 4, name: "SUV 4 pax", desc: "Traslado directo con aire acondicionado, ideal para parejas.", img: suv, price: 55 },
+  { type: "Van", private: true, capacity: 10, name: "Van 10 pax", desc: "Traslado para grupos con amplio espacio para equipaje.", img: van, price: 89 },
+  { type: "Shuttle", private: false, capacity: 12, name: "Shuttle", desc: "Compartido con otros pasajeros; puede parar en otros hoteles.", img: van, price: 18 },
+  { type: "SUV", private: true, capacity: 4, name: "SUV Premium", desc: "Traslado de lujo con bebidas de cortesía a bordo.", img: suv, price: 95 },
+  { type: "Sprinter", private: true, capacity: 14, name: "Sprinter 14 pax", desc: "Vehículo amplio para grupos grandes con conductor bilingüe.", img: van, price: 120 },
+  { type: "Bus", private: false, capacity: 40, name: "Express", desc: "Servicio regular con salidas programadas desde el aeropuerto.", img: bus, price: 12 },
+  { type: "Minivan", private: true, capacity: 6, name: "Minivan Plus", desc: "Asiento infantil disponible bajo petición.", img: van, price: 75 },
 ];
 
 const ico = (d: string) => <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>;
@@ -91,8 +91,6 @@ function Results() {
                         <h3 className="rd-vcard__title">{r.type} <span className="rd-vcard__name">· {r.name}</span></h3>
                         <ul className="rd-vcard__facts">
                           <li>{ico(ICON_SEATS)} {r.capacity} plazas</li>
-                          <li>{ico(ICON_BAG)} {r.private ? `${r.luggage} maletas` : "1 maleta/pers."}</li>
-                          <li>{ico(ICON_TIME)} ~{r.duration} min</li>
                         </ul>
                         {r.desc && <p className="rd-vcard__desc">{r.desc}</p>}
                         {r.note && <p className="rd-vcard__note">{ico(ICON_INFO)} {r.note}</p>}
