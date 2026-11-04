@@ -1,0 +1,91 @@
+/* Confirmation uses the same captured CSS layering and corporate tokens. */
+.rd-confirm { font-family: 'Montserrat', sans-serif; color: var(--brand-ink-strong); background: var(--brand-muted); letter-spacing: 0; }
+.rd-confirm *, .rd-confirm *::before, .rd-confirm *::after { box-sizing: border-box; }
+.rd-confirm .rd-svg { margin: 0; flex-shrink: 0; }
+.rd-confirm__mast { background: var(--brand-ink); color: var(--brand-on-dark); }
+.rd-confirm__mast-inner { max-width: 1240px; margin: auto; padding: 1.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.rd-confirm__mast h1 { font-size: 1.65rem; font-weight: 700; margin: 0; color: inherit; }
+.rd-confirm__mast p { margin: .4rem 0 0; font-size: .8125rem; color: inherit; }
+.rd-confirm__steps { display: flex; align-items: center; gap: 1.5rem; margin: 0; padding: 0; list-style: none; font-size: .8125rem; }
+.rd-confirm__steps li { display: flex; align-items: center; gap: .65rem; }
+.rd-confirm__steps li:last-child { opacity: .65; }
+.rd-confirm__steps span { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid currentColor; border-radius: 50%; font-weight: 700; }
+.rd-confirm__steps [aria-current] span { background: var(--brand); color: var(--brand-ink-strong); border-color: var(--brand); }
+.rd-confirm__body { max-width: 1240px; margin: auto; padding: 1.5rem; }
+.rd-confirm__back { display: inline-flex; align-items: center; gap: .5rem; color: var(--brand-ink); font-size: .8125rem; font-weight: 600; margin-bottom: 1.25rem; text-decoration: none; }
+.rd-confirm__layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 2rem; align-items: start; }
+.rd-confirm__form { min-width: 0; background: var(--brand-surface); padding: 0 1.75rem; }
+.rd-confirm__section { padding: 1.75rem 0; border-bottom: 1px solid var(--brand-line); }
+.rd-confirm__section:last-child { border-bottom: 0; }
+.rd-confirm__heading { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: 1.3rem; }
+.rd-confirm__heading .rd-stitle { font-size: 1.125rem; }
+.rd-confirm__heading small { font-size: .6875rem; color: var(--brand-ink); }
+.rd-confirm__section-number { background: var(--brand-muted); width: 28px; height: 28px; border-radius: 50%; display: inline-grid; place-items: center; color: var(--brand-ink); font-size: .8125rem; }
+.rd-confirm__fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.rd-confirm__field { display: flex; flex-direction: column; gap: .45rem; min-width: 0; margin: 0; color: var(--brand-ink); font-size: .75rem; font-weight: 600; }
+.rd-confirm__field input, .rd-confirm__field select, .rd-confirm__field textarea { width: 100%; min-width: 0; border: 1px solid var(--brand-line); border-radius: var(--brand-radius); background: var(--brand-surface); color: var(--brand-ink-strong); padding: .8rem .85rem; min-height: 48px; font-family: inherit; font-size: .8125rem; font-weight: 500; line-height: 1.4; letter-spacing: 0; }
+.rd-confirm__field input:focus, .rd-confirm__field select:focus, .rd-confirm__field textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+.rd-confirm__field input[readonly] { background: var(--brand-muted); }
+.rd-confirm__field textarea { resize: vertical; min-height: 120px; }
+.rd-confirm__phone { display: grid; grid-template-columns: 105px minmax(0, 1fr); gap: .5rem; }
+.rd-confirm__copy.rd-bbtn { background: var(--brand-soft); color: var(--brand-ink-strong); text-transform: none; font-size: .75rem; letter-spacing: 0; min-height: 40px; margin-bottom: 1.25rem; text-align: left; }
+.rd-confirm__passenger { margin: 0; padding: 1rem 0; border: 0; border-top: 1px solid var(--brand-line); min-width: 0; }
+.rd-confirm__passenger legend { float: left; width: 100%; padding: 0; margin-bottom: .75rem; font-weight: 700; font-size: .8125rem; }
+.rd-confirm__passenger .rd-confirm__fields { clear: both; }
+.rd-confirm__flight { border: 0; padding: 0; margin: 1.5rem 0 0; min-width: 0; }
+.rd-confirm__flight legend { background: var(--brand-muted); width: 100%; padding: .8rem; font-size: .75rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.6; }
+.rd-confirm__flight legend strong { display: flex; align-items: center; gap: .5rem; font-size: .8125rem; margin-bottom: .25rem; }
+.rd-confirm__flight legend span { display: block; overflow-wrap: anywhere; font-weight: 500; }
+.rd-confirm__wide { grid-column: 1 / -1; }
+.rd-confirm__terms { display: flex; align-items: flex-start; gap: .6rem; font-size: .8125rem; font-weight: 500; margin: 0 0 1rem; line-height: 1.6; }
+.rd-confirm__terms input { width: 18px; height: 18px; margin-top: .15rem; accent-color: var(--brand); flex-shrink: 0; }
+.rd-confirm__legal { color: var(--brand-ink); font-size: .6875rem; line-height: 1.7; }
+.rd-confirm__legal a, .rd-confirm__terms a { color: var(--brand-ink-strong); text-decoration: underline; }
+.rd-confirm__submit { display: flex; justify-content: flex-end; margin-top: 1.5rem; }
+.rd-confirm__submit .rd-bbtn { min-height: 48px; letter-spacing: 0; }
+.rd-confirm__aside { min-width: 0; position: sticky; top: 1.5rem; }
+.rd-confirm__summary { padding: 1.3rem; }
+.rd-confirm__summary .rd-stitle { font-size: 1rem; }
+.rd-confirm__vehicle { width: 100%; height: 150px; object-fit: contain; margin: .75rem 0; }
+.rd-confirm__summary h3 { font-size: 1.0625rem; font-weight: 700; margin: .75rem 0 .5rem; }
+.rd-confirm__badge { display: inline-flex; gap: .4rem; align-items: center; font-size: .6875rem; font-weight: 600; background: var(--brand-soft); padding: .35rem .6rem; border-radius: var(--brand-radius); }
+.rd-confirm__pax { display: flex; align-items: flex-start; gap: .5rem; font-size: .75rem; line-height: 1.6; margin: .75rem 0 1rem; }
+.rd-confirm__journey { border-top: 1px solid var(--brand-line); padding-top: 1rem; margin-top: 1rem; }
+.rd-confirm__journey > p { display: flex; gap: .45rem; align-items: center; font-size: .75rem; font-weight: 700; margin: 0 0 .8rem; }
+.rd-confirm__route { border-left: 2px solid var(--brand); margin: 0 0 0 .45rem; padding-left: .9rem; display: grid; gap: .9rem; }
+.rd-confirm__route div { font-size: .75rem; line-height: 1.6; overflow-wrap: anywhere; }
+.rd-confirm__route small { display: block; font-size: .625rem; color: var(--brand-ink); }
+.rd-confirm__total { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--brand-line); padding-top: 1.2rem; margin-top: 1.25rem; font-size: .875rem; }
+.rd-confirm__total strong { font-size: 1.5rem; }
+.rd-confirm__note { font-size: .6875rem; line-height: 1.6; margin: 1rem 0 0; }
+.rd-confirm__additional { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1rem; }
+.rd-confirm__additional .rd-bbtn { width: 100%; text-transform: none; font-size: .8125rem; letter-spacing: 0; }
+.rd-confirm__empty { padding: 3rem 1rem; text-align: center; }
+.rd-confirm__empty .rd-bbtn { margin-top: 1rem; }
+.rd-confirm__review { color: var(--brand-ink-strong); font-family: 'Montserrat', sans-serif; }
+.rd-confirm__review p { font-size: .875rem; line-height: 1.7; }
+@media (max-width: 1023.98px) {
+  .rd-confirm__layout { grid-template-columns: minmax(0, 1fr) 280px; gap: 1.25rem; }
+  .rd-confirm__form { padding: 0 1.25rem; }
+  .rd-confirm__mast-inner { align-items: flex-start; }
+  .rd-confirm__steps { gap: 1rem; }
+}
+@media (max-width: 767.98px) {
+  .rd-confirm__mast-inner { padding: 1.25rem 1rem; flex-direction: column; gap: 1.25rem; }
+  .rd-confirm__mast h1 { font-size: 1.375rem; }
+  .rd-confirm__steps { width: 100%; font-size: .6875rem; gap: 1rem; }
+  .rd-confirm__steps li { flex: 1; }
+  .rd-confirm__steps span { width: 30px; height: 30px; flex-shrink: 0; }
+  .rd-confirm__body { padding: 1rem; }
+  .rd-confirm__layout { display: flex; flex-direction: column; }
+  .rd-confirm__aside { order: -1; position: static; width: 100%; }
+  .rd-confirm__summary { padding: 1rem; }
+  .rd-confirm__vehicle { height: 110px; }
+  .rd-confirm__form { width: 100%; padding: 0 1rem; }
+  .rd-confirm__fields { grid-template-columns: minmax(0, 1fr); }
+  .rd-confirm__heading { align-items: flex-start; }
+  .rd-confirm__heading .rd-stitle { font-size: 1rem; }
+  .rd-confirm__heading small { max-width: 70px; text-align: right; }
+  .rd-confirm__submit .rd-bbtn { width: 100%; }
+  .rd-confirm__additional { display: none; }
+}
