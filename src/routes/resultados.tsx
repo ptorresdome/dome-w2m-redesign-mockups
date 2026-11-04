@@ -70,7 +70,7 @@ function Results() {
         <div className="rd-results">
           <div className="rd-results__layout">
             <aside aria-label="Buscador de traslados">
-              <SearchForm key={JSON.stringify(s)} variant="sidebar" initialValues={s} />
+              <SearchForm key={JSON.stringify(form)} variant="sidebar" initialValues={form} />
             </aside>
             <section aria-labelledby="rd-results-count">
               <h1 className="rd-results__count" id="rd-results-count">{list.length} {list.length === 1 ? "resultado" : "resultados"}</h1>
