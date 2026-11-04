@@ -8,7 +8,7 @@
 /* Status + locator */
 .rd-summary__status.rd-card { padding: 1.75rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem; align-items: center; }
 .rd-summary__status-text { min-width: 0; }
-.rd-summary__status h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .6rem; }
+.rd-summary__status h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .6rem; color: var(--brand-ink-strong); }
 .rd-summary__status p { margin: 0 0 .35rem; font-size: .9375rem; line-height: 1.7; color: var(--brand-ink); overflow-wrap: anywhere; }
 .rd-summary__status p:last-child { margin-bottom: 0; }
 .rd-summary__pending { color: var(--brand-pending); font-weight: 700; }
@@ -33,7 +33,7 @@
 .rd-summary__item-info { min-width: 0; }
 .rd-summary__badge { display: inline-flex; gap: .4rem; align-items: center; font-size: .6875rem; font-weight: 600; background: var(--brand-soft); padding: .35rem .6rem; border-radius: var(--brand-radius); }
 .rd-summary__item h3 { font-size: 1.0625rem; font-weight: 700; margin: .5rem 0 .6rem; overflow-wrap: anywhere; }
-.rd-summary__leg { display: flex; align-items: center; gap: .45rem; font-size: .75rem; font-weight: 700; text-transform: uppercase; margin: 0 0 .5rem; }
+.rd-summary__leg { display: flex; align-items: center; gap: .45rem; font-size: .75rem; font-weight: 700; text-transform: uppercase; margin: 0 0 .5rem; color: var(--brand-ink-strong); }
 .rd-summary__route { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin: 0; font-size: .8125rem; font-weight: 600; text-transform: uppercase; color: var(--brand-ink); }
 .rd-summary__route span { overflow-wrap: anywhere; }
 .rd-summary__note { font-size: .6875rem; line-height: 1.6; margin: .75rem 0 0; color: var(--brand-ink); }
