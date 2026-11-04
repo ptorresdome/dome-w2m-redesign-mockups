@@ -3,7 +3,7 @@ import { BrandButton, BrandCard } from "@/components/brand";
 import { SearchForm } from "@/components/search/SearchForm";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { paxText, validateTransferSearch } from "@/lib/transfer-search";
+import { paxText, validateTransferSearch, type TransferSearch } from "@/lib/transfer-search";
 import { capturedCSS, redesignCSS } from "@/styles/page-styles";
 import bus from "@/assets/vehicle-bus.jpg";
 import van from "@/assets/vehicle-van.jpg";
