@@ -46,6 +46,7 @@
 .rd-confirm__aside { min-width: 0; position: sticky; top: 1.5rem; }
 .rd-confirm__summary { padding: 1.3rem; }
 .rd-confirm__summary .rd-stitle { font-size: 1rem; }
+.rd-confirm__summary .rd-confirm__heading .rd-bbtn { width: 36px; min-height: 36px; padding: 0; flex-shrink: 0; }
 .rd-confirm__vehicle { width: 100%; height: 150px; object-fit: contain; margin: .75rem 0; }
 .rd-confirm__summary h3 { font-size: 1.0625rem; font-weight: 700; margin: .75rem 0 .5rem; }
 .rd-confirm__badge { display: inline-flex; gap: .4rem; align-items: center; font-size: .6875rem; font-weight: 600; background: var(--brand-soft); padding: .35rem .6rem; border-radius: var(--brand-radius); }
@@ -87,5 +88,4 @@
   .rd-confirm__heading .rd-stitle { font-size: 1rem; }
   .rd-confirm__heading small { max-width: 70px; text-align: right; }
   .rd-confirm__submit .rd-bbtn { width: 100%; }
-  .rd-confirm__additional { display: none; }
 }
