@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BrandButton, BrandCard, InfoRow } from "@/components/brand";
-import { CookieNotice } from "@/components/layout/CookieNotice";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { paxText, validateTransferSearch } from "@/lib/transfer-search";
