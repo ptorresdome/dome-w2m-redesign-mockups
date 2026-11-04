@@ -95,3 +95,6 @@
   .rd-vcard { grid-template-columns: 240px minmax(0, 1fr) 190px; }
 }
 .rd-results .rd-vcard .rd-svg, .rd-results .rd-vcard__note > svg { margin: 0 !important; }
+/* Route map under the sidebar search */
+.rd-map { margin-top: 1rem; padding: 0.75rem; }
+.rd-map__canvas { height: 300px; border-radius: 6px; overflow: hidden; background: var(--brand-surface); z-index: 0; position: relative; }
