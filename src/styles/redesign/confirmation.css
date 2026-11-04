@@ -91,3 +91,12 @@
   .rd-confirm__heading small { max-width: 70px; text-align: right; }
   .rd-confirm__submit .rd-bbtn { width: 100%; }
 }
+.rd-confirm__count { font-size: .6875rem; font-weight: 600; color: var(--brand-ink); }
+.rd-confirm__item { border-top: 1px solid var(--brand-line); padding: 1rem 0; }
+.rd-confirm__item-head { display: grid; grid-template-columns: 64px 1fr auto; gap: .75rem; align-items: center; margin-bottom: .75rem; }
+.rd-confirm__item-head img { width: 64px; height: 48px; object-fit: contain; }
+.rd-confirm__item-head h3 { margin: .35rem 0 0 !important; font-size: .9375rem !important; }
+.rd-confirm__item-head .rd-bbtn { width: 36px; min-height: 36px; padding: 0; }
+.rd-confirm__subtotal { display: flex; justify-content: space-between; align-items: center; margin-top: .9rem; font-size: .75rem; }
+.rd-confirm__subtotal strong { font-size: 1rem; }
+.rd-confirm__item + .rd-confirm__total { margin-top: 0; }
