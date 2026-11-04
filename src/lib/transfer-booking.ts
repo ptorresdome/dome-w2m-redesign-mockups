@@ -33,3 +33,24 @@ export function passengerLabels(s: TransferSearch) {
     ...Array.from({ length: resolved.babies }, (_, i) => `Bebé ${i + 1}`),
   ];
 }
+const vehicleParam = (v: unknown) => typeof v === "string" && VEHICLES.some(x => x.id === v) ? v : undefined;
+
+/** Results/confirmation params: `vehicle` = arrival service, `retVehicle` = return service, `leg` = which results step is shown. */
+export function validateResultsSearch(s: Record<string, unknown>) {
+  return { ...validateBookingSearch(s), retVehicle: vehicleParam(s["retVehicle"]), leg: s["leg"] === "ret" ? ("ret" as const) : undefined };
+}
+
+export type CartItem = { key: "arrival" | "return"; label: string; vehicle: Vehicle; date: string; from: string; to: string };
+
+/** Services added to the cart; the return leg only exists for round trips. */
+export function cartItems(s: ReturnType<typeof validateResultsSearch>): CartItem[] {
+  const trip = resolveTransferSearch(s);
+  const items: CartItem[] = [];
+  const arrival = VEHICLES.find(v => v.id === s.vehicle);
+  if (arrival) items.push({ key: "arrival", label: "Llegada", vehicle: arrival, date: trip.date, from: trip.from, to: trip.to });
+  const ret = VEHICLES.find(v => v.id === s.retVehicle);
+  if (ret && trip.ret) items.push({ key: "return", label: "Regreso", vehicle: ret, date: trip.ret, from: trip.to, to: trip.from });
+  return items;
+}
+
+export const cartTotal = (items: CartItem[]) => items.reduce((sum, i) => sum + i.vehicle.price, 0);

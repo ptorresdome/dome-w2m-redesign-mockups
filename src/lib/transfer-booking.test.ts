@@ -15,3 +15,15 @@ describe("Selected transfer confirmation", () => {
     expect(validateBookingSearch({ vehicle: "unknown" }).vehicle).toBeUndefined();
   });
 });
+import { cartItems, cartTotal, validateResultsSearch } from "./transfer-booking";
+describe("multi-service cart", () => {
+  it("adds arrival and return services and sums their prices", () => {
+    const items = cartItems(validateResultsSearch({ from: "A", to: "H", date: "01/12/2026", ret: "08/12/2026", vehicle: "van-89", retVehicle: "suburban-110" }));
+    expect(items.map(i => i.label)).toEqual(["Llegada", "Regreso"]);
+    expect(items[1]).toMatchObject({ from: "H", to: "A", date: "08/12/2026" });
+    expect(cartTotal(items)).toBe(199);
+  });
+  it("ignores a return service without a return date", () => {
+    expect(cartItems(validateResultsSearch({ vehicle: "van-89", retVehicle: "van-95" }))).toHaveLength(1);
+  });
+});
