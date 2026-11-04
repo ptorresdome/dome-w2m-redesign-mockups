@@ -27,18 +27,18 @@ export const Route = createFileRoute("/resultados")({
 
 type Vehicle = { type: string; private: boolean; capacity: number; name: string; note?: string; desc: string; img: string; price: number };
 
-// Sample results (placeholder until the real availability service is connected).
+// Results copied from the live site (static until the availability service is connected).
 // Prices are demo values.
 const RESULTS: Vehicle[] = [
-  { type: "Bus", private: false, capacity: 55, name: "General", note: "Gratis con reserva en hotel Iberostar", desc: "", img: bus, price: 0 },
-  { type: "Minivan", private: true, capacity: 6, name: "Minivan 6 pax", desc: "Ideal para familias o pequeños grupos: espacio, comodidad y seguridad.", img: van, price: 65 },
-  { type: "SUV", private: true, capacity: 4, name: "SUV 4 pax", desc: "Traslado directo con aire acondicionado, ideal para parejas.", img: suv, price: 55 },
-  { type: "Van", private: true, capacity: 10, name: "Van 10 pax", desc: "Traslado para grupos con amplio espacio para equipaje.", img: van, price: 89 },
-  { type: "Shuttle", private: false, capacity: 12, name: "Shuttle", desc: "Compartido con otros pasajeros; puede parar en otros hoteles.", img: van, price: 18 },
-  { type: "SUV", private: true, capacity: 4, name: "SUV Premium", desc: "Traslado de lujo con bebidas de cortesía a bordo.", img: suv, price: 95 },
-  { type: "Sprinter", private: true, capacity: 14, name: "Sprinter 14 pax", desc: "Vehículo amplio para grupos grandes con conductor bilingüe.", img: van, price: 120 },
-  { type: "Bus", private: false, capacity: 40, name: "Express", desc: "Servicio regular con salidas programadas desde el aeropuerto.", img: bus, price: 12 },
-  { type: "Minivan", private: true, capacity: 6, name: "Minivan Plus", desc: "Asiento infantil disponible bajo petición.", img: van, price: 75 },
+  { type: "Bus", private: false, capacity: 55, name: "General", note: "SERVICIO GRATUITO: Condicionado a que ud. disponga de una reserva en los hoteles Iberostar.", desc: "", img: bus, price: 0 },
+  { type: "Minivan", private: true, capacity: 6, name: "Minivan 6 pax", desc: "Ideal para familias o pequeños grupos, nuestras vans para hasta 8 personas ofrecen espacio, comodidad y seguridad para su traslado.", img: van, price: 65 },
+  { type: "Minivan", private: true, capacity: 6, name: "Minivan 6 pax", desc: "Ideal para familias o pequeños grupos, nuestras vans para hasta 8 personas ofrecen espacio, comodidad y seguridad para su traslado.", img: van, price: 70 },
+  { type: "Van", private: true, capacity: 10, name: "Van 10 pax", desc: "Diseñadas para grupos medianos, estas vans ofrecen un amplio interior, aire acondicionado y la garantía de un viaje cómodo y seguro.", img: van, price: 89 },
+  { type: "Van", private: true, capacity: 10, name: "Van 10 pax", desc: "Diseñadas para grupos medianos, estas vans ofrecen un amplio interior, aire acondicionado y la garantía de un viaje cómodo y seguro.", img: van, price: 95 },
+  { type: "Mini Bus", private: true, capacity: 17, name: "Mini Bus 17 pax", desc: "La mejor opción para grupos grandes. Nuestras vans de hasta 17 pasajeros combinan amplitud, confort y confiabilidad, ideales para traslados turísticos, corporativos o eventos.", img: van, price: 140 },
+  { type: "Mini Bus", private: true, capacity: 17, name: "Mini Bus 17 pax", desc: "La mejor opción para grupos grandes. Nuestras vans de hasta 17 pasajeros combinan amplitud, confort y confiabilidad, ideales para traslados turísticos, corporativos o eventos.", img: van, price: 150 },
+  { type: "Suburban", private: true, capacity: 5, name: "Suburban", desc: "Disfrute de la máxima comodidad y elegancia en nuestros vehículos de lujo, perfectos para traslados privados, ejecutivos o viajes especiales. Un servicio exclusivo con la mejor atención.", img: suv, price: 110 },
+  { type: "Suburban", private: true, capacity: 5, name: "Suburban", desc: "Disfrute de la máxima comodidad y elegancia en nuestros vehículos de lujo, perfectos para traslados privados, ejecutivos o viajes especiales. Un servicio exclusivo con la mejor atención.", img: suv, price: 120 },
 ];
 
 const ico = (d: string) => <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>;
