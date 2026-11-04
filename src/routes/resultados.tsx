@@ -6,12 +6,12 @@ import { ClientOnly } from "@tanstack/react-router";
 const RouteMap = lazy(() => import("@/components/results/RouteMap"));
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { paxText, validateTransferSearch } from "@/lib/transfer-search";
+import { paxText } from "@/lib/transfer-search";
 import { capturedCSS, redesignCSS } from "@/styles/page-styles";
-import { VEHICLES, resolveTransferSearch } from "@/lib/transfer-booking";
+import { VEHICLES, resolveTransferSearch, validateResultsSearch } from "@/lib/transfer-booking";
 
 export const Route = createFileRoute("/resultados")({
-  validateSearch: validateTransferSearch,
+  validateSearch: validateResultsSearch,
   head: () => ({ meta: [
     { title: "Resultados de traslados | B2C-W2M Redesign" },
     { name: "description", content: "Elige el vehículo para tu traslado entre aeropuerto, zona u hotel." },
@@ -30,7 +30,15 @@ const ICON_INFO = "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 16v-4M12 8h.01";
 function Results() {
   const s = Route.useSearch();
   const navigate = useNavigate();
-  const form = resolveTransferSearch(s);
+  const { vehicle, retVehicle: _r, leg, ...searchOnly } = s;
+  const form = resolveTransferSearch(searchOnly);
+  const isReturn = leg === "ret" && Boolean(form.ret) && Boolean(vehicle);
+  const roundTrip = Boolean(form.ret);
+  const add = (id: string) => {
+    if (isReturn) navigate({ to: "/confirmacion", search: { ...form, vehicle, retVehicle: id } });
+    else if (roundTrip) { navigate({ to: "/resultados", search: { ...form, vehicle: id, leg: "ret" } }); window.scrollTo({ top: 0 }); }
+    else navigate({ to: "/confirmacion", search: { ...form, vehicle: id } });
+  };
   const people = (form.adults ?? 0) + (form.children ?? 0) + (form.babies ?? 0);
   const list = VEHICLES.filter((r) => r.capacity >= people && (!s.privateOnly || r.private)).sort((a, b) => a.price - b.price);
   const pax = paxText(form.adults ?? 0, form.children ?? 0, form.babies ?? 0);
@@ -48,7 +56,11 @@ function Results() {
               <BrandCard className="rd-map"><ClientOnly fallback={<div className="rd-map__canvas" />}><Suspense fallback={<div className="rd-map__canvas" />}><RouteMap /></Suspense></ClientOnly></BrandCard>
             </aside>
             <section aria-labelledby="rd-results-count">
-              <h1 className="rd-results__count" id="rd-results-count">{list.length} {list.length === 1 ? "resultado" : "resultados"}</h1>
+              {roundTrip && <ol className="rd-results__steps" aria-label="Traslados de ida y vuelta">
+                <li className={isReturn ? "is-done" : "is-current"} aria-current={isReturn ? undefined : "step"}><span>1</span><div><strong>Llegada · {form.date}</strong><small>{form.from} → {form.to}</small></div></li>
+                <li className={isReturn ? "is-current" : ""} aria-current={isReturn ? "step" : undefined}><span>2</span><div><strong>Regreso · {form.ret}</strong><small>{form.to} → {form.from}</small></div></li>
+              </ol>}
+              <h1 className="rd-results__count" id="rd-results-count">{roundTrip ? (isReturn ? "Elige tu traslado de regreso" : "Elige tu traslado de llegada") + " · " : ""}{list.length} {list.length === 1 ? "resultado" : "resultados"}</h1>
               <ul className="rd-results__list">
                 {list.map((r, i) => (
                   <li key={i}>
@@ -66,7 +78,7 @@ function Results() {
                       <div className="rd-vcard__price">
                         <p className="rd-vcard__amount">{r.price === 0 ? "Gratis" : `${r.price} €`}</p>
                         <p className="rd-vcard__pax">para {pax}</p>
-                        <BrandButton onClick={() => navigate({ to: "/confirmacion", search: { ...form, vehicle: r.id } })}>Añadir <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6"/></svg></BrandButton>
+                        <BrandButton onClick={() => add(r.id)}>Añadir <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6"/></svg></BrandButton>
                       </div>
                     </BrandCard>
                   </li>
