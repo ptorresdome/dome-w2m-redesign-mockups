@@ -44,9 +44,11 @@
 
 .rd-dates { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
 .rd-return { flex-direction: column; align-items: stretch; justify-content: center; gap: 0.125rem; cursor: default; }
+.rd-return__head { display: flex; align-items: center; gap: 0.625rem; width: 100%; }
 .rd-return__toggle {
-  display: flex; align-items: center; gap: 0.625rem; background: none; border: 0; padding: 0; margin: 0;
-  cursor: pointer; color: inherit; min-height: 24px; text-align: left;
+  flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 0.625rem;
+  background: none; border: 0; padding: 0; margin: 0;
+  cursor: pointer; color: inherit; min-height: 28px; text-align: left;
 }
 .rd-field__input[type="date"] { font-size: 0.8125rem; }
 .rd-field__input::-webkit-calendar-picker-indicator { margin-left: 0; }

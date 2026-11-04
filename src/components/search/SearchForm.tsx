@@ -135,17 +135,20 @@ export function SearchForm({ variant = "hero", initialValues = {} }: { variant?:
               </label>
 
               <div className={roundTrip ? "rd-field rd-return is-on" : "rd-field rd-return"} id="returnData">
-                <button
-                  type="button"
-                  id="roundTrip-button"
-                  className="rd-return__toggle"
-                  role="switch"
-                  aria-checked={roundTrip}
-                  onClick={() => setRoundTrip((v) => !v)}
-                >
-                  <span className="rd-switch" aria-hidden="true"><span /></span>
-                  <span className="rd-field__label">{roundTrip ? "Regreso" : "Añadir regreso"}</span>
-                </button>
+                <div className="rd-return__head">
+                  {roundTrip && <span className="rd-field__icon fa fa-calendar" aria-hidden="true" />}
+                  <button
+                    type="button"
+                    id="roundTrip-button"
+                    className="rd-return__toggle"
+                    role="switch"
+                    aria-checked={roundTrip}
+                    onClick={() => setRoundTrip((v) => !v)}
+                  >
+                    <span className="rd-field__label">{roundTrip ? "Regreso" : "Añadir regreso"}</span>
+                    <span className="rd-switch" aria-hidden="true"><span /></span>
+                  </button>
+                </div>
                 {roundTrip && (
                   <DatePicker id="checkOut-datetimepicker-input" tabIndex={4} title="Fecha de regreso" ariaLabel="Regreso" value={checkOut} onChange={setCheckOut} minDate={checkIn ?? undefined} />
                 )}
