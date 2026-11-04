@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BrandButton, BrandCard } from "@/components/brand";
 import { SearchForm } from "@/components/search/SearchForm";
+import { lazy, Suspense } from "react";
+import { ClientOnly } from "@tanstack/react-router";
+const RouteMap = lazy(() => import("@/components/results/RouteMap"));
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { paxText, validateTransferSearch, type TransferSearch } from "@/lib/transfer-search";
@@ -74,6 +77,7 @@ function Results() {
           <div className="rd-results__layout">
             <aside aria-label="Buscador de traslados">
               <SearchForm key={JSON.stringify(form)} variant="sidebar" initialValues={form} />
+              <BrandCard className="rd-map"><ClientOnly fallback={<div className="rd-map__canvas" />}><Suspense fallback={<div className="rd-map__canvas" />}><RouteMap /></Suspense></ClientOnly></BrandCard>
             </aside>
             <section aria-labelledby="rd-results-count">
               <h1 className="rd-results__count" id="rd-results-count">{list.length} {list.length === 1 ? "resultado" : "resultados"}</h1>
