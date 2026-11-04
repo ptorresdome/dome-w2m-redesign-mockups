@@ -66,7 +66,7 @@
 .rd-sidebar-search .rd-dates { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
 .rd-sidebar-search .rd-route, .rd-sidebar-search .rd-dates,
 .rd-sidebar-search .rd-submit-col, .rd-sidebar-search .rd-search__submit,
-.rd-sidebar-search .rd-submit-col .rd-check { grid-column: auto; grid-row: auto; }
+.rd-sidebar-search .rd-submit-col .rd-check { grid-column: auto; grid-row: auto; align-self: flex-start; justify-self: start; }
 .rd-sidebar-search .rd-submit-col { display: flex; align-items: stretch; }
 .rd-sidebar-search .rd-route .rd-field { padding: 0.65rem 0.75rem; }
 .rd-sidebar-search .rd-route { padding-right: 0; }
