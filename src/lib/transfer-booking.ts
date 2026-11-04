@@ -36,14 +36,15 @@ export function passengerLabels(s: TransferSearch) {
 const vehicleParam = (v: unknown) => typeof v === "string" && VEHICLES.some(x => x.id === v) ? v : undefined;
 
 /** Results/confirmation params: `vehicle` = arrival service, `retVehicle` = return service, `leg` = which results step is shown. */
-export function validateResultsSearch(s: Record<string, unknown>) {
+export type ResultsSearch = TransferSearch & { vehicle?: string | undefined; retVehicle?: string | undefined; leg?: "ret" | undefined };
+export function validateResultsSearch(s: Record<string, unknown>): ResultsSearch {
   return { ...validateBookingSearch(s), retVehicle: vehicleParam(s["retVehicle"]), leg: s["leg"] === "ret" ? ("ret" as const) : undefined };
 }
 
 export type CartItem = { key: "arrival" | "return"; label: string; vehicle: Vehicle; date: string; from: string; to: string };
 
 /** Services added to the cart; the return leg only exists for round trips. */
-export function cartItems(s: ReturnType<typeof validateResultsSearch>): CartItem[] {
+export function cartItems(s: ResultsSearch): CartItem[] {
   const trip = resolveTransferSearch(s);
   const items: CartItem[] = [];
   const arrival = VEHICLES.find(v => v.id === s.vehicle);
