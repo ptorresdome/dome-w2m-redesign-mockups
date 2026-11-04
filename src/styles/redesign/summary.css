@@ -1,0 +1,76 @@
+/* Booking summary (last step): same captured-CSS layering and corporate tokens as the confirmation screen. */
+.rd-summary { font-family: 'Montserrat', sans-serif; color: var(--brand-ink-strong); background: var(--brand-muted); letter-spacing: 0; }
+.rd-summary *, .rd-summary *::before, .rd-summary *::after { box-sizing: border-box; }
+.rd-summary .rd-svg { margin: 0; flex-shrink: 0; }
+.rd-summary__body { max-width: 1240px; margin: auto; padding: 1.5rem; display: grid; gap: 1.5rem; }
+.rd-summary__body section { min-width: 0; }
+
+/* Status + locator */
+.rd-summary__status.rd-card { padding: 1.75rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem; align-items: center; }
+.rd-summary__status-text { min-width: 0; }
+.rd-summary__status h1 { font-size: 1.5rem; font-weight: 700; margin: 0 0 .6rem; }
+.rd-summary__status p { margin: 0 0 .35rem; font-size: .9375rem; line-height: 1.7; color: var(--brand-ink); overflow-wrap: anywhere; }
+.rd-summary__status p:last-child { margin-bottom: 0; }
+.rd-summary__pending { color: var(--brand-pending); font-weight: 700; }
+.rd-summary__locator { text-align: right; }
+.rd-summary__locator small { display: block; font-size: .6875rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--brand-ink); margin-bottom: .45rem; }
+.rd-summary__locator code { display: inline-block; background: var(--brand-ink-strong); color: var(--brand); font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: .12em; padding: .55rem .95rem; border-radius: var(--brand-radius); }
+
+/* Sections and field grids */
+.rd-summary__card.rd-card { padding: 1.5rem 1.75rem; }
+.rd-summary__heading { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-bottom: 1.3rem; }
+.rd-summary__heading .rd-stitle { font-size: 1.125rem; }
+.rd-summary__count { font-size: .6875rem; font-weight: 600; color: var(--brand-ink); }
+.rd-summary__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem; margin: 0; }
+.rd-summary__grid .rd-info { margin: 0; }
+.rd-summary__grid .rd-info__value { text-transform: none; }
+.rd-summary__grid--pax { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* Services */
+.rd-summary__pax { display: flex; align-items: flex-start; gap: .5rem; font-size: .75rem; line-height: 1.6; margin: 0 0 .5rem; color: var(--brand-ink); font-weight: 600; }
+.rd-summary__item { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 1.25rem; align-items: center; border-top: 1px solid var(--brand-line); padding: 1.25rem 0; }
+.rd-summary__item img { width: 100%; max-height: 120px; object-fit: contain; }
+.rd-summary__item-info { min-width: 0; }
+.rd-summary__badge { display: inline-flex; gap: .4rem; align-items: center; font-size: .6875rem; font-weight: 600; background: var(--brand-soft); padding: .35rem .6rem; border-radius: var(--brand-radius); }
+.rd-summary__item h3 { font-size: 1.0625rem; font-weight: 700; margin: .5rem 0 .6rem; overflow-wrap: anywhere; }
+.rd-summary__leg { display: flex; align-items: center; gap: .45rem; font-size: .75rem; font-weight: 700; text-transform: uppercase; margin: 0 0 .5rem; }
+.rd-summary__route { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin: 0; font-size: .8125rem; font-weight: 600; text-transform: uppercase; color: var(--brand-ink); }
+.rd-summary__route span { overflow-wrap: anywhere; }
+.rd-summary__note { font-size: .6875rem; line-height: 1.6; margin: .75rem 0 0; color: var(--brand-ink); }
+.rd-summary__price { display: flex; justify-content: space-between; align-items: center; gap: .75rem; margin-top: .9rem; font-size: .75rem; }
+.rd-summary__price strong { font-size: 1rem; }
+.rd-summary__total { display: flex; align-items: center; justify-content: space-between; gap: .75rem; border-top: 1px solid var(--brand-line); padding-top: 1.2rem; margin-top: .25rem; font-size: .875rem; }
+.rd-summary__total strong { font-size: 1.5rem; }
+
+/* Passengers */
+.rd-summary__passenger { border-top: 1px solid var(--brand-line); padding: 1rem 0; }
+.rd-summary__passenger:first-of-type { border-top: 0; padding-top: 0; }
+.rd-summary__passenger:last-of-type { padding-bottom: 0; }
+.rd-summary__passenger-label { font-size: .8125rem; font-weight: 700; margin: 0 0 .75rem; color: var(--brand-ink); }
+.rd-summary__passenger-label--lead { color: var(--brand-lime-ink); }
+
+/* Reservation data */
+.rd-summary__observations { margin-top: 1rem; }
+.rd-summary__observations span { font-size: .8125rem; font-weight: 500; color: var(--brand-ink); }
+.rd-summary__observations p { margin: .15rem 0 0; font-size: .875rem; font-weight: 700; line-height: 1.7; white-space: pre-line; overflow-wrap: anywhere; }
+
+/* Footer of the page */
+.rd-summary__disclaimer { margin: 0; font-size: .6875rem; line-height: 1.7; color: var(--brand-ink); text-align: center; }
+.rd-summary__home { display: inline-flex; align-items: center; gap: .5rem; justify-self: start; color: var(--brand-ink); font-size: .8125rem; font-weight: 600; text-decoration: none; }
+.rd-summary__empty { padding: 3rem 1rem; text-align: center; background: var(--brand-surface); border-radius: calc(var(--brand-radius) + 2px); box-shadow: var(--brand-shadow-soft); }
+.rd-summary__empty h2 { font-size: 1.125rem; margin: .75rem 0 .35rem; }
+.rd-summary__empty p { margin: 0 0 1rem; font-size: .8125rem; color: var(--brand-ink); }
+.rd-summary__empty a { text-decoration: none; }
+
+/* Below desktop the two-column status and the item grids misalign, so the stacked layout takes over (project-wide rule). */
+@media (max-width: 1023.98px) {
+  .rd-summary__body { padding: 1rem; gap: 1rem; }
+  .rd-summary__status.rd-card { grid-template-columns: minmax(0, 1fr); padding: 1.25rem; gap: 1.1rem; }
+  .rd-summary__status h1 { font-size: 1.25rem; }
+  .rd-summary__locator { text-align: left; }
+  .rd-summary__card.rd-card { padding: 1.25rem 1rem; }
+  .rd-summary__grid, .rd-summary__grid--pax { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+  .rd-summary__item { grid-template-columns: minmax(0, 1fr); gap: .9rem; }
+  .rd-summary__item img { max-width: 220px; margin: 0 auto; }
+  .rd-summary__heading .rd-stitle { font-size: 1rem; }
+}
