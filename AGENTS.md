@@ -15,4 +15,4 @@
 - The search form passes its values to /resultados as URL search params (validated in src/lib/transfer-search.ts) — why: results stay shareable and reloadable without a backend.
 - SearchForm has hero and sidebar presentations using the same fields and selectors; results initialize it from URL search params and key it by those params — why: edits, reloads and browser navigation retain the submitted search without duplicating behavior.
 
-- Results and confirmation share the illustrative vehicle catalog in src/lib/transfer-booking.ts; selection travels to /confirmacion through validated URL parameters, while personal form data stays in React state — why: preserve the chosen service without storing personal data or simulating a live booking.
+- Results and confirmation share the illustrative vehicle catalog in src/lib/transfer-booking.ts; selection travels through validated URL parameters (vehicle = arrival, retVehicle = return, leg=ret = second results step for round trips; cart items/total come from cartItems/cartTotal), while personal form data stays in React state — why: preserve the chosen service without storing personal data or simulating a live booking.
