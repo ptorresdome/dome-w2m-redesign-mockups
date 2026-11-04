@@ -37,11 +37,29 @@ const RESULTS: Vehicle[] = [
   { type: "Privado", private: true, capacity: 6, name: "Minivan Plus", desc: "Minivan privada con asiento infantil disponible bajo petición.", img: van },
 ];
 
+// Demo data shown when the URL has no search values (real logic comes later).
+const DEMO: Required<Pick<TransferSearch, "from" | "to" | "date">> & { adults: number } = {
+  from: "Aeropuerto de Cancun",
+  to: "Hotel Iberostar Selection Paraiso del Mar (CUN)",
+  date: "01/12/2026",
+  adults: 2,
+};
+
 function Results() {
   const s = Route.useSearch();
-  const people = (s.adults ?? 2) + (s.children ?? 0) + (s.babies ?? 0);
+  const form: TransferSearch = {
+    from: s.from ?? DEMO.from,
+    to: s.to ?? DEMO.to,
+    date: s.date ?? DEMO.date,
+    ret: s.ret,
+    adults: s.adults ?? DEMO.adults,
+    children: s.children,
+    babies: s.babies,
+    privateOnly: s.privateOnly,
+  };
+  const people = (form.adults ?? 0) + (form.children ?? 0) + (form.babies ?? 0);
   const list = RESULTS.filter((r) => r.capacity >= people && (!s.privateOnly || r.private));
-  const pax = paxText(s.adults ?? 2, s.children ?? 0, s.babies ?? 0);
+  const pax = paxText(form.adults ?? 0, form.children ?? 0, form.babies ?? 0);
 
   return (
     <>
