@@ -41,7 +41,7 @@ function BookingSummary() {
     setSubmission(stored);
     setLocator(stored?.locator ?? generateLocator());
   }, []);
-  const passengers = submission?.passengers ?? passengerLabels(trip).map(label => ({ label, name: "", surname: "", document: "" }));
+  const passengers: BookingSubmission["passengers"] = submission?.passengers ?? passengerLabels(trip).map(label => ({ label, name: "", surname: "", document: "" }));
   const phone = submission ? [submission.contact.phonePrefix, submission.contact.phone].filter(part => part.trim()).join(" ") : "";
 
   return (
