@@ -1,5 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { BrandButton, BrandCard, InfoRow } from "@/components/brand";
+import { createFileRoute } from "@tanstack/react-router";
+import { BrandButton, BrandCard } from "@/components/brand";
+import { SearchForm } from "@/components/search/SearchForm";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { paxText, validateTransferSearch } from "@/lib/transfer-search";
@@ -38,12 +39,9 @@ const RESULTS: Vehicle[] = [
 
 function Results() {
   const s = Route.useSearch();
-  const from = s.from ?? "Hotel Iberostar Selection Paraiso del Mar (CUN)";
-  const to = s.to ?? "AEROPUERTO DE CANCUN";
   const people = (s.adults ?? 2) + (s.children ?? 0) + (s.babies ?? 0);
   const list = RESULTS.filter((r) => r.capacity >= people && (!s.privateOnly || r.private));
   const pax = paxText(s.adults ?? 2, s.children ?? 0, s.babies ?? 0);
-  const route = `${from} - ${to}`;
 
   return (
     <>
@@ -53,28 +51,8 @@ function Results() {
         <SiteHeader active="transfers" />
         <div className="rd-results">
           <div className="rd-results__layout">
-            <aside aria-label="Resumen de búsqueda">
-              <BrandCard className="rd-summary">
-                <h2 className="rd-stitle"><span className="rd-stitle__ico"><svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></span>Resumen</h2>
-                <p className="rd-summary__leg">Trayecto de ida</p>
-                <dl>
-                  <InfoRow label="Fecha de salida" value={s.date ?? "01/12/2026"} />
-                  <InfoRow label="Trayecto" value={route} />
-                  <InfoRow label="Pasajeros" value={pax} />
-                </dl>
-                {s.ret && (
-                  <>
-                    <p className="rd-summary__leg">Trayecto de vuelta</p>
-                    <dl>
-                      <InfoRow label="Fecha de regreso" value={s.ret} />
-                      <InfoRow label="Trayecto" value={`${to} - ${from}`} />
-                    </dl>
-                  </>
-                )}
-                <Link to="/" className="rd-bbtn rd-bbtn--secondary rd-summary__modify">
-                  <span className="fa fa-search" aria-hidden="true" /> Modificar búsqueda
-                </Link>
-              </BrandCard>
+            <aside aria-label="Buscador de traslados">
+              <SearchForm key={JSON.stringify(s)} variant="sidebar" initialValues={s} />
             </aside>
             <section aria-labelledby="rd-results-count">
               <h1 className="rd-results__count" id="rd-results-count">{list.length} {list.length === 1 ? "resultado" : "resultados"}</h1>

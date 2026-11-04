@@ -32,6 +32,17 @@ export function validateTransferSearch(s: Record<string, unknown>): TransferSear
 export const formatDate = (d: Date | null) =>
   d ? `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}/${d.getFullYear()}` : undefined;
 
+export function parseTransferDate(value?: string): Date | null {
+  if (!value) return null;
+  const match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(value);
+  if (!match) return null;
+  const day = Number(match[1]);
+  const month = Number(match[2]);
+  const year = Number(match[3]);
+  const date = new Date(year, month - 1, day);
+  return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day ? date : null;
+}
+
 export function paxText(a = 1, c = 0, b = 0) {
   const parts = [`${a} ${a === 1 ? "adulto" : "adultos"}`];
   if (c) parts.push(`${c} ${c === 1 ? "niño" : "niños"}`);

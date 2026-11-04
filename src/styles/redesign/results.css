@@ -48,3 +48,32 @@
 .rd-vcard__cap .rd-svg { width: 1.1rem; height: 1.1rem; vertical-align: -0.15em; }
 .rd-vcard__foot .rd-bbtn .rd-svg { width: 1.1rem; height: 1.1rem; }
 .rd-results .rd-svg { display: inline-block; flex-shrink: 0; }
+
+/* Compact presentation of the shared search form; no carousel or floating layout. */
+.rd-sidebar-search.rd-search-section { display: block; height: auto; min-height: 0; background: transparent; }
+.rd-sidebar-search .rd-search-wrap { padding: 0; background: transparent; pointer-events: auto; }
+.rd-sidebar-search .rd-search {
+  margin: 0; padding: 1.25rem; max-width: none; border-radius: var(--brand-radius);
+  background: var(--brand-surface); box-shadow: var(--brand-shadow-soft); backdrop-filter: none;
+  --brand-search-field: var(--brand-muted);
+  --brand-search-line: var(--brand-line);
+  --brand-search-text: var(--brand-ink-strong);
+  --brand-search-muted: var(--brand-ink);
+}
+.rd-sidebar-search .rd-search__title { color: var(--brand-ink-strong); font-size: 1.125rem; letter-spacing: 0; }
+.rd-sidebar-search .rd-search__grid,
+.rd-sidebar-search .rd-route,
+.rd-sidebar-search .rd-dates { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+.rd-sidebar-search .rd-route, .rd-sidebar-search .rd-dates,
+.rd-sidebar-search .rd-submit-col, .rd-sidebar-search .rd-search__submit,
+.rd-sidebar-search .rd-submit-col .rd-check { grid-column: auto; grid-row: auto; }
+.rd-sidebar-search .rd-submit-col { display: flex; align-items: stretch; }
+.rd-sidebar-search .rd-route .rd-field { padding: 0.65rem 0.75rem; }
+.rd-sidebar-search .rd-route { padding-right: 0; }
+.rd-sidebar-search .rd-swap { left: auto; right: 0.35rem; width: 30px; height: 30px; transform: translateY(-50%) rotate(90deg); }
+.rd-sidebar-search .rd-route .rd-field { padding-right: 2.5rem; }
+.rd-sidebar-search .rd-field__input, .rd-sidebar-search .rd-field__value { font-size: 0.75rem; }
+.rd-sidebar-search .rd-field__value { white-space: normal; text-overflow: clip; }
+.rd-sidebar-search .rd-check { color: var(--brand-ink); font-size: 0.8125rem; }
+.rd-sidebar-search .rd-search__submit { width: 100%; min-width: 0; height: 52px; min-height: 52px; max-height: 52px; font-size: 0.9375rem; margin: 0; }
+.rd-sidebar-search .rd-search__submit .rd-svg { width: 1.125rem; height: 1.125rem; }

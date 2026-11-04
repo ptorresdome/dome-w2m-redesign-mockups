@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { DatePicker } from "@/components/DatePicker";
 import { LocationAutocomplete } from "@/components/LocationAutocomplete";
 import { useNavigate } from "@tanstack/react-router";
-import { formatDate } from "@/lib/transfer-search";
+import { formatDate, parseTransferDate, type TransferSearch } from "@/lib/transfer-search";
+import { BrandButton } from "@/components/brand";
 
 /** Transfer search form over the hero carousel. Keeps the original field ids. */
 const HERO_SLIDES = [
@@ -28,19 +29,19 @@ function clampPax(key: keyof Pax, n: number) {
   return Math.max(paxMin(key), Math.min(PAX_MAX, n));
 }
 
-export function SearchForm() {
+export function SearchForm({ variant = "hero", initialValues = {} }: { variant?: "hero" | "sidebar"; initialValues?: TransferSearch }) {
   const [slide, setSlide] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
-  const [roundTrip, setRoundTrip] = useState(false);
-  const [checkIn, setCheckIn] = useState<Date | null>(null);
-  const [checkOut, setCheckOut] = useState<Date | null>(null);
-  const [pax, setPax] = useState<Pax>({ adults: 1, children: 0, babies: 0 });
+  const [from, setFrom] = useState(initialValues.from ?? "");
+  const [to, setTo] = useState(initialValues.to ?? "");
+  const [roundTrip, setRoundTrip] = useState(Boolean(initialValues.ret));
+  const [checkIn, setCheckIn] = useState<Date | null>(() => parseTransferDate(initialValues.date));
+  const [checkOut, setCheckOut] = useState<Date | null>(() => parseTransferDate(initialValues.ret));
+  const [pax, setPax] = useState<Pax>({ adults: initialValues.adults ?? 1, children: initialValues.children ?? 0, babies: initialValues.babies ?? 0 });
   const [draft, setDraft] = useState<Pax>({ adults: 1, children: 0, babies: 0 });
   const [paxOpen, setPaxOpen] = useState(false);
   const paxTriggerRef = useRef<HTMLButtonElement>(null);
-  const [privateOnly, setPrivateOnly] = useState(false);
+  const [privateOnly, setPrivateOnly] = useState(initialValues.privateOnly ?? false);
   const navigate = useNavigate();
 
   const goTo = (i: number) => {
@@ -51,6 +52,7 @@ export function SearchForm() {
   };
 
   useEffect(() => {
+    if (variant === "sidebar") return;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = setInterval(() => {
       const track = trackRef.current;
@@ -60,7 +62,21 @@ export function SearchForm() {
       track.scrollTo({ left: n * track.clientWidth, behavior: "smooth" });
     }, 6000);
     return () => clearInterval(id);
-  }, []);
+  }, [variant]);
+
+  const submitSearch = () => navigate({
+    to: "/resultados",
+    search: {
+      from: from || undefined,
+      to: to || undefined,
+      date: formatDate(checkIn),
+      ret: roundTrip ? formatDate(checkOut) : undefined,
+      adults: pax.adults,
+      children: pax.children || undefined,
+      babies: pax.babies || undefined,
+      privateOnly: privateOnly || undefined,
+    },
+  });
 
   const step = (key: keyof Pax, delta: number) =>
     setDraft((p) => ({ ...p, [key]: clampPax(key, p[key] + delta) }));
@@ -72,12 +88,12 @@ export function SearchForm() {
   ];
 
   return (
-    <section className="rd-search-section" aria-label="Buscar traslados">
+    <section className={variant === "sidebar" ? "rd-search-section rd-sidebar-search" : "rd-search-section"} aria-label="Buscar traslados">
       <div className="rd-search-wrap">
-        <form className="rd-search" id="searcher-transfer" onSubmit={(e) => e.preventDefault()}>
-          <h1 className="rd-search__title">
+        <form className="rd-search" id="searcher-transfer" onSubmit={(e) => { e.preventDefault(); void submitSearch(); }}>
+          <h2 className="rd-search__title">
             Buscar Traslados
-          </h1>
+          </h2>
 
           <div className="rd-search__grid">
             <div className="rd-route">
@@ -200,35 +216,20 @@ export function SearchForm() {
                 <input type="checkbox" id="servicetype" name="servicetype" checked={privateOnly} onChange={(e) => setPrivateOnly(e.target.checked)} />
                 <span>Solo privado</span>
               </label>
-              <button
+              <BrandButton
                 className="rd-btn rd-btn--primary rd-search__submit"
                 id="searchBtn"
-                type="button"
+                type="submit"
                 tabIndex={13}
-                onClick={() =>
-                  navigate({
-                    to: "/resultados",
-                    search: {
-                      from: from || undefined,
-                      to: to || undefined,
-                      date: formatDate(checkIn),
-                      ret: roundTrip ? formatDate(checkOut) : undefined,
-                      adults: pax.adults,
-                      children: pax.children || undefined,
-                      babies: pax.babies || undefined,
-                      privateOnly: privateOnly || undefined,
-                    },
-                  })
-                }
               >
                 Buscar <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
-              </button>
+              </BrandButton>
             </div>
           </div>
         </form>
       </div>
 
-      <div className="rd-hero" id="myCarousel">
+      {variant === "hero" && <div className="rd-hero" id="myCarousel">
         <div
           className="rd-hero__track"
           ref={trackRef}
@@ -254,7 +255,7 @@ export function SearchForm() {
             <button key={src} type="button" className={i === slide ? "is-active" : ""} aria-label={`Foto ${i + 1}`} aria-current={i === slide} onClick={() => goTo(i)} />
           ))}
         </div>
-      </div>
+      </div>}
     </section>
   );
 }
