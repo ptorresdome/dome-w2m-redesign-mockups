@@ -35,12 +35,15 @@
 }
 @media (min-width: 1024px) {
   .rd-results__layout { grid-template-columns: 300px minmax(0, 1fr); }
+}
+/* Landscape (wider than tall): photo always on the left, button glued to the description row. */
+@media (orientation: landscape) {
   .rd-vcard { grid-template-columns: 220px minmax(0, 1fr); }
   .rd-vcard__img { height: 100%; min-height: 200px; }
-  .rd-vcard__foot { flex-direction: row; align-items: center; justify-content: space-between; }
-  .rd-vcard__foot .rd-bbtn { width: auto; flex-shrink: 0; }
+  .rd-vcard__foot { flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: nowrap; }
+  .rd-vcard__foot .rd-bbtn { width: auto; flex-shrink: 0; white-space: nowrap; }
 }
-@media (min-width: 1200px) {
+@media (orientation: landscape) and (min-width: 1200px) {
   .rd-vcard { grid-template-columns: 280px minmax(0, 1fr); }
 }
 .rd-stitle__ico, .rd-vcard__cap svg { color: var(--brand); }
