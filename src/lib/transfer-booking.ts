@@ -22,7 +22,7 @@ export function resolveTransferSearch(s: TransferSearch) {
 }
 
 export function validateBookingSearch(s: Record<string, unknown>) {
-  return { ...validateTransferSearch(s), vehicle: typeof s.vehicle === "string" && VEHICLES.some(v => v.id === s.vehicle) ? s.vehicle : undefined };
+  return { ...validateTransferSearch(s), vehicle: typeof s["vehicle"] === "string" && VEHICLES.some(v => v.id === s["vehicle"]) ? s["vehicle"] : undefined };
 }
 
 export function passengerLabels(s: TransferSearch) {
