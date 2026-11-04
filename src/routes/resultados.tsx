@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { BrandButton, BrandCard } from "@/components/brand";
 import { SearchForm } from "@/components/search/SearchForm";
 import { lazy, Suspense } from "react";
@@ -6,11 +6,9 @@ import { ClientOnly } from "@tanstack/react-router";
 const RouteMap = lazy(() => import("@/components/results/RouteMap"));
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { paxText, validateTransferSearch, type TransferSearch } from "@/lib/transfer-search";
+import { paxText, validateTransferSearch } from "@/lib/transfer-search";
 import { capturedCSS, redesignCSS } from "@/styles/page-styles";
-import bus from "@/assets/vehicle-bus.jpg";
-import van from "@/assets/vehicle-van.jpg";
-import suv from "@/assets/vehicle-suv.jpg";
+import { VEHICLES, resolveTransferSearch } from "@/lib/transfer-booking";
 
 export const Route = createFileRoute("/resultados")({
   validateSearch: validateTransferSearch,
@@ -25,44 +23,16 @@ export const Route = createFileRoute("/resultados")({
   component: Results,
 });
 
-type Vehicle = { type: string; private: boolean; capacity: number; name: string; note?: string; desc: string; img: string; price: number };
-
-// Results copied from the live site (static until the availability service is connected).
-// Prices are demo values.
-const RESULTS: Vehicle[] = [
-  { type: "Bus", private: false, capacity: 55, name: "General", note: "SERVICIO GRATUITO: Condicionado a que ud. disponga de una reserva en los hoteles Iberostar.", desc: "", img: bus, price: 0 },
-  { type: "Minivan", private: true, capacity: 6, name: "Minivan 6 pax", desc: "Ideal para familias o pequeños grupos, nuestras vans para hasta 8 personas ofrecen espacio, comodidad y seguridad para su traslado.", img: van, price: 65 },
-  { type: "Minivan", private: true, capacity: 6, name: "Minivan 6 pax", desc: "Ideal para familias o pequeños grupos, nuestras vans para hasta 8 personas ofrecen espacio, comodidad y seguridad para su traslado.", img: van, price: 70 },
-  { type: "Van", private: true, capacity: 10, name: "Van 10 pax", desc: "Diseñadas para grupos medianos, estas vans ofrecen un amplio interior, aire acondicionado y la garantía de un viaje cómodo y seguro.", img: van, price: 89 },
-  { type: "Van", private: true, capacity: 10, name: "Van 10 pax", desc: "Diseñadas para grupos medianos, estas vans ofrecen un amplio interior, aire acondicionado y la garantía de un viaje cómodo y seguro.", img: van, price: 95 },
-  { type: "Mini Bus", private: true, capacity: 17, name: "Mini Bus 17 pax", desc: "La mejor opción para grupos grandes. Nuestras vans de hasta 17 pasajeros combinan amplitud, confort y confiabilidad, ideales para traslados turísticos, corporativos o eventos.", img: van, price: 140 },
-  { type: "Mini Bus", private: true, capacity: 17, name: "Mini Bus 17 pax", desc: "La mejor opción para grupos grandes. Nuestras vans de hasta 17 pasajeros combinan amplitud, confort y confiabilidad, ideales para traslados turísticos, corporativos o eventos.", img: van, price: 150 },
-  { type: "Suburban", private: true, capacity: 5, name: "Suburban", desc: "Disfrute de la máxima comodidad y elegancia en nuestros vehículos de lujo, perfectos para traslados privados, ejecutivos o viajes especiales. Un servicio exclusivo con la mejor atención.", img: suv, price: 110 },
-  { type: "Suburban", private: true, capacity: 5, name: "Suburban", desc: "Disfrute de la máxima comodidad y elegancia en nuestros vehículos de lujo, perfectos para traslados privados, ejecutivos o viajes especiales. Un servicio exclusivo con la mejor atención.", img: suv, price: 120 },
-];
-
 const ico = (d: string) => <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>;
 const ICON_SEATS = "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8";
 const ICON_INFO = "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 16v-4M12 8h.01";
 
-// Demo data shown when the URL has no search values (real logic comes later).
-const DEMO: Required<Pick<TransferSearch, "from" | "to" | "date">> & { adults: number } = {
-  from: "Aeropuerto de Cancun",
-  to: "Hotel Iberostar Selection Paraiso del Mar (CUN)",
-  date: "01/12/2026",
-  adults: 2,
-};
-
 function Results() {
   const s = Route.useSearch();
-  const form: TransferSearch = {
-    from: DEMO.from,
-    to: DEMO.to,
-    date: DEMO.date,
-    adults: DEMO.adults,
-  };
+  const navigate = useNavigate();
+  const form = resolveTransferSearch(s);
   const people = (form.adults ?? 0) + (form.children ?? 0) + (form.babies ?? 0);
-  const list = RESULTS.filter((r) => r.capacity >= people && (!s.privateOnly || r.private)).sort((a, b) => a.price - b.price);
+  const list = VEHICLES.filter((r) => r.capacity >= people && (!s.privateOnly || r.private)).sort((a, b) => a.price - b.price);
   const pax = paxText(form.adults ?? 0, form.children ?? 0, form.babies ?? 0);
 
   return (
@@ -96,7 +66,7 @@ function Results() {
                       <div className="rd-vcard__price">
                         <p className="rd-vcard__amount">{r.price === 0 ? "Gratis" : `${r.price} €`}</p>
                         <p className="rd-vcard__pax">para {pax}</p>
-                        <BrandButton>Añadir <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6"/></svg></BrandButton>
+                        <BrandButton onClick={() => navigate({ to: "/confirmacion", search: { ...form, vehicle: r.id } })}>Añadir <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6"/></svg></BrandButton>
                       </div>
                     </BrandCard>
                   </li>

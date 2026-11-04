@@ -7,5 +7,7 @@ import footer from "./redesign/footer.css?raw";
 import brand from "./redesign/brand.css?raw";
 import results from "./redesign/results.css?raw";
 
+import confirmation from "./redesign/confirmation.css?raw";
+
 export const capturedCSS = captured;
-export const redesignCSS = [base, header, search, footer, brand, results].join("\n");
+export const redesignCSS = [base, header, search, footer, brand, results, confirmation].join("\n");
