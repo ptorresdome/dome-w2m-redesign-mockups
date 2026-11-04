@@ -6,6 +6,8 @@ const ROUTE: [number, number][] = [
   [21.0365, -86.8771], [21.0300, -86.8650], [20.9900, -86.8700], [20.9300, -86.8850],
   [20.8600, -86.9000], [20.8000, -86.9300], [20.7600, -86.9600], [20.7480, -86.9680],
 ];
+const START: [number, number] = [21.0365, -86.8771];
+const END: [number, number] = [20.7480, -86.9680];
 
 export default function RouteMap() {
   const ref = useRef<HTMLDivElement>(null);
@@ -21,8 +23,8 @@ export default function RouteMap() {
       }).addTo(map);
       const line = L.polyline(ROUTE, { color: "#505759", weight: 5, opacity: 0.9 }).addTo(map);
       const dot = (c: string) => ({ radius: 8, color: "#fff", weight: 3, fillColor: c, fillOpacity: 1 });
-      L.circleMarker(ROUTE[0], dot("#c4d600")).bindTooltip("Aeropuerto de Cancún").addTo(map);
-      L.circleMarker(ROUTE[ROUTE.length - 1], dot("#505759")).bindTooltip("Iberostar Selection Paraíso del Mar").addTo(map);
+      L.circleMarker(START, dot("#c4d600")).bindTooltip("Aeropuerto de Cancún").addTo(map);
+      L.circleMarker(END, dot("#505759")).bindTooltip("Iberostar Selection Paraíso del Mar").addTo(map);
       map.fitBounds(line.getBounds(), { padding: [24, 24] });
     });
     return () => { cancelled = true; map?.remove(); };
