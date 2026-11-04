@@ -1,5 +1,5 @@
 /* Booking summary (last step): same captured-CSS layering and corporate tokens as the confirmation screen. */
-.rd-summary { font-family: 'Montserrat', sans-serif; color: var(--brand-ink-strong); background: var(--brand-muted); letter-spacing: 0; }
+.rd-summary { font-family: 'Montserrat', sans-serif; color: var(--brand-ink-strong); background: var(--brand-muted); letter-spacing: 0; padding: 0; }
 .rd-summary *, .rd-summary *::before, .rd-summary *::after { box-sizing: border-box; }
 .rd-summary .rd-svg { margin: 0; flex-shrink: 0; }
 .rd-summary__body { max-width: 1240px; margin: auto; padding: 1.5rem; display: grid; gap: 1.5rem; }
