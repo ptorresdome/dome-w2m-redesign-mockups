@@ -62,7 +62,8 @@ function Results() {
                 <li className={isReturn ? "is-done" : "is-current"} aria-current={isReturn ? undefined : "step"}><span>1</span><div><strong>Llegada · {form.date}</strong><small>{form.from} → {form.to}</small></div></li>
                 <li className={isReturn ? "is-current" : ""} aria-current={isReturn ? "step" : undefined}><span>2</span><div><strong>Regreso · {form.ret}</strong><small>{form.to} → {form.from}</small></div></li>
               </ol>}
-              <h1 className="rd-results__count" id="rd-results-count">{roundTrip ? (isReturn ? "Elige tu traslado de regreso" : "Elige tu traslado de llegada") + " · " : ""}{list.length} {list.length === 1 ? "resultado" : "resultados"}</h1>
+              <h1 className="rd-results__count" id="rd-results-count">{roundTrip ? (isReturn ? "Elige tu traslado de regreso" : "Elige tu traslado de llegada") + " · " : ""}{loading ? "…" : `${list.length} ${list.length === 1 ? "resultado" : "resultados"}`}</h1>
+              {loading ? <div className="rd-results__loading" role="status" aria-live="polite"><p><span className="rd-results__spinner" aria-hidden="true" />Buscando traslados de regreso…</p><ul className="rd-results__list">{[0, 1, 2].map(i => <li key={i}><div className="rd-vcard rd-skel"><div className="rd-skel__img" /><div className="rd-skel__lines"><i /><i /><i /></div><div className="rd-skel__price" /></div></li>)}</ul></div> : <>
               <ul className="rd-results__list">
                 {list.map((r, i) => (
                   <li key={i}>
@@ -87,6 +88,7 @@ function Results() {
                 ))}
               </ul>
               {list.length === 0 && <BrandCard className="rd-vcard rd-vcard--empty">No hay vehículos disponibles para {pax}. Prueba a modificar la búsqueda.</BrandCard>}
+              </>}
             </section>
           </div>
         </div>
