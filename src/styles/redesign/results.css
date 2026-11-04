@@ -77,7 +77,7 @@
 .rd-vcard__facts li { display: inline-flex; align-items: center; gap: 0.35rem; }
 .rd-vcard__facts .rd-svg, .rd-vcard__note .rd-svg { width: 1rem; height: 1rem; color: var(--brand-ink-strong); }
 .rd-vcard__desc { margin: 0; font-size: 0.8125rem; line-height: 1.5; color: var(--brand-ink); }
-.rd-vcard__note { margin: 0; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8125rem; font-weight: 600; color: var(--brand-ink-strong); }
+.rd-vcard__note { margin: 0; display: flex; justify-content: flex-start; text-align: left; align-items: flex-start; gap: 0.4rem; font-size: 0.8125rem; font-weight: 600; color: var(--brand-ink-strong); }
 .rd-vcard__price { padding: 1rem 1.25rem 1.25rem; display: flex; flex-direction: column; gap: 0.15rem; border-top: 1px solid var(--brand-line); }
 .rd-vcard__amount { margin: 0; font-size: 1.5rem; font-weight: 800; color: var(--brand-ink-strong); }
 .rd-vcard__amount small { font-size: 0.75rem; font-weight: 600; color: var(--brand-ink); }
