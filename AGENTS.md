@@ -14,3 +14,5 @@
 - Location selection lives in a shared LocationAutocomplete component; its mobile popup uses Radix Dialog for focus containment and background blocking, while desktop retains the anchored list — why: both search fields must share accessible selection behavior.
 - The search form passes its values to /resultados as URL search params (validated in src/lib/transfer-search.ts) — why: results stay shareable and reloadable without a backend.
 - SearchForm has hero and sidebar presentations using the same fields and selectors; results initialize it from URL search params and key it by those params — why: edits, reloads and browser navigation retain the submitted search without duplicating behavior.
+
+- Results and confirmation share the illustrative vehicle catalog in src/lib/transfer-booking.ts; selection travels to /confirmacion through validated URL parameters, while personal form data stays in React state — why: preserve the chosen service without storing personal data or simulating a live booking.
