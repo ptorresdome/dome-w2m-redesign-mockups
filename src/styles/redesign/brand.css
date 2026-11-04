@@ -6,6 +6,7 @@
   text-transform: uppercase; letter-spacing: 0.02em; cursor: pointer;
   transition: background-color .2s ease, transform .1s ease;
 }
+.rd-bbtn .rd-svg { margin: 0; }
 .rd-bbtn:active { transform: translateY(1px); }
 .rd-bbtn:focus-visible { outline: 3px solid color-mix(in oklab, var(--brand) 55%, transparent); outline-offset: 2px; }
 .rd-bbtn--primary { background: var(--brand); color: var(--brand-ink-strong); }
