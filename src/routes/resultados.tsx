@@ -48,14 +48,10 @@ const DEMO: Required<Pick<TransferSearch, "from" | "to" | "date">> & { adults: n
 function Results() {
   const s = Route.useSearch();
   const form: TransferSearch = {
-    from: s.from ?? DEMO.from,
-    to: s.to ?? DEMO.to,
-    date: s.date ?? DEMO.date,
-    ret: s.ret,
-    adults: s.adults ?? DEMO.adults,
-    children: s.children,
-    babies: s.babies,
-    privateOnly: s.privateOnly,
+    from: DEMO.from,
+    to: DEMO.to,
+    date: DEMO.date,
+    adults: DEMO.adults,
   };
   const people = (form.adults ?? 0) + (form.children ?? 0) + (form.babies ?? 0);
   const list = RESULTS.filter((r) => r.capacity >= people && (!s.privateOnly || r.private));
