@@ -53,7 +53,7 @@ function Confirmation() {
   const legalBase = "https://incoming-web-b2c-iberostar.w2m.dev1.public.dome-consulting.in";
   const pax = paxText(trip.adults, trip.children, trip.babies);
   return <><style>{capturedCSS}</style><style>{redesignCSS}</style><SiteHeader active="transfers" />
-    <main className="rd-confirm"><div className="rd-confirm__mast"><div className="rd-confirm__mast-inner"><div><h1>Confirma tu traslado</h1><p>Carro de compras</p></div><ol className="rd-confirm__steps" aria-label="Pasos de la reserva"><li aria-current="step"><span>1</span>Completar información</li><li><span>2</span>Procedimiento de pago</li></ol></div></div>
+    <main className="rd-confirm"><div className="rd-confirm__mast"><div className="rd-confirm__mast-inner"><div><h1>Carro de compras</h1></div><ol className="rd-confirm__steps" aria-label="Pasos de la reserva"><li aria-current="step"><span>1</span>Completar información</li><li><span>2</span>Procedimiento de pago</li></ol></div></div>
     <div className="rd-confirm__body"><Link className="rd-confirm__back" to="/resultados" search={trip}><ArrowLeft className="rd-svg" />Volver a los resultados</Link>
     {!vehicle || removed ? <div className="rd-confirm__empty"><FileText className="rd-svg" /><h2>No hay servicios en tu carrito</h2><p>Selecciona un traslado para continuar.</p><BrandButton onClick={() => navigate({ to: "/resultados", search: trip })}>Añadir traslado <Plus className="rd-svg" /></BrandButton></div> : <div className="rd-confirm__layout">
     <form className="rd-confirm__form" onSubmit={e => { e.preventDefault(); setReview(true); }}>
