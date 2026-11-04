@@ -64,7 +64,7 @@ function Results() {
     adults: DEMO.adults,
   };
   const people = (form.adults ?? 0) + (form.children ?? 0) + (form.babies ?? 0);
-  const list = RESULTS.filter((r) => r.capacity >= people && (!s.privateOnly || r.private));
+  const list = RESULTS.filter((r) => r.capacity >= people && (!s.privateOnly || r.private)).sort((a, b) => a.price - b.price);
   const pax = paxText(form.adults ?? 0, form.children ?? 0, form.babies ?? 0);
 
   return (
