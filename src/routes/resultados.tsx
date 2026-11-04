@@ -94,7 +94,7 @@ function Results() {
                         {r.note && <p className="rd-vcard__note">{ico(ICON_INFO)} {r.note}</p>}
                       </div>
                       <div className="rd-vcard__price">
-                        <p className="rd-vcard__amount">{r.price === 0 ? "Gratis" : <><small>desde</small> {r.price} €</>}</p>
+                        <p className="rd-vcard__amount">{r.price === 0 ? "Gratis" : `${r.price} €`}</p>
                         <p className="rd-vcard__pax">para {pax}</p>
                         <BrandButton>Añadir <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6"/></svg></BrandButton>
                       </div>
