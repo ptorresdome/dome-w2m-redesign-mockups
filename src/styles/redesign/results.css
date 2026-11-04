@@ -94,4 +94,4 @@
 @container (min-width: 860px) {
   .rd-vcard { grid-template-columns: 240px minmax(0, 1fr) 190px; }
 }
-.rd-vcard .rd-svg { margin: 0; }
+.rd-results .rd-vcard .rd-svg, .rd-results .rd-vcard__note > svg { margin: 0 !important; }
