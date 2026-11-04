@@ -63,7 +63,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
 }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [lastSelected, setLastSelected] = useState<string | null>(null);
+  const [lastSelected, setLastSelected] = useState<string | null>(value || null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
