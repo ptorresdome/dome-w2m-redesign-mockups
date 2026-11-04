@@ -1,14 +1,14 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { BrandButton, BrandCard } from "@/components/brand";
 import { SearchForm } from "@/components/search/SearchForm";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { ClientOnly } from "@tanstack/react-router";
 const RouteMap = lazy(() => import("@/components/results/RouteMap"));
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { paxText } from "@/lib/transfer-search";
 import { capturedCSS, redesignCSS } from "@/styles/page-styles";
-import { VEHICLES, resolveTransferSearch, validateResultsSearch } from "@/lib/transfer-booking";
+import { RETURN_VEHICLES, VEHICLES, resolveTransferSearch, validateResultsSearch } from "@/lib/transfer-booking";
 
 export const Route = createFileRoute("/resultados")({
   validateSearch: validateResultsSearch,
@@ -34,13 +34,15 @@ function Results() {
   const form = resolveTransferSearch(searchOnly);
   const isReturn = leg === "ret" && Boolean(form.ret) && Boolean(vehicle);
   const roundTrip = Boolean(form.ret);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => { if (!isReturn) return; setLoading(true); const t = setTimeout(() => setLoading(false), 1200); return () => clearTimeout(t); }, [isReturn]);
   const add = (id: string) => {
     if (isReturn) navigate({ to: "/confirmacion", search: { ...form, vehicle, retVehicle: id } });
     else if (roundTrip) { navigate({ to: "/resultados", search: { ...form, vehicle: id, leg: "ret" } }); window.scrollTo({ top: 0 }); }
     else navigate({ to: "/confirmacion", search: { ...form, vehicle: id } });
   };
   const people = (form.adults ?? 0) + (form.children ?? 0) + (form.babies ?? 0);
-  const list = VEHICLES.filter((r) => r.capacity >= people && (!s.privateOnly || r.private)).sort((a, b) => a.price - b.price);
+  const list = (isReturn ? RETURN_VEHICLES : VEHICLES).filter((r) => r.capacity >= people && (!s.privateOnly || r.private)).sort((a, b) => a.price - b.price);
   const pax = paxText(form.adults ?? 0, form.children ?? 0, form.babies ?? 0);
 
   return (
