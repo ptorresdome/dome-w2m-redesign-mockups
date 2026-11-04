@@ -33,6 +33,10 @@ export function passengerLabels(s: TransferSearch) {
     ...Array.from({ length: resolved.babies }, (_, i) => `Bebé ${i + 1}`),
   ];
 }
+// Illustrative return availability: not every vehicle is offered back and prices differ.
+const RETURN_PRICES: Record<string, number> = { "bus-general": 0, "minivan-65": 72, "van-89": 84, "van-95": 99, "minibus-140": 155, "suburban-110": 118, "suburban-120": 129 };
+export const RETURN_VEHICLES: Vehicle[] = VEHICLES.filter(v => v.id in RETURN_PRICES).map(v => ({ ...v, price: RETURN_PRICES[v.id] ?? v.price }));
+
 const vehicleParam = (v: unknown) => typeof v === "string" && VEHICLES.some(x => x.id === v) ? v : undefined;
 
 /** Results/confirmation params: `vehicle` = arrival service, `retVehicle` = return service, `leg` = which results step is shown. */
@@ -49,7 +53,7 @@ export function cartItems(s: ResultsSearch): CartItem[] {
   const items: CartItem[] = [];
   const arrival = VEHICLES.find(v => v.id === s.vehicle);
   if (arrival) items.push({ key: "arrival", label: "Llegada", vehicle: arrival, date: trip.date, from: trip.from, to: trip.to });
-  const ret = VEHICLES.find(v => v.id === s.retVehicle);
+  const ret = RETURN_VEHICLES.find(v => v.id === s.retVehicle);
   if (ret && trip.ret) items.push({ key: "return", label: "Regreso", vehicle: ret, date: trip.ret, from: trip.to, to: trip.from });
   return items;
 }
