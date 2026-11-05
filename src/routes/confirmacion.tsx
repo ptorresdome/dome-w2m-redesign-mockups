@@ -6,6 +6,7 @@ import { CheckoutMast } from "@/components/booking/CheckoutMast";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { generateLocator, saveBookingSubmission } from "@/lib/booking-submission";
+import { validateConfirmation } from "@/lib/confirmation-validation";
 import { cartItems, cartTotal, passengerLabels, resolveTransferSearch, validateResultsSearch } from "@/lib/transfer-booking";
 import { paxText } from "@/lib/transfer-search";
 import { capturedCSS, redesignCSS } from "@/styles/page-styles";
@@ -69,6 +70,7 @@ function Confirmation() {
   };
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validateConfirmation(e.currentTarget)) return;
     const data = new FormData(e.currentTarget);
     const field = (name: string) => String(data.get(name) ?? "");
     saveBookingSubmission({
@@ -85,7 +87,7 @@ function Confirmation() {
     <main className="rd-confirm"><CheckoutMast step={1} />
     <div className="rd-confirm__body"><Link className="rd-confirm__back" to="/resultados" search={trip}><ArrowLeft className="rd-svg" />Volver a los resultados</Link>
     {items.length === 0 ? <div className="rd-confirm__empty"><FileText className="rd-svg" /><h2>No hay servicios en tu carrito</h2><p>Selecciona un traslado para continuar.</p><BrandButton onClick={() => navigate({ to: "/resultados", search: trip })}>Añadir traslado <Plus className="rd-svg" /></BrandButton></div> : <div className="rd-confirm__layout">
-    <form className="rd-confirm__form" onSubmit={submit}>
+    <form className="rd-confirm__form" noValidate onSubmit={submit}>
       <FormSection number={1} title="Datos de contacto" required><div className="rd-confirm__fields">
         <Field id="contact-name" label="Nombre de la persona de contacto" autoComplete="given-name" required value={contact.name} onChange={e => setContact({ ...contact, name: e.target.value })} />
         <Field id="contact-surname" label="Apellidos" autoComplete="family-name" required value={contact.surname} onChange={e => setContact({ ...contact, surname: e.target.value })} />
