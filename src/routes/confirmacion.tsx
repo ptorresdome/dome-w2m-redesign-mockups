@@ -55,6 +55,18 @@ function Confirmation() {
   const updatePassenger = (index: number, key: "name" | "surname", value: string) => setPassengers(current => current.map((p, i) => i === index ? { ...p, [key]: value } : p));
   const legalBase = "https://incoming-web-b2c-iberostar.w2m.dev1.public.dome-consulting.in";
   const pax = paxText(trip.adults, trip.children, trip.babies);
+  const autoFillRequired = () => {
+    setContact(c => ({ ...c, name: c.name || "Juan", surname: c.surname || "García López", email: c.email || "juan.garcia@example.com", phone: c.phone || "600 123 456" }));
+    setPassengers(cur => cur.map((p, i) => i === 0 ? { name: p.name || "Juan", surname: p.surname || "García López" } : p));
+    const flightDefaults: Record<string, string> = {
+      "arrival-company": "IB", "arrival-flight": "6403", "arrival-origin": "MAD", "arrival-time": "12:30",
+      "departure-company": "IB", "departure-flight": "6404", "departure-destination": "MAD", "departure-time": "18:45",
+    };
+    for (const [id, value] of Object.entries(flightDefaults)) {
+      const el = document.getElementById(id) as HTMLInputElement | null;
+      if (el && !el.value) el.value = value;
+    }
+  };
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
