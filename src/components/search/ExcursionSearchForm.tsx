@@ -3,6 +3,9 @@ import { useState } from "react";
 import { DatePicker } from "@/components/DatePicker";
 import { LocationAutocomplete } from "@/components/LocationAutocomplete";
 import { BrandButton } from "@/components/brand";
+import { useNavigate } from "@tanstack/react-router";
+import { formatDate, parseTransferDate } from "@/lib/transfer-search";
+import type { ExcursionSearch } from "@/lib/excursions";
 import boat from "@/assets/excursion_boat.avif.asset.json";
 
 /** Excursion search form, same look and selectors as the transfer search. */
@@ -17,11 +20,12 @@ function paxSummary(p: Pax) {
   return parts.join(", ");
 }
 
-export function ExcursionSearchForm() {
-  const [dest, setDest] = useState("");
-  const [checkIn, setCheckIn] = useState<Date | null>(null);
-  const [checkOut, setCheckOut] = useState<Date | null>(null);
-  const [pax, setPax] = useState<Pax>({ adults: 2, children: 0, babies: 0 });
+export function ExcursionSearchForm({ variant = "hero", initialValues = {} }: { variant?: "hero" | "sidebar"; initialValues?: ExcursionSearch }) {
+  const navigate = useNavigate();
+  const [dest, setDest] = useState(initialValues.dest ?? "");
+  const [checkIn, setCheckIn] = useState<Date | null>(() => parseTransferDate(initialValues.from));
+  const [checkOut, setCheckOut] = useState<Date | null>(() => parseTransferDate(initialValues.to));
+  const [pax, setPax] = useState<Pax>({ adults: initialValues.adults ?? 2, children: initialValues.children ?? 0, babies: initialValues.babies ?? 0 });
   const [draft, setDraft] = useState<Pax>(pax);
   const [paxOpen, setPaxOpen] = useState(false);
   const step = (key: keyof Pax, delta: number) => setDraft((p) => ({ ...p, [key]: clampPax(key, p[key] + delta) }));
@@ -32,9 +36,9 @@ export function ExcursionSearchForm() {
   ];
 
   return (
-    <section className="rd-search-section" aria-label="Buscar excursiones">
+    <section className={variant === "sidebar" ? "rd-search-section rd-sidebar-search" : "rd-search-section"} aria-label="Buscar excursiones">
       <div className="rd-search-wrap">
-        <form className="rd-search" id="searcher-excursion" onSubmit={(e) => e.preventDefault()}>
+        <form className="rd-search" id="searcher-excursion" onSubmit={(e) => { e.preventDefault(); void navigate({ to: "/excursion-resultados", search: { dest: dest || undefined, from: formatDate(checkIn), to: formatDate(checkOut), adults: pax.adults, children: pax.children || undefined, babies: pax.babies || undefined } }); }}>
           <h2 className="rd-search__title">Buscar Excursiones</h2>
           <div className="rd-search__grid">
             <label className="rd-field rd-exc-dest" htmlFor="excursionDestination">
@@ -127,11 +131,11 @@ export function ExcursionSearchForm() {
           </div>
         </form>
       </div>
-      <div className="rd-hero">
+      {variant === "hero" && <div className="rd-hero">
         <div className="rd-hero__track">
           <div className="rd-hero__slide"><img src={boat.url} alt="Barco de excursión en el mar Caribe" /></div>
         </div>
-      </div>
+      </div>}
     </section>
   );
 }
