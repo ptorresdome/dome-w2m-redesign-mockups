@@ -396,3 +396,8 @@
 .rd-pax__x:focus-visible, .rd-pax__accept:focus-visible, .rd-counter__ctrl button:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
 @media (max-width: 767.98px) { .rd-pax__accept { align-self: stretch; } }
 
+
+/* Excursiones: un solo campo de destino */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .rd-exc-dest { grid-column: 1 / -1; }
+}
