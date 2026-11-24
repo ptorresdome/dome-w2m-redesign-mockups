@@ -66,3 +66,4 @@
 .rd-xfilter .rd-xfilter__title { justify-content: flex-start; text-align: left; }
 .rd-xfilter .rd-xfilter__name input { height: 42px !important; min-height: 42px; flex: none; width: 100%; box-sizing: border-box; }
 .rd-range .rd-range__track { display: block; height: 6px !important; min-height: 6px; background: var(--brand-line); }
+.rd-results .rd-xfilter__title .rd-svg, .rd-results .rd-mod .rd-svg, .rd-results .rd-link .rd-svg { margin: 0 !important; }
