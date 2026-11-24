@@ -126,3 +126,9 @@
   .rd-dcard { flex: 0 0 75%; scroll-snap-align: start; }
   .rd-acard { flex: 0 0 72%; scroll-snap-align: start; }
 }
+.rd-xhome .rd-qsearch__row { display: grid; grid-template-columns: minmax(0, 1fr) 180px; }
+.rd-xhome .rd-qsearch__field { width: 100%; max-width: none; margin: 0; }
+.rd-xhome .rd-qsearch .rd-search__submit { margin: 0; align-self: stretch; height: auto; }
+.rd-xhome .rd-acard__dest, .rd-xhome .rd-acard__meta { justify-content: flex-start; text-align: left; }
+.rd-xhome .rd-acard .rd-svg { margin: 0; }
+@media (max-width: 767.98px) { .rd-xhome .rd-qsearch__row { grid-template-columns: 1fr; } }

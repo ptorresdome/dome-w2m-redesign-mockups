@@ -40,7 +40,7 @@ function Excursions() {
         <section className="rd-xhome__section" aria-label="Actividades destacadas">
           <SectionTitle>Actividades destacadas</SectionTitle>
           <div className="rd-xhome__acts">
-            {EXCURSIONS.map((e) => <ActivityCard key={e.id} e={e} price={fromPrice(e)} />)}
+            {EXCURSIONS.slice(0, 4).map((e) => <ActivityCard key={e.id} e={e} price={fromPrice(e)} />)}
           </div>
         </section>
         <SiteFooter />
