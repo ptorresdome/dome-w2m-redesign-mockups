@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ExcursionSearchForm } from "@/components/search/ExcursionSearchForm";
 import * as SliderPrimitive from "@radix-ui/react-slider";
-import { EXCURSIONS, LANGUAGES, modalityTotal, validateExcursionSearch, type Modality } from "@/lib/excursions";
+import { DESTINATIONS, excursionsIn, EXCURSIONS, LANGUAGES, modalityTotal, validateExcursionSearch, type Modality } from "@/lib/excursions";
 import { formatDate, parseTransferDate, paxText } from "@/lib/transfer-search";
 import { capturedCSS, redesignCSS } from "@/styles/page-styles";
 const ExcursionMap = lazy(() => import("@/components/results/ExcursionMap"));
@@ -84,7 +84,13 @@ function ExcursionResults() {
 
   const list = useMemo(() => {
     const q = name.trim().toLowerCase();
-    const items = EXCURSIONS.map((e) => ({ ...e, modalities: e.modalities.filter((m) => {
+    const d = s.dest?.trim().toLowerCase() ?? "";
+    const destination = DESTINATIONS.find((x) => x.name.toLowerCase() === d);
+    const base = s.act ? EXCURSIONS.filter((e) => e.id === s.act)
+      : destination ? excursionsIn(destination.name)
+      : d ? EXCURSIONS.filter((e) => `${e.title} ${e.destination}`.toLowerCase().includes(d))
+      : EXCURSIONS;
+    const items = base.map((e) => ({ ...e, modalities: e.modalities.filter((m) => {
       const t = modalityTotal(m, adults, children);
       return t >= range[0] && t <= range[1] && (!q || `${e.title} ${m.name}`.toLowerCase().includes(q));
     }) })).filter((e) => e.modalities.length);
@@ -92,7 +98,7 @@ function ExcursionResults() {
     if (sort === "asc") items.sort((a, b) => min(a) - min(b));
     if (sort === "desc") items.sort((a, b) => min(b) - min(a));
     return items.slice(0, Number(perPage));
-  }, [name, range, sort, perPage, adults, children]);
+  }, [name, range, sort, perPage, adults, children, s.act, s.dest]);
 
   return (
     <>

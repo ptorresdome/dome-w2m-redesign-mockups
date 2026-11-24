@@ -54,7 +54,13 @@ const subscribeMobile = (callback: () => void) => {
   return () => media.removeEventListener("change", callback);
 };
 
-export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel }: {
+export type AcGroup = { title: string; icon: string; items: string[]; itemIcon?: string };
+
+export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel, groups: customGroups, placeholder: customPlaceholder, modalTitle, onSelect }: {
+  groups?: AcGroup[];
+  placeholder?: string;
+  modalTitle?: string;
+  onSelect?: (item: string, group: string) => void;
   id: string;
   tabIndex: number;
   value: string;
@@ -70,8 +76,8 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
   const isMobile = useSyncExternalStore(subscribeMobile, () => window.matchMedia("(max-width: 1023.98px)").matches, () => false);
 
   const isOrigin = id === "pickupLocation";
-  const allGroups = isOrigin ? [AIRPORT_GROUP] : [ZONE_GROUP, HOTEL_GROUP];
-  const placeholder = isOrigin ? "Aeropuerto de origen" : "Zona u hotel de destino";
+  const allGroups: AcGroup[] = customGroups ?? (isOrigin ? [AIRPORT_GROUP] : [ZONE_GROUP, HOTEL_GROUP]);
+  const placeholder = customPlaceholder ?? (isOrigin ? "Aeropuerto de origen" : "Zona u hotel de destino");
 
   useEffect(() => {
     if (!open) {
@@ -133,8 +139,8 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
           {group.items.map((item) => (
             <Button key={item} type="button" variant="ghost" className="rd-ac__item" role="option" aria-selected={value === item}
               onMouseDown={(e) => e.preventDefault()}
-              onClick={() => { onChange(item); setLastSelected(item); setOpen(false); }}>
-              <span className="fa fa-map-marker" aria-hidden="true" /><span>{item}</span>
+              onClick={() => { onChange(item); setLastSelected(item); setOpen(false); onSelect?.(item, group.title); }}>
+              <span className={`fa ${group.itemIcon ?? "fa-map-marker"}`} aria-hidden="true" /><span>{item}</span>
             </Button>
           ))}
         </div>
@@ -158,7 +164,7 @@ export function LocationAutocomplete({ id, tabIndex, value, onChange, panelLabel
               onOpenAutoFocus={(e) => e.preventDefault()}
               onCloseAutoFocus={(e) => { e.preventDefault(); inputRef.current?.focus(); }}>
               <div className="rd-ac__modal-head">
-                <DialogPrimitive.Title className="rd-ac__modal-title">{id === "pickupLocation" ? "Origen" : "Destino"}</DialogPrimitive.Title>
+                <DialogPrimitive.Title className="rd-ac__modal-title">{modalTitle ?? (id === "pickupLocation" ? "Origen" : "Destino")}</DialogPrimitive.Title>
                 <DialogPrimitive.Close asChild>
                   <Button type="button" variant="ghost" size="icon" className="rd-ac__close" aria-label="Cerrar lista"><X aria-hidden="true" /></Button>
                 </DialogPrimitive.Close>
