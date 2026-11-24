@@ -6,7 +6,7 @@ import { capturedCSS, redesignCSS } from "@/styles/page-styles";
 
 export const Route = createFileRoute("/traslados")({
   head: () => ({ meta: [
-    { title: "B2C-W2M Redesign" },
+    { title: "Traslados | B2C-W2M Redesign" },
     { name: "description", content: "Busca traslados entre aeropuertos, zonas y hoteles con Iberostar Island Transfers." },
     { property: "og:title", content: "Iberostar Island Transfers | Traslados" },
     { property: "og:description", content: "Busca tu traslado entre aeropuertos, zonas y hoteles." },
@@ -14,15 +14,14 @@ export const Route = createFileRoute("/traslados")({
     { name: "twitter:card", content: "summary_large_image" },
   ] }),
   staticData: { importedDocument: { html: { "className": "video", "lang": "es" } } },
-  component: Index,
+  component: Transfers,
 });
 
-function Index() {
+function Transfers() {
   return (
     <>
       <style>{capturedCSS}</style>
       <style>{redesignCSS}</style>
-      <CookieNotice />
       <div className="modal fade login-agency login-agency-b2c modal-login-agency w-full" id="myModalLogin" aria-hidden="false" aria-labelledby="myModalLogin" tabIndex={-1}>
         <div className="modal-dialog modal-fullscreen-md-down pointer-events-none">
           <div className="modal-content flex-col pointer-events-auto w-full">
