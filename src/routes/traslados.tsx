@@ -1,11 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CookieNotice } from "@/components/layout/CookieNotice";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SearchForm } from "@/components/search/SearchForm";
 import { capturedCSS, redesignCSS } from "@/styles/page-styles";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/traslados")({
   head: () => ({ meta: [
     { title: "B2C-W2M Redesign" },
     { name: "description", content: "Busca traslados entre aeropuertos, zonas y hoteles con Iberostar Island Transfers." },

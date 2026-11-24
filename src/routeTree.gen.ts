@@ -16,6 +16,7 @@ import { Route as ExcursionConfirmacionRouteImport } from './routes/excursion-co
 import { Route as ExcursionResultadosRouteImport } from './routes/excursion-resultados'
 import { Route as ResultadosRouteImport } from './routes/resultados'
 import { Route as ResumenRouteImport } from './routes/resumen'
+import { Route as TrasladosRouteImport } from './routes/traslados'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const ResumenRoute = ResumenRouteImport.update({
   path: '/resumen',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrasladosRoute = TrasladosRouteImport.update({
+  id: '/traslados',
+  path: '/traslados',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/excursion-resultados': typeof ExcursionResultadosRoute
   '/resultados': typeof ResultadosRoute
   '/resumen': typeof ResumenRoute
+  '/traslados': typeof TrasladosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/excursion-resultados': typeof ExcursionResultadosRoute
   '/resultados': typeof ResultadosRoute
   '/resumen': typeof ResumenRoute
+  '/traslados': typeof TrasladosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/excursion-resultados': typeof ExcursionResultadosRoute
   '/resultados': typeof ResultadosRoute
   '/resumen': typeof ResumenRoute
+  '/traslados': typeof TrasladosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/excursion-resultados'
     | '/resultados'
     | '/resumen'
+    | '/traslados'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/excursion-resultados'
     | '/resultados'
     | '/resumen'
+    | '/traslados'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/excursion-resultados'
     | '/resultados'
     | '/resumen'
+    | '/traslados'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   ExcursionResultadosRoute: typeof ExcursionResultadosRoute
   ResultadosRoute: typeof ResultadosRoute
   ResumenRoute: typeof ResumenRoute
+  TrasladosRoute: typeof TrasladosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResumenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/traslados': {
+      id: '/traslados'
+      path: '/traslados'
+      fullPath: '/traslados'
+      preLoaderRoute: typeof TrasladosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExcursionResultadosRoute: ExcursionResultadosRoute,
   ResultadosRoute: ResultadosRoute,
   ResumenRoute: ResumenRoute,
+  TrasladosRoute: TrasladosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
