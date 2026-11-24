@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConfirmacionRouteImport } from './routes/confirmacion'
 import { Route as ExcursionRouteImport } from './routes/excursion'
+import { Route as ExcursionConfirmacionRouteImport } from './routes/excursion-confirmacion'
 import { Route as ExcursionResultadosRouteImport } from './routes/excursion-resultados'
 import { Route as ResultadosRouteImport } from './routes/resultados'
 import { Route as ResumenRouteImport } from './routes/resumen'
@@ -29,6 +30,11 @@ const ConfirmacionRoute = ConfirmacionRouteImport.update({
 const ExcursionRoute = ExcursionRouteImport.update({
   id: '/excursion',
   path: '/excursion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExcursionConfirmacionRoute = ExcursionConfirmacionRouteImport.update({
+  id: '/excursion-confirmacion',
+  path: '/excursion-confirmacion',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExcursionResultadosRoute = ExcursionResultadosRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/confirmacion': typeof ConfirmacionRoute
   '/excursion': typeof ExcursionRoute
+  '/excursion-confirmacion': typeof ExcursionConfirmacionRoute
   '/excursion-resultados': typeof ExcursionResultadosRoute
   '/resultados': typeof ResultadosRoute
   '/resumen': typeof ResumenRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/confirmacion': typeof ConfirmacionRoute
   '/excursion': typeof ExcursionRoute
+  '/excursion-confirmacion': typeof ExcursionConfirmacionRoute
   '/excursion-resultados': typeof ExcursionResultadosRoute
   '/resultados': typeof ResultadosRoute
   '/resumen': typeof ResumenRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/confirmacion': typeof ConfirmacionRoute
   '/excursion': typeof ExcursionRoute
+  '/excursion-confirmacion': typeof ExcursionConfirmacionRoute
   '/excursion-resultados': typeof ExcursionResultadosRoute
   '/resultados': typeof ResultadosRoute
   '/resumen': typeof ResumenRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/confirmacion'
     | '/excursion'
+    | '/excursion-confirmacion'
     | '/excursion-resultados'
     | '/resultados'
     | '/resumen'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/confirmacion'
     | '/excursion'
+    | '/excursion-confirmacion'
     | '/excursion-resultados'
     | '/resultados'
     | '/resumen'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/confirmacion'
     | '/excursion'
+    | '/excursion-confirmacion'
     | '/excursion-resultados'
     | '/resultados'
     | '/resumen'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConfirmacionRoute: typeof ConfirmacionRoute
   ExcursionRoute: typeof ExcursionRoute
+  ExcursionConfirmacionRoute: typeof ExcursionConfirmacionRoute
   ExcursionResultadosRoute: typeof ExcursionResultadosRoute
   ResultadosRoute: typeof ResultadosRoute
   ResumenRoute: typeof ResumenRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/excursion'
       fullPath: '/excursion'
       preLoaderRoute: typeof ExcursionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/excursion-confirmacion': {
+      id: '/excursion-confirmacion'
+      path: '/excursion-confirmacion'
+      fullPath: '/excursion-confirmacion'
+      preLoaderRoute: typeof ExcursionConfirmacionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/excursion-resultados': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConfirmacionRoute: ConfirmacionRoute,
   ExcursionRoute: ExcursionRoute,
+  ExcursionConfirmacionRoute: ExcursionConfirmacionRoute,
   ExcursionResultadosRoute: ExcursionResultadosRoute,
   ResultadosRoute: ResultadosRoute,
   ResumenRoute: ResumenRoute,
