@@ -132,3 +132,6 @@
 .rd-xhome .rd-acard__dest, .rd-xhome .rd-acard__meta { justify-content: flex-start; text-align: left; }
 .rd-xhome .rd-acard .rd-svg { margin: 0; }
 @media (max-width: 767.98px) { .rd-xhome .rd-qsearch__row { grid-template-columns: 1fr; } }
+.rd-xhome .rd-qsearch__row { grid-template-columns: minmax(0, 1fr) 180px !important; }
+.rd-xhome .rd-qsearch__row > * { grid-column: auto !important; grid-row: auto !important; width: 100%; }
+@media (max-width: 767.98px) { .rd-xhome .rd-qsearch__row { grid-template-columns: 1fr !important; } }
