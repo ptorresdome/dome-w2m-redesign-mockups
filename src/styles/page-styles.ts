@@ -9,6 +9,7 @@ import results from "./redesign/results.css?raw";
 
 import confirmation from "./redesign/confirmation.css?raw";
 import summary from "./redesign/summary.css?raw";
+import excursions from "./redesign/excursions.css?raw";
 
 export const capturedCSS = captured;
-export const redesignCSS = [base, header, search, footer, brand, results, confirmation, summary].join("\n");
+export const redesignCSS = [base, header, search, footer, brand, results, confirmation, summary, excursions].join("\n");
