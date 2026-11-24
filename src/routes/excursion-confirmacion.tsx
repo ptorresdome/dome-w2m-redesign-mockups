@@ -61,8 +61,8 @@ function ExcursionConfirmation() {
   return <><style>{capturedCSS}</style><style>{redesignCSS}</style><SiteHeader active="excursions" />
     <main className="rd-confirm"><CheckoutMast step={locator ? 2 : 1} />
     <div className="rd-confirm__body"><Link className="rd-confirm__back" to="/excursion-resultados" search={back}><ArrowLeft className="rd-svg" />Volver a los resultados</Link>
-    {locator && found && !removed ? <div className="rd-confirm__empty"><CheckCircle2 className="rd-svg" /><h2>Reserva registrada · Localizador {locator}</h2><p>{found.modality.name} · {details}. Total {eur(total)}. Enviaremos la confirmación a {contact.email}.</p><BrandButton onClick={() => window.location.assign("/excursion")}>Buscar otra excursión <ArrowRight className="rd-svg" /></BrandButton></div>
-    : !found || removed ? <div className="rd-confirm__empty"><FileText className="rd-svg" /><h2>No hay servicios en tu carrito</h2><p>Selecciona una excursión para continuar.</p><Link to="/excursion"><BrandButton>Buscar excursiones <ArrowRight className="rd-svg" /></BrandButton></Link></div>
+    {locator && found && !removed ? <div className="rd-confirm__empty"><CheckCircle2 className="rd-svg" /><h2>Reserva registrada · Localizador {locator}</h2><p>{found.modality.name} · {details}. Total {eur(total)}. Enviaremos la confirmación a {contact.email}.</p><BrandButton onClick={() => window.location.assign("/")}>Buscar otra excursión <ArrowRight className="rd-svg" /></BrandButton></div>
+    : !found || removed ? <div className="rd-confirm__empty"><FileText className="rd-svg" /><h2>No hay servicios en tu carrito</h2><p>Selecciona una excursión para continuar.</p><Link to="/"><BrandButton>Buscar excursiones <ArrowRight className="rd-svg" /></BrandButton></Link></div>
     : <div className="rd-confirm__layout">
       <form className="rd-confirm__form" noValidate onSubmit={submit}>
         <FormSection number={1} title="Datos de contacto" required><div className="rd-confirm__fields">

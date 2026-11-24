@@ -7,11 +7,11 @@ export function SiteHeader({ active = "transfers" }: { active?: "excursions" | "
           <img src="/site-assets/1fbaddbcc7e6cf85.png" alt="W2M DMC Destination Travel Partner" />
         </a>
         <nav className="rd-tabs" aria-label="Navegación de la web">
-          <a className={active === "excursions" ? "rd-tab is-active" : "rd-tab"} href="/excursion" aria-current={active === "excursions" ? "page" : undefined}>
+          <a className={active === "excursions" ? "rd-tab is-active" : "rd-tab"} href="/" aria-current={active === "excursions" ? "page" : undefined}>
             <i className="fa fa-ticket" aria-hidden="true" />
             <span>Excursiones</span>
           </a>
-          <a className={active === "transfers" ? "rd-tab is-active" : "rd-tab"} href="/" aria-current={active === "transfers" ? "page" : undefined}>
+          <a className={active === "transfers" ? "rd-tab is-active" : "rd-tab"} href="/traslados" aria-current={active === "transfers" ? "page" : undefined}>
             <i className="fa fa-bus" aria-hidden="true" />
             <span>Traslados</span>
           </a>
