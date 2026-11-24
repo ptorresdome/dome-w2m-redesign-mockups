@@ -135,3 +135,4 @@
 .rd-xhome .rd-qsearch__row { grid-template-columns: minmax(0, 1fr) 180px !important; }
 .rd-xhome .rd-qsearch__row > * { grid-column: auto !important; grid-row: auto !important; width: 100%; }
 @media (max-width: 767.98px) { .rd-xhome .rd-qsearch__row { grid-template-columns: 1fr !important; } }
+.rd-xhome .rd-xhome__hero { overflow: visible; z-index: 5; }
