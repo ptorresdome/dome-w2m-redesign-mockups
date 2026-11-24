@@ -6,7 +6,7 @@ import { DESTINATIONS, EXCURSIONS } from "@/lib/excursions";
 
 const GROUPS: AcGroup[] = [
   { title: "Destinos", icon: "fa-map", items: DESTINATIONS.map((d) => d.name) },
-  { title: "Actividades", icon: "fa-ticket", itemIcon: "fa-star", items: EXCURSIONS.map((e) => e.title) },
+  { title: "Actividades", icon: "fa-ticket", itemIcon: "fa-ticket", items: EXCURSIONS.map((e) => e.title) },
 ];
 
 /** Free-text excursion search: the list of destinations and activities opens on click, before typing. */
