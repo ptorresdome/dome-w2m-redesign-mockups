@@ -36,7 +36,10 @@ function dateRange(from?: string, to?: string) {
 }
 
 function ModalityRow({ m, dates, adults, children, babies }: { m: Modality; dates: string[]; adults: number; children: number; babies: number }) {
-  const [added, setAdded] = useState(false);
+  const navigate = useNavigate();
+  const [date, setDate] = useState(dates[0] ?? "");
+  const [lang, setLang] = useState(LANGUAGES[0] ?? "");
+  const [pickup, setPickup] = useState(m.pickups?.[0] ?? "");
   const [breakdown, setBreakdown] = useState(false);
   const total = modalityTotal(m, adults, children);
   return (
@@ -46,9 +49,9 @@ function ModalityRow({ m, dates, adults, children, babies }: { m: Modality; date
         <button type="button" className="rd-link">Ver más {svg("M5 12h14M13 6l6 6-6 6")}</button>
       </div>
       <div className={m.pickups ? "rd-mod__row" : "rd-mod__row rd-mod__row--nopickup"}>
-        <label className="rd-mod__field"><span>Fecha</span><select defaultValue={dates[0]}>{dates.map((d) => <option key={d}>{d}</option>)}</select></label>
-        <label className="rd-mod__field"><span>Idioma</span><select>{LANGUAGES.map((l) => <option key={l}>{l}</option>)}</select></label>
-        {m.pickups && <label className="rd-mod__field"><span>Punto de encuentro y hora</span><select>{m.pickups.map((p) => <option key={p}>{p}</option>)}</select></label>}
+        <label className="rd-mod__field"><span>Fecha</span><select value={date} onChange={(e) => setDate(e.target.value)}>{dates.map((d) => <option key={d}>{d}</option>)}</select></label>
+        <label className="rd-mod__field"><span>Idioma</span><select value={lang} onChange={(e) => setLang(e.target.value)}>{LANGUAGES.map((l) => <option key={l}>{l}</option>)}</select></label>
+        {m.pickups && <label className="rd-mod__field"><span>Punto de encuentro y hora</span><select value={pickup} onChange={(e) => setPickup(e.target.value)}>{m.pickups.map((p) => <option key={p}>{p}</option>)}</select></label>}
         <div className="rd-mod__price">
           <span>Importe total</span>
           <strong>{eur(total)}</strong>
@@ -59,8 +62,8 @@ function ModalityRow({ m, dates, adults, children, babies }: { m: Modality; date
             {babies > 0 && <li>{babies} × bebé · gratis</li>}
           </ul>}
         </div>
-        <BrandButton className="rd-mod__add" aria-pressed={added} onClick={() => setAdded(true)}>
-          {added ? "Añadido" : "Añadir"} <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6"/></svg>
+        <BrandButton className="rd-mod__add" onClick={() => navigate({ to: "/excursion-confirmacion", search: { mod: m.id, date, lang, pickup: pickup || undefined, adults, children, babies } })}>
+          Añadir <svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6"/></svg>
         </BrandButton>
       </div>
     </div>
