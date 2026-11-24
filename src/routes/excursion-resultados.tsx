@@ -1,4 +1,4 @@
-import { createFileRoute, ClientOnly } from "@tanstack/react-router";
+import { createFileRoute, ClientOnly, useNavigate } from "@tanstack/react-router";
 import { lazy, Suspense, useMemo, useState } from "react";
 import { BrandButton, BrandCard } from "@/components/brand";
 import { SiteFooter } from "@/components/layout/SiteFooter";
