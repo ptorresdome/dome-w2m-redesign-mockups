@@ -57,7 +57,7 @@ function BookingSummary() {
               <FileText className="rd-svg" />
               <h2>No hay ninguna solicitud que resumir</h2>
               <p>Selecciona un traslado y completa sus datos para ver aquí el resumen de la reserva.</p>
-              <Link to="/" search={{}}><BrandButton>Volver al buscador</BrandButton></Link>
+              <Link to="/traslados" search={{}}><BrandButton>Volver al buscador</BrandButton></Link>
             </div>
           ) : (
             <>
@@ -140,7 +140,7 @@ function BookingSummary() {
               </section>
 
               <p className="rd-summary__disclaimer">Esta pantalla es una propuesta de diseño. No se ha realizado ninguna reserva ni ningún cobro.</p>
-              <Link className="rd-summary__home" to="/" search={{}}><ArrowLeft className="rd-svg" />Volver al buscador</Link>
+              <Link className="rd-summary__home" to="/traslados" search={{}}><ArrowLeft className="rd-svg" />Volver al buscador</Link>
             </>
           )}
         </div>
