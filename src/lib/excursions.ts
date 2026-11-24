@@ -36,3 +36,13 @@ export function validateExcursionSearch(s: Record<string, unknown>): ExcursionSe
 
 /** Total for the party: adults and children pay, babies are free. */
 export const modalityTotal = (m: Modality, adults: number, children: number) => m.adult * adults + m.child * children;
+
+export type ExcursionCartSearch = { mod?: string | undefined; date?: string | undefined; lang?: string | undefined; pickup?: string | undefined; adults?: number | undefined; children?: number | undefined; babies?: number | undefined };
+export function validateExcursionCart(s: Record<string, unknown>): ExcursionCartSearch {
+  return { mod: str(s["mod"]), date: str(s["date"]), lang: str(s["lang"]), pickup: str(s["pickup"]), adults: num(s["adults"], 1), children: num(s["children"], 0), babies: num(s["babies"], 0) };
+}
+/** Finds the excursion and modality chosen on the results page. */
+export function findModality(id?: string) {
+  for (const e of EXCURSIONS) { const m = e.modalities.find((x) => x.id === id); if (m) return { excursion: e, modality: m }; }
+  return null;
+}
