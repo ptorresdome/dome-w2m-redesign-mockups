@@ -67,3 +67,15 @@
 .rd-xfilter .rd-xfilter__name input { height: 42px !important; min-height: 42px; flex: none; width: 100%; box-sizing: border-box; }
 .rd-range .rd-range__track { display: block; height: 6px !important; min-height: 6px; background: var(--brand-line); }
 .rd-results .rd-xfilter__title .rd-svg, .rd-results .rd-mod .rd-svg, .rd-results .rd-link .rd-svg { margin: 0 !important; }
+
+/* Excursion hero search: one row on desktop, Buscar on the right (dev-site proportions). */
+@media (min-width: 1024px) {
+  .rd-search-section:not(.rd-sidebar-search) #searcher-excursion .rd-search__grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.3fr 1fr; gap: 12px; align-items: stretch;
+  }
+  .rd-search-section:not(.rd-sidebar-search) #searcher-excursion .rd-dates { display: contents; }
+  .rd-search-section:not(.rd-sidebar-search) #searcher-excursion .rd-search__grid > * { grid-column: auto; grid-row: auto; min-width: 0; }
+  .rd-search-section:not(.rd-sidebar-search) #searcher-excursion .rd-submit-col { display: flex; align-items: stretch; margin: 0; }
+  .rd-search-section:not(.rd-sidebar-search) #searcher-excursion .rd-submit-col > * { width: 100%; max-width: none; }
+  .rd-search-section:not(.rd-sidebar-search) #searcher-excursion .rd-exc-dest .rd-field__label { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
