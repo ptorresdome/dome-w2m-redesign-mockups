@@ -4,7 +4,7 @@ import { BrandButton, BrandCard } from "@/components/brand";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ExcursionSearchForm } from "@/components/search/ExcursionSearchForm";
-import { Slider } from "@/components/ui/slider";
+import * as SliderPrimitive from "@radix-ui/react-slider";
 import { EXCURSIONS, LANGUAGES, modalityTotal, validateExcursionSearch, type Modality } from "@/lib/excursions";
 import { formatDate, parseTransferDate, paxText } from "@/lib/transfer-search";
 import { capturedCSS, redesignCSS } from "@/styles/page-styles";
@@ -52,7 +52,7 @@ function ModalityRow({ m, dates, adults, children, babies }: { m: Modality; date
         <div className="rd-mod__price">
           <span>Importe total</span>
           <strong>{eur(total)}</strong>
-          <button type="button" className="rd-mod__breakdown" aria-expanded={breakdown} onClick={() => setBreakdown((v) => !v)}><span className="fa fa-info-circle" aria-hidden="true" /> Desglose</button>
+          <button type="button" className="rd-mod__breakdown" aria-expanded={breakdown} onClick={() => setBreakdown((v) => !v)}><svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 16v-4M12 8h.01" /></svg> Desglose</button>
           {breakdown && <ul className="rd-mod__lines">
             <li>{adults} × adulto · {eur(m.adult)}</li>
             {children > 0 && <li>{children} × niño · {eur(m.child)}</li>}
@@ -102,7 +102,7 @@ function ExcursionResults() {
             <aside aria-label="Buscador de excursiones">
               <ExcursionSearchForm key={JSON.stringify(s)} variant="sidebar" initialValues={s} />
               <BrandCard className="rd-xfilter">
-                <h2 className="rd-xfilter__title"><span className="fa fa-filter" aria-hidden="true" /> Filtrar resultados</h2>
+                <h2 className="rd-xfilter__title"><svg className="rd-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 3H2l8 9.5V19l4 2v-8.5Z" /></svg> Filtrar resultados</h2>
                 <form className="rd-xfilter__name" onSubmit={(e) => { e.preventDefault(); setName(nameInput); }}>
                   <label htmlFor="excursionName">Nombre de excursión</label>
                   <div><input id="excursionName" value={nameInput} onChange={(e) => setNameInput(e.target.value)} placeholder="Ej. Xcaret" /><BrandButton type="submit">Filtrar</BrandButton></div>
@@ -110,7 +110,11 @@ function ExcursionResults() {
                 <div className="rd-xfilter__price">
                   <span>Precio</span>
                   <div className="rd-xfilter__values"><strong>{minP === maxP ? eur(minP) : eur(range[0])}</strong><strong>{eur(range[1])}</strong></div>
-                  <Slider min={minP} max={maxP} step={1} value={range} onValueChange={(v) => setRange([v[0] ?? minP, v[1] ?? maxP])} aria-label="Rango de precio" />
+                  <SliderPrimitive.Root className="rd-range" min={minP} max={maxP} step={1} value={range} minStepsBetweenThumbs={0} onValueChange={(v) => setRange([v[0] ?? minP, v[1] ?? maxP])}>
+                    <SliderPrimitive.Track className="rd-range__track"><SliderPrimitive.Range className="rd-range__fill" /></SliderPrimitive.Track>
+                    <SliderPrimitive.Thumb className="rd-range__thumb" aria-label="Precio mínimo" />
+                    <SliderPrimitive.Thumb className="rd-range__thumb" aria-label="Precio máximo" />
+                  </SliderPrimitive.Root>
                 </div>
               </BrandCard>
               <BrandCard className="rd-map"><ClientOnly fallback={<div className="rd-map__canvas" />}><Suspense fallback={<div className="rd-map__canvas" />}><ExcursionMap points={list.map((e) => ({ name: e.title, coords: e.coords }))} /></Suspense></ClientOnly></BrandCard>
